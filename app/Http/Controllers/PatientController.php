@@ -258,7 +258,11 @@ class PatientController extends Controller
             ]
             ];
 
-            return $response;
+            $finalResponse= ["data"=>[
+                "resource"=>$response
+            ]];
+
+            return $finalResponse;
 
         die("parea");
     }
