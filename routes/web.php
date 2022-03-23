@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('patient/recursive', [PatientController::class, 'recursive']);
 Route::get('patient/pagination', [PatientController::class, 'pagination']);
 Route::get('patient/getmodified', [PatientController::class, 'getmodified']);
-Route::resource('patient', PatientController::class);
+Route::resource('Patient', PatientController::class);
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);
 Route::get('capabilitiesaws', [CapabilitiesController::class, 'aws']);
