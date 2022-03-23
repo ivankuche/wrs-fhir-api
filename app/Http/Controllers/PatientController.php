@@ -252,11 +252,9 @@ class PatientController extends Controller
             ]
             ];
 
-            $finalResponse= ["resource"=>$response];
+        $finalResponse= ["resource"=>$response];
 
-            return $finalResponse;
-
-        die("parea");
+        return $finalResponse;
     }
 
     /**
@@ -326,5 +324,11 @@ class PatientController extends Controller
         die($content);
         */
 
+    }
+
+    public function search(Request $request)
+    {
+        print_r($request->all());
+        die();
     }
 }
