@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
+use Storage;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -328,7 +329,10 @@ class PatientController extends Controller
 
     public function search(Request $request)
     {
+        Storage::put('file.txt', print_r($request->all(),true));
+
         print_r($request->all());
+
         die();
     }
 }
