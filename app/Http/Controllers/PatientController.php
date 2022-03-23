@@ -329,10 +329,7 @@ class PatientController extends Controller
 
     public function search(Request $request)
     {
-        Storage::put('/public/search.txt', print_r($request->all(),true));
-
-        print_r($request->all());
-
-        die();
+        $patients= Patient::where($request->all())->get()->toArray();
+        return $patients;
     }
 }
