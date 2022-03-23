@@ -258,9 +258,7 @@ class PatientController extends Controller
             ]
             ];
 
-            $finalResponse= ["data"=>[
-                "resource"=>$response
-            ]];
+            $finalResponse= ["resource"=>$response];
 
             return $finalResponse;
 
