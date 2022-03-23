@@ -84,15 +84,9 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show($patientID)
     {
-        //
-        /*
-        print_r($patient);
-        die("capo");
-        dd($patient);
-        */
-
+        $patient= Patient::findOrFail($patientID);
         $response= [
             "resourceType"=>"Patient",
             "id"=>$patient->id,
