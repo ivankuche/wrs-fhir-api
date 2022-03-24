@@ -237,11 +237,24 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //print_r($request);
-        Storage::put("public/dumpCreate.txt",dump($request));
-        die();
-        return Patient::create(request()->all());
+
+
+        $arrayRequest= $request->toArray();
+        //print_r(request()->all('birthDate'));
+        //die();
+
+        $patient= [
+            'name'=>$arrayRequest['name'][0]['given'][0],
+            'active'=>$arrayRequest['active'],
+            'surname'=>$arrayRequest['name'][0]['family'],
+            'gender'=>$arrayRequest['gender'],
+            'birthdate'=>$arrayRequest['birthDate']
+        ];
+
+
+//        Storage::put("public/dumpCreate.txt",dump($request));
+        $patientNew= Patient::create($patient);
+        return $this->fhirStructure($patientNew);
     }
 
     /**
