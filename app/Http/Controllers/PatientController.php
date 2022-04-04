@@ -99,8 +99,8 @@ class PatientController extends Controller
         die("era");
 */
 
-        $mapper= ["name"=>"name->given","surname"=>"name->family","id"=>"identifier->value"];
-        $mapperUnderscore= ["id"=>"identifier->value"];
+        $mapper= ["name"=>"name->given","surname"=>"name->family","id"=>"identifier->value","birthdate"=>"birthdate","gender"=>"gender"];
+        $mapperUnderscore= ["id"=>"id"];
         $conditions= [];
         $patients= Patient::query();
 
@@ -132,12 +132,29 @@ class PatientController extends Controller
         //$patients= Patient::where($this->validParameters(request()->all()))->inRandomOrder()->limit(100)->get();
 
         //$patients= Patient::where($this->validParameters($conditions))->inRandomOrder()->limit(100)->get();
-        $resultado= $patients->inRandomOrder()->limit(100)->get()->toArray();
+        //$resultado= $patients->inRandomOrder()->limit(100)->get()->toArray();
+
+
+
+
 
         if (!$request->wantsJson())
             return response()->xml($patients->limit(100)->get());
         else
-            return $patients->limit(100)->get();
+        {
+            $finalResponse= [];
+
+            foreach ($patients->limit(100)->get() as $pat)
+            {
+                $response= $this->fhirStructure($pat);
+                $finalResponse["resource"][]= $response;
+            }
+
+            return $finalResponse;
+            //return $patients->limit(100)->get();
+        }
+
+
     }
 
     public function pagination(Request $request)
