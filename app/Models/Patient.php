@@ -13,7 +13,7 @@ class Patient extends Model
     'deceasedBoolean', 'deceasedDateTime', 'address', 'maritalStatus', 'contact'];
 
     protected $casts = [
-        //'identifier' => 'array',
+        'identifier' => 'array',
         'name' => 'array',
         'telecom' => 'array',
         'address' => 'array',
