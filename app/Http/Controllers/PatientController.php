@@ -25,22 +25,22 @@ class PatientController extends Controller
         {
             $response= [
                 "resourceType"=>"Patient",
-                "id"=>json_decode($patient->identifier)->value,
+                "id"=>$patient->identifier['value'],
                 "text"=> [
                     "status"=> "generated",
                     "div"=> "blablabla"
                 ],
-                "identifier"=> json_decode($patient->identifier),
+                "identifier"=> $patient->identifier,
                 "active"=> ($patient->active?true:false),
-                "name"=> json_decode($patient->name),
-                "telecom"=> json_decode($patient->telecom),
+                "name"=> $patient->name,
+                "telecom"=> $patient->telecom,
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthdate,
                 "deceasedBoolean"=> $patient->deceasedBoolean,
                 "deceasedDateTime"=> $patient->deceasedDateTime,
-                "address"=> json_decode($patient->address),
-                "maritalStatus"=> json_decode($patient->maritalStatus),
-                "contact"=> json_decode($patient->contact),
+                "address"=> $patient->address,
+                "maritalStatus"=> $patient->maritalStatus,
+                "contact"=> $patient->contact,
             ];
         }
         else
