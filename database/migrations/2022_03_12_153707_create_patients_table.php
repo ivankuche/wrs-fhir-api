@@ -15,11 +15,17 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->json('identifier');
             $table->boolean('active');
-            $table->string('name');
-            $table->string('surname');
+            $table->json('name');
+            $table->json('telecom')->nullable();
             $table->string('gender');
             $table->date('birthdate');
+            $table->boolean('deceasedBoolean');
+            $table->date('deceasedDateTime')->nullable();
+            $table->json('address')->nullable();
+            $table->json('maritalStatus')->nullable();
+            $table->json('contact')->nullable();
             $table->timestamps();
         });
     }

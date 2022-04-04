@@ -15,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Patient::factory(1000)->create();
+        $patients= Patient::factory(100)->create();
+
+        $patients->each(function($patient) {
+            $patientObjSource= Patient::find($patient->id);
+            $patientObjSource->update(['identifier'=> json_encode([
+                'use'=>'usual',
+                'value'=>$patient->id
+            ])]);
+        });
+
     }
 }

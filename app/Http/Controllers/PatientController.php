@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 use Storage;
@@ -182,10 +183,51 @@ class PatientController extends Controller
         return $response;
     }
 
+    private function renameParams($params)
+    {
+        $mapper= ["_id"=>"id"];
+        $mapperUnderscore= ["id"=>"id"];
+        $output= [];
+
+        foreach ($params as $key=>$value)
+        {
+            if (substr($key,0,1)=="_")
+            {
+                $output[$mapperUnderscore[substr($key,1)]]= $value;
+            }
+            else
+            {
+
+                if (in_array($key,$mapper))
+                    $output[$mapper[$key]]= $value;
+                else
+                    $output[$key]= $value;
+            }
+        }
+
+        return $output;
+    }
+
+    private function validParameters($params)
+    {
+        $valid= ['birthdate','name','gender','identifier','_id','_revinclude'];
+        $invalid= [];
+
+        foreach ($params as $key=>$value)
+        {
+            if (!in_array($key,$valid))
+                $invalid[]= $key;
+        }
+
+        if (count($invalid)>0)
+            throw new Exception("Invalid fields: ".implode(", ",$invalid),500);
+
+        return $this->renameParams($params);
+    }
+
     public function index(Request $request)
     {
-
-        $patients= Patient::inRandomOrder()->limit(100)->get();
+        $patients= Patient::where($this->validParameters(request()->all()))->inRandomOrder()->limit(100)->get();
 
         if (!$request->wantsJson())
             return response()->xml($patients);
