@@ -25,12 +25,12 @@ class PatientController extends Controller
         {
             $response= [
                 "resourceType"=>"Patient",
-                "id"=>$patient->identifier["value"],
+                "id"=>json_decode($patient->identifier)->value,
                 "text"=> [
                     "status"=> "generated",
                     "div"=> "blablabla"
                 ],
-                "identifier"=> $patient->identifier,
+                "identifier"=> json_decode($patient->identifier),
                 "active"=> ($patient->active?true:false),
                 "name"=> json_decode($patient->name),
                 "telecom"=> json_decode($patient->telecom),
