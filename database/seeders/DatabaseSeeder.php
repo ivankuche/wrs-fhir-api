@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
 
         $patients->each(function($patient) {
             $patientObjSource= Patient::find($patient->id);
-            $patientObjSource->update(['identifier'=> json_encode([
+            $patientObjSource->update(['identifier'=> [
                 'use'=>'usual',
                 'value'=>$patient->id
-            ])]);
+            ]]);
         });
 
     }

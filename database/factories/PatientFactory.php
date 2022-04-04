@@ -150,19 +150,18 @@ class PatientFactory extends Factory
         }
 
         return [
-            'identifier'=> json_encode([
+            'identifier'=> [
                 'use'=>'usual',
                 'value'=>$id
-            ]),
+            ],
             'active'=> $this->faker->boolean(),
-            'name'=> json_encode([[
+            'name'=>[
                 'use'=>'usual',
                 'text'=>$name." ".$surname,
                 'family'=>$surname,
                 'given'=>$name
-            ]]),
-            'telecom'=> json_encode([
-                [
+            ],
+            'telecom'=> [[
                     "system"=>"phone",
                     "value"=>$this->faker->phoneNumber,
                     "use"=>"home"
@@ -171,15 +170,14 @@ class PatientFactory extends Factory
                     "system"=>"phone",
                     "value"=>$this->faker->phoneNumber,
                     "use"=>"work"
-                ]
-            ]),
+                ]],
             'gender'=>$gender,
             'birthdate'=>$this->faker->date('Y-m-d','now - 5 year'),
             'deceasedBoolean'=>$deceasedBoolean,
             'deceasedDateTime'=>$deceasedDateTime,
-            'address'=> json_encode($addressItem),
-            'maritalStatus'=>json_encode($marital),
-            'contact'=>json_encode($contact)
+            'address'=> $addressItem,
+            'maritalStatus'=>$marital,
+            'contact'=>$contact
         ];
 
 /*

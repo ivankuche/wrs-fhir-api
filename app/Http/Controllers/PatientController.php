@@ -76,7 +76,7 @@ class PatientController extends Controller
 
     private function validParameters($params)
     {
-        $valid= ['birthdate','name','gender','identifier','_id','_revinclude'];
+        $valid= ['birthdate','name->text','gender','identifier','_id','_revinclude'];
         $invalid= [];
 
         foreach ($params as $key=>$value)
@@ -93,12 +93,51 @@ class PatientController extends Controller
 
     public function index(Request $request)
     {
-        $patients= Patient::where($this->validParameters(request()->all()))->inRandomOrder()->limit(100)->get();
+        /*
+        $patients= Patient::whereJsonContains('name->given','Kenny')->inRandomOrder()->limit(1)->get()->toArray();
+        print_r($patients);
+        die("era");
+*/
+
+        $mapper= ["name"=>"name->given","surname"=>"name->family"];
+        $mapperUnderscore= ["id"=>"identifier->value"];
+        $conditions= [];
+        $patients= Patient::query();
+
+        foreach ($request->all() as $key=>$value)
+        {
+            if (substr($key,0,1)=="_")
+                $patients->where($mapperUnderscore[substr($key,1)],'like',$value);
+            else
+                if (in_array($key,array_keys($mapper)))
+                    $patients->where($mapper[$key],'like',$value);
+        }
+
+        /*
+        $resultado= $patients->inRandomOrder()->limit(100)->get()->toArray();
+        print_r($resultado);
+        die("pere");
+        var_dump($patients);
+        //print_r($patients);
+        die("per");
+
+        $patients= Patient::whereJsonContains($conditions)->inRandomOrder()->limit(100)->get();
+        print_r($patients);
+        print_r($conditions);
+        die();
+*/
+
+
+
+        //$patients= Patient::where($this->validParameters(request()->all()))->inRandomOrder()->limit(100)->get();
+
+        //$patients= Patient::where($this->validParameters($conditions))->inRandomOrder()->limit(100)->get();
+        $resultado= $patients->inRandomOrder()->limit(100)->get()->toArray();
 
         if (!$request->wantsJson())
-            return response()->xml($patients);
+            return response()->xml($patients->limit(100)->get());
         else
-            return $patients;
+            return $patients->limit(100)->get();
     }
 
     public function pagination(Request $request)
