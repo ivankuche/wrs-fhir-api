@@ -147,7 +147,7 @@ class PatientController extends Controller
             foreach ($patients->limit(100)->get() as $pat)
             {
                 $response= $this->fhirStructure($pat);
-                $finalResponse["resource"][]= $response;
+                $finalResponse[]= $response;
             }
 
             return $finalResponse;

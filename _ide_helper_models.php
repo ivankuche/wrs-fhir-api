@@ -15,11 +15,17 @@ namespace App\Models{
  * App\Models\Patient
  *
  * @property int $id
+ * @property array $identifier
  * @property int $active
- * @property string $name
- * @property string $surname
+ * @property array $name
+ * @property array|null $telecom
  * @property string $gender
  * @property string $birthdate
+ * @property int $deceasedBoolean
+ * @property string|null $deceasedDateTime
+ * @property array|null $address
+ * @property array|null $maritalStatus
+ * @property array|null $contact
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\PatientFactory factory(...$parameters)
@@ -27,12 +33,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Patient newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Patient query()
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereBirthdate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereContact($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereDeceasedBoolean($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereDeceasedDateTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereIdentifier($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereMaritalStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Patient whereSurname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Patient whereTelecom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Patient whereUpdatedAt($value)
  */
 	class Patient extends \Eloquent {}
