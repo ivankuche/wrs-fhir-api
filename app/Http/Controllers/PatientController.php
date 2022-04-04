@@ -99,7 +99,7 @@ class PatientController extends Controller
         die("era");
 */
 
-        $mapper= ["name"=>"name->given","surname"=>"name->family"];
+        $mapper= ["name"=>"name->given","surname"=>"name->family","id"=>"identifier->value"];
         $mapperUnderscore= ["id"=>"identifier->value"];
         $conditions= [];
         $patients= Patient::query();
@@ -107,10 +107,10 @@ class PatientController extends Controller
         foreach ($request->all() as $key=>$value)
         {
             if (substr($key,0,1)=="_")
-                $patients->where($mapperUnderscore[substr($key,1)],'like',$value);
+                $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
             else
                 if (in_array($key,array_keys($mapper)))
-                    $patients->where($mapper[$key],'like',$value);
+                    $patients->where($mapper[$key],'=',$value);
         }
 
         /*
