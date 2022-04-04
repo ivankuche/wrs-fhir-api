@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $patients= Patient::factory(100)->create();
+        $patients= Patient::factory(1000)->create();
 
         $patients->each(function($patient) {
             $patientObjSource= Patient::find($patient->id);
