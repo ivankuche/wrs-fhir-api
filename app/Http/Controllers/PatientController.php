@@ -193,15 +193,20 @@ class PatientController extends Controller
             "gender"=>["gender"],
             "identifier"=>["identifier->value"]
         ];
-        $mapperUnderscore= ["id"=>"id"];
+        $mapperUnderscore= [
+            "id"=>"id",
+        ];
         $conditions= [];
         $patients= Patient::query();
 
         foreach ($request->all() as $key=>$value)
         {
+            $key= strtolower($key);
             // Methods with underscore
             if (substr($key,0,1)=="_")
+            {
                 $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
+            }
             else
             {
                 if (in_array($key,array_keys($mapper)))
