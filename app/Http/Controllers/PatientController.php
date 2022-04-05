@@ -159,6 +159,7 @@ class PatientController extends Controller
                 $response= $this->fhirStructure($pat);
                 $finalResponse[]= $response;
             }
+
             //print_r(DB::getQueryLog());
             ///die();
 
