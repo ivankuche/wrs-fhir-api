@@ -21,14 +21,6 @@ class PatientFactory extends Factory
         $gender = $this->faker->randomElement(['male', 'female']);
         $ultimo= Patient::latest()->get('id')->toArray();
 
-        if (count($ultimo)==0)
-            $id=1;
-        else{
-            print_r($ultimo);
-            die();
-            $id= $ultimo['id'] +1;
-        }
-
         $name= $this->faker->firstName($gender);
         $surname= $this->faker->lastName();
         $deceasedBoolean= $this->faker->boolean();
@@ -149,10 +141,13 @@ class PatientFactory extends Factory
 
         }
 
+        $id="AAA";
+
         return [
             'identifier'=> [
                 'use'=>'usual',
-                'value'=>$id
+                'value'=>$id,
+                'system'=> "http://hospital.smarthealthit.org"
             ],
             'active'=> $this->faker->boolean(),
             'name'=>[

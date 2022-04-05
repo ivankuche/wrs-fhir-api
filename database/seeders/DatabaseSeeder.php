@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             $patientObjSource= Patient::find($patient->id);
             $patientObjSource->update(['identifier'=> [
                 'use'=>'usual',
-                'value'=>$patient->id
+                'value'=>$patient->id,
+                'system'=> "http://hospital.smarthealthit.org"
             ]]);
         });
 

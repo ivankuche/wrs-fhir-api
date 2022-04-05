@@ -23,23 +23,27 @@ class PatientController extends Controller
     {
         if ($patient!=[])
         {
+            $identifierCast= $patient->identifier;
+            $identifierCast['value']= '"'.$identifierCast['value'].'"';
             $response= [
                 "resourceType"=>"Patient",
                 "id"=>$patient->identifier['value'],
                 "text"=> [
                     "status"=> "generated",
-                    "div"=> "blablabla"
+                    "div"=> "<div>Success!</div>"
                 ],
-                "identifier"=> [$patient->identifier],
+                "identifier"=> [$identifierCast],
                 "active"=> ($patient->active?true:false),
                 "name"=> [$patient->name],
                 "telecom"=> $patient->telecom,
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthdate,
-                "deceasedBoolean"=> $patient->deceasedBoolean,
-                "deceasedDateTime"=> $patient->deceasedDateTime,
+                "deceased"=> [
+                    "deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
+                    "deceasedDateTime"=> $patient->deceasedDateTime,
+                ],
                 "address"=> [$patient->address],
-                "maritalStatus"=> [$patient->maritalStatus],
+                "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
             ];
         }
