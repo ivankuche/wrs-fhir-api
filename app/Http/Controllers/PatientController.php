@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 use Storage;
+use DB;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -97,8 +98,10 @@ class PatientController extends Controller
 
     private function mapperToEloquent(&$query,$options,$value)
     {
-        foreach ($options as $option)
-            $query->orWhere($option,'=',$value);
+        $query->where(function ($element) use ($options,$value) {
+            foreach ($options as $option)
+                $element->orWhere($option,'=',$value);
+        });
     }
 
     public function index(Request $request)
@@ -118,9 +121,11 @@ class PatientController extends Controller
 
         foreach ($request->all() as $key=>$value)
         {
+            // Methods with underscore
             if (substr($key,0,1)=="_")
                 $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
             else
+            {
                 if (in_array($key,array_keys($mapper)))
                 {
                     if ($key=="identifier")
@@ -140,44 +145,22 @@ class PatientController extends Controller
                         $this->mapperToEloquent($patients,$mapper[$key],$value);
                         //$patients->where($mapper[$key],'=',$value);
                 }
+            }
         }
-
-        /*
-        $resultado= $patients->inRandomOrder()->limit(100)->get()->toArray();
-        print_r($resultado);
-        die("pere");
-        var_dump($patients);
-        //print_r($patients);
-        die("per");
-
-        $patients= Patient::whereJsonContains($conditions)->inRandomOrder()->limit(100)->get();
-        print_r($patients);
-        print_r($conditions);
-        die();
-*/
-
-
-
-        //$patients= Patient::where($this->validParameters(request()->all()))->inRandomOrder()->limit(100)->get();
-
-        //$patients= Patient::where($this->validParameters($conditions))->inRandomOrder()->limit(100)->get();
-        //$resultado= $patients->inRandomOrder()->limit(100)->get()->toArray();
-
-
-
-
 
         if (!$request->wantsJson())
             return response()->xml($patients->limit(100)->get());
         else
         {
             $finalResponse= [];
-
+            //DB::enableQueryLog();
             foreach ($patients->limit(100)->get() as $pat)
             {
                 $response= $this->fhirStructure($pat);
                 $finalResponse[]= $response;
             }
+            //print_r(DB::getQueryLog());
+            ///die();
 
             return $finalResponse;
             //return $patients->limit(100)->get();
