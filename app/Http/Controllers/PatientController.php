@@ -30,7 +30,7 @@ class PatientController extends Controller
                 "id"=>$patient->identifier['value'],
                 "text"=> [
                     "status"=> "generated",
-                    "div"=> "<div>Success!</div>"
+                    "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
                 "identifier"=> [$identifierCast],
                 "active"=> ($patient->active?true:false),
@@ -114,7 +114,22 @@ class PatientController extends Controller
                 $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
             else
                 if (in_array($key,array_keys($mapper)))
-                    $patients->where($mapper[$key],'=',$value);
+                {
+                    if ($key=="identifier")
+                    {
+                        if (strpos($value,"|")>0)
+                        {
+                            $explodeValue= explode('|',$value);
+                            $patients->where('identifier->system','=',$explodeValue[0]);
+                            $patients->where('identifier->value','=',$explodeValue[1]);
+                        }
+                        else
+                            $patients->where($mapper[$key],'=',$value);
+
+                    }
+                    else
+                        $patients->where($mapper[$key],'=',$value);
+                }
         }
 
         /*
