@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('deceasedDateTime')->nullable();
             $table->json('address')->nullable();
             $table->json('maritalStatus')->nullable();
+            $table->json('communication')->nullable();
             $table->json('contact')->nullable();
             $table->timestamps();
         });

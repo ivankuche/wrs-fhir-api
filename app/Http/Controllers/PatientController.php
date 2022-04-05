@@ -46,6 +46,7 @@ class PatientController extends Controller
                 "address"=> [$patient->address],
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
+                'communication'=> [$patient->communication]
             ];
         }
         else

@@ -18,6 +18,7 @@ class Patient extends Model
         'telecom' => 'array',
         'address' => 'array',
         'maritalStatus' => 'array',
+        'communication' => 'array',
         'contact' => 'array'
     ];
 }

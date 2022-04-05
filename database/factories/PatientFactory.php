@@ -35,6 +35,7 @@ class PatientFactory extends Factory
         $city= $this->faker->city;
         $state= $this->faker->state;
         $postCode= $this->faker->postcode;
+        $periodStart= $this->faker->date('Y-m-d','now - 3 year');
 
         $addressItem= [
             'use'=>'home',
@@ -45,7 +46,10 @@ class PatientFactory extends Factory
             ],
             'city'=>$city,
             'state'=>$state,
-            'postalCode'=>$postCode
+            'postalCode'=>$postCode,
+            'period'=>[
+                'start'=>$periodStart
+            ],
         ];
 
         if ($this->faker->boolean())
@@ -172,7 +176,20 @@ class PatientFactory extends Factory
             'deceasedDateTime'=>$deceasedDateTime,
             'address'=> $addressItem,
             'maritalStatus'=>$marital,
-            'contact'=>$contact
+            'contact'=>$contact,
+            'communication'=> [
+                'language'=> [
+                    'coding'=>[
+                        [
+                            'system'=>'urn:ietf:bcp:47',
+                            'code'=>'en-US',
+                            'display'=>'English (United States)'
+                        ]
+                    ],
+                    'text'=> "United States"
+                ],
+                'preferred'=> true
+            ],
         ];
 
 /*
