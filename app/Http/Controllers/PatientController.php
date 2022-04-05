@@ -33,7 +33,7 @@ class PatientController extends Controller
                 "identifier"=> [$patient->identifier],
                 "active"=> ($patient->active?true:false),
                 "name"=> [$patient->name],
-                "telecom"=> [$patient->telecom],
+                "telecom"=> $patient->telecom,
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthdate,
                 "deceasedBoolean"=> $patient->deceasedBoolean,
