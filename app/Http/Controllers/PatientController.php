@@ -95,15 +95,23 @@ class PatientController extends Controller
         return $this->renameParams($params);
     }
 
+    private function mapperToEloquent(&$query,$options,$value)
+    {
+        foreach ($options as $option)
+            $query->orWhere($option,'=',$value);
+    }
+
     public function index(Request $request)
     {
-        /*
-        $patients= Patient::whereJsonContains('name->given','Kenny')->inRandomOrder()->limit(1)->get()->toArray();
-        print_r($patients);
-        die("era");
-*/
 
-        $mapper= ["name"=>"name->given","surname"=>"name->family","id"=>"identifier->value","birthdate"=>"birthdate","gender"=>"gender","identifier"=>"identifier->value"];
+        $mapper= [
+            "name"=>["name->text","name->family","name->given"],
+            "surname"=>["name->family"],
+            "id"=>["identifier->value"],
+            "birthdate"=>["birthdate"],
+            "gender"=>["gender"],
+            "identifier"=>["identifier->value"]
+        ];
         $mapperUnderscore= ["id"=>"id"];
         $conditions= [];
         $patients= Patient::query();
@@ -124,11 +132,13 @@ class PatientController extends Controller
                             $patients->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $patients->where($mapper[$key],'=',$value);
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                            //$patients->where($mapper[$key],'=',$value);
 
                     }
                     else
-                        $patients->where($mapper[$key],'=',$value);
+                        $this->mapperToEloquent($patients,$mapper[$key],$value);
+                        //$patients->where($mapper[$key],'=',$value);
                 }
         }
 
