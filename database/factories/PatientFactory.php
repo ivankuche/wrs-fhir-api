@@ -145,7 +145,7 @@ class PatientFactory extends Factory
 
         }
 
-        $id="AAA";
+        $id="TEMPID";
 
         return [
             'identifier'=> [

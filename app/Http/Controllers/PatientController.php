@@ -20,6 +20,28 @@ class PatientController extends Controller
      */
 
 
+    private function codeGender($gender)
+    {
+        $return = "";
+
+        switch(strtoupper(trim($gender)))
+        {
+            case "MALE":
+                $return= "M";
+                break;
+
+            case "FEMALE":
+                $return= "F";
+                break;
+
+            case "OTHER":
+                $return= "OTHER";
+                break;
+        }
+
+        return $return;
+    }
+
     private function fhirStructure($patient)
     {
         if ($patient!=[])
@@ -46,7 +68,62 @@ class PatientController extends Controller
                 "address"=> [$patient->address],
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
-                'communication'=> [$patient->communication]
+                "communication"=> [$patient->communication],
+                // Hardcoded information
+
+                /*
+
+
+
+            AGREGAR
+            Patient.extension:ethnicity
+
+
+
+
+*/
+                "extension"=> [
+                    [
+                        "extension"=>[
+                            [
+                            "url"=>"ombCategory",
+                            "valueCoding"=> [
+                                "system" =>"urn:oid:2.16.840.1.113883.6.238",
+                                "code" =>"2106-3",
+                                "display"=> "White"
+                            ]
+                            ],
+                            [
+                            "url"=>"text",
+                            "valueString"=>"White"
+                            ]
+                        ],
+                        "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+                    ],
+                    [
+                        "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+                        "valueCode"=>$this->codeGender($patient->gender)
+                    ],
+                    [
+                        "extension"=>[
+                            [
+                            "url"=>"ombCategory",
+                            "valueCoding"=> [
+                                "system" =>"urn:oid:2.16.840.1.113883.6.238",
+                                "code" =>"2186-5",
+                                "display"=> "Not Hispanic or Latino"
+                            ]
+                            ],
+                            [
+                            "url"=>"text",
+                            "valueString"=>"Not Hispanic or Latino"
+                            ]
+                        ],
+                        "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+                    ]
+
+                ],
+
             ];
         }
         else
