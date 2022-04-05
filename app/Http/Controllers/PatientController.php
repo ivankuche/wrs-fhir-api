@@ -30,17 +30,17 @@ class PatientController extends Controller
                     "status"=> "generated",
                     "div"=> "blablabla"
                 ],
-                "identifier"=> $patient->identifier,
+                "identifier"=> [$patient->identifier],
                 "active"=> ($patient->active?true:false),
-                "name"=> $patient->name,
-                "telecom"=> $patient->telecom,
+                "name"=> [$patient->name],
+                "telecom"=> [$patient->telecom],
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthdate,
                 "deceasedBoolean"=> $patient->deceasedBoolean,
                 "deceasedDateTime"=> $patient->deceasedDateTime,
-                "address"=> $patient->address,
-                "maritalStatus"=> $patient->maritalStatus,
-                "contact"=> $patient->contact,
+                "address"=> [$patient->address],
+                "maritalStatus"=> [$patient->maritalStatus],
+                "contact"=> [$patient->contact],
             ];
         }
         else
