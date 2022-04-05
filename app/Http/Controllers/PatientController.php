@@ -103,7 +103,7 @@ class PatientController extends Controller
         die("era");
 */
 
-        $mapper= ["name"=>"name->given","surname"=>"name->family","id"=>"identifier->value","birthdate"=>"birthdate","gender"=>"gender"];
+        $mapper= ["name"=>"name->given","surname"=>"name->family","id"=>"identifier->value","birthdate"=>"birthdate","gender"=>"gender","identifier"=>"identifier->value"];
         $mapperUnderscore= ["id"=>"id"];
         $conditions= [];
         $patients= Patient::query();
