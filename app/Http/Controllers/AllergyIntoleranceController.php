@@ -115,7 +115,7 @@ class AllergyIntoleranceController extends Controller
     {
 
         $mapper= [
-            "target"=>["patient->reference"],
+            "patient"=>["patient->reference"],
 
         ];
         $mapperUnderscore= [
