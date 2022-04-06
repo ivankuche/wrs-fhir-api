@@ -32,6 +32,11 @@ class CarePlanFactory extends Factory
         if ($this->faker->boolean())
         {
             $category= [
+                "coding"=> [
+                    "system"=> "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                    "code"=> "assess-plan",
+                    "display"=> "Assessment and Plan of Treatment"
+                ],
                 "text"=>"Weight management plan"
             ];
 
