@@ -38,7 +38,7 @@ class AllergyIntoleranceController extends Controller
                 'category' => $allergyintolerance->category,
                 'criticality' => $allergyintolerance->criticality,
                 'code' => [$allergyintolerance->code],
-                'patient' => [strval($allergyintolerance->patient)],
+                'patient' => [$allergyintolerance->patient],
                 'encounter' => [$allergyintolerance->encounter],
                 'onsetDateTime' => $allergyintolerance->onsetDateTime,
                 'onsetAge' => $allergyintolerance->onsetAge,
