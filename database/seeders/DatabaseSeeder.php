@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             // Create on allergy per patient, and also store the provenance
             $allergyIntolerance= AllergyIntolerance::factory(1)->create([
                 'patient' => [
-                    'reference'=>strval($patient->id),
+                    'reference'=>'Patient/'.$patient->id,
                 ]
             ]);
             // 1 provenance per each patient created
