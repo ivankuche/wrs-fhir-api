@@ -30,6 +30,7 @@ class ProvenanceController extends Controller
         {
             $response= [
                 "resourceType"=>"Provenance",
+                "id"=>$provenance->id,
                 "target"=> [$provenance->target],
                 "occurredPeriod"=> [$provenance->occurredPeriod],
                 "occurredDateTime"=> $provenance->occurredDateTime,

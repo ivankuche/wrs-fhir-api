@@ -195,7 +195,10 @@ class PatientController extends Controller
         ];
         $mapperUnderscore= [
             "id"=>"id",
-        ];
+            "revinclude "=>function () {
+                return "sore";
+
+        }];
         $conditions= [];
         $patients= Patient::query();
 
@@ -205,7 +208,7 @@ class PatientController extends Controller
             // Methods with underscore
             if (substr($key,0,1)=="_")
             {
-                $patients->where($mapperUnderscore[substr($key,1)],'=',strtolower($value));
+                $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
             }
             else
             {
@@ -220,12 +223,12 @@ class PatientController extends Controller
                             $patients->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
                             //$patients->where($mapper[$key],'=',$value);
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
+                        $this->mapperToEloquent($patients,$mapper[$key],$value);
                         //$patients->where($mapper[$key],'=',$value);
                 }
             }
