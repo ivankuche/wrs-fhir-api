@@ -24,6 +24,10 @@ class CarePlanController extends Controller
             $response= [
                 'resourceType'=>"CarePlan",
                 'id'=>strval($careplan->id),
+                "text"=> [
+                    "status"=> "generated",
+                    "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
+                ],
                 'identifier' => [$careplan->identifier],
                 'instantiatesCanonical' => [$careplan->instantiatesCanonical],
                 'instantiatesUri' => [$careplan->instantiatesUri],

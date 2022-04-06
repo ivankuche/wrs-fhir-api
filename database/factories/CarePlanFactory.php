@@ -21,7 +21,7 @@ class CarePlanFactory extends Factory
         if ($this->faker->boolean())
             $status= "active";
         else
-            $status= "inactive";
+            $status= "on-hold";
 
         // Random status
         if ($this->faker->boolean())
