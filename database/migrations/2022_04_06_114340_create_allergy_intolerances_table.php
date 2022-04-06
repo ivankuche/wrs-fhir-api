@@ -30,13 +30,12 @@ return new class extends Migration
             $table->json('onsetPeriod')->nullable();
             $table->json('onsetRange')->nullable();
             $table->string('onsetString')->nullable();
-
-
-
-
-
-
-
+            $table->dateTime('recordedDate')->nullable();
+            $table->json('recorder')->nullable();
+            $table->json('asserter')->nullable();
+            $table->dateTime('lastOccurrence')->nullable();
+            $table->json('note')->nullable();
+            $table->json('reaction')->nullable();
             $table->timestamps();
         });
     }
