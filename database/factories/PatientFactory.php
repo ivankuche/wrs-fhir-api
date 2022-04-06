@@ -19,7 +19,6 @@ class PatientFactory extends Factory
     public function definition()
     {
         $gender = $this->faker->randomElement(['male', 'female']);
-        $ultimo= Patient::latest()->get('id')->toArray();
 
         $name= $this->faker->firstName($gender);
         $surname= $this->faker->lastName();
@@ -191,31 +190,5 @@ class PatientFactory extends Factory
                 'preferred'=> true
             ],
         ];
-
-/*
-
-  "contact" : [{ // A contact party (e.g. guardian, partner, friend) for the patient
-    "relationship" : [{ CodeableConcept }], // The kind of relationship
-    "name" : { HumanName }, // A name associated with the contact person
-    "telecom" : [{ ContactPoint }], // A contact detail for the person
-    "address" : { Address }, // Address for the contact person
-    "gender" : "<code>", // male | female | other | unknown
-    "organization" : { Reference(Organization) }, // C? Organization that is associated with the contact
-    "period" : { Period } // The period during which this contact person or organization is valid to be contacted relating to this patient
-  }],
-  "communication" : [{ // A language which may be used to communicate with the patient about his or her health
-    "language" : { CodeableConcept }, // R!  The language which can be used to communicate with the patient about his or her health
-    "preferred" : <boolean> // Language preference indicator
-  }],
-  "generalPractitioner" : [{ Reference(Organization|Practitioner|
-   PractitionerRole) }], // Patient's nominated primary care provider
-  "managingOrganization" : { Reference(Organization) }, // Organization that is the custodian of the patient record
-  "link" : [{ // Link to another patient resource that concerns the same actual person
-    "other" : { Reference(Patient|RelatedPerson) }, // R!  The other patient or related person resource that the link refers to
-    "type" : "<code>" // R!  replaced-by | replaces | refer | seealso
-  }]
-  */
-
-
     }
 }

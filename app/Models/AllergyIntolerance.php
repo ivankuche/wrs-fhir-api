@@ -18,6 +18,7 @@ class AllergyIntolerance extends Model
     protected $casts = [
         'identifier' => 'array',
         'clinicalStatus' => 'array',
+        'verificationStatus'=> 'array',
         'code' => 'array',
         'patient' => 'array',
         'encounter' => 'array',

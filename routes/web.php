@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProvenanceController;
+use App\Http\Controllers\AllergyIntoleranceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::get('Patient/search', [PatientController::class, 'search']);
 //Route::resource('{tenantID}/Patient', PatientController::class);
 Route::resource('Patient', PatientController::class);
 Route::resource('Provenance', ProvenanceController::class);
+Route::resource('AllergyIntolerance', AllergyIntoleranceController::class);
 
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);

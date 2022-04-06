@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->json('identifier')->nullable();
             $table->json('clinicalStatus')->nullable();
-            $table->string('verificationStatus')->nullable();
+            $table->json('verificationStatus')->nullable();
             $table->string('type')->nullable();
             $table->string('category')->nullable();
             $table->string('criticality')->nullable();
