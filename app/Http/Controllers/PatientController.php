@@ -205,7 +205,7 @@ class PatientController extends Controller
             // Methods with underscore
             if (substr($key,0,1)=="_")
             {
-                $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
+                $patients->where($mapperUnderscore[substr($key,1)],'=',strtolower($value));
             }
             else
             {
@@ -220,12 +220,12 @@ class PatientController extends Controller
                             $patients->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                            $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
                             //$patients->where($mapper[$key],'=',$value);
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],$value);
+                        $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
                         //$patients->where($mapper[$key],'=',$value);
                 }
             }

@@ -138,12 +138,12 @@ class ProvenanceController extends Controller
                             $patients->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                            $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
                             //$patients->where($mapper[$key],'=',$value);
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],$value);
+                        $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
                         //$patients->where($mapper[$key],'=',$value);
                 }
             }
