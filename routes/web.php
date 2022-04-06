@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProvenanceController;
 use App\Http\Controllers\AllergyIntoleranceController;
+use App\Http\Controllers\CarePlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::get('Patient/search', [PatientController::class, 'search']);
 Route::resource('Patient', PatientController::class);
 Route::resource('Provenance', ProvenanceController::class);
 Route::resource('AllergyIntolerance', AllergyIntoleranceController::class);
+Route::resource('CarePlan', CarePlanController::class);
 
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);

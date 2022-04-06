@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AllergyIntolerance;
+use App\Models\CarePlan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Patient;
@@ -51,7 +52,7 @@ class DatabaseSeeder extends Seeder
                     'reference'=>strval($patient->id),
                 ]
             ]);
-            // 1 provenance per each patient created
+            // 1 provenance per each Allergy Intolerance
             $provenance= Provenance::factory(1)->create([
                 'target'=>[
                     'reference'=>'AllergyIntolerance/'.$allergyIntolerance->first()->id,
@@ -69,6 +70,31 @@ class DatabaseSeeder extends Seeder
                 ],
             ]);
 
+            // Create on allergy per patient, and also store the provenance
+            $careplan= CarePlan::factory(1)->create([
+                'subject' => [
+                    'reference'=>strval($patient->id),
+                    'type'=>'Patient'
+                ]
+            ]);
+
+            // 1 provenance per each CarePlan
+            $provenance= Provenance::factory(1)->create([
+                'target'=>[
+                    'reference'=>'CarePlan/'.$careplan->first()->id,
+                    'type'=>'CarePlan'
+                ],
+                'patient'=>[
+                    'reference'=>'Patient/'.$patient->id,
+                    'type'=>'Patient'
+                ],
+                'agent'=>[
+                    'who'=> [
+                        'reference'=>'Patient/'.$patient->id,
+                        'type'=>'Patient'
+                    ]
+                ],
+            ]);
         });
 
     }

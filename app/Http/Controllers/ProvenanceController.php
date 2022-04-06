@@ -158,7 +158,8 @@ class ProvenanceController extends Controller
                             $target= explode("/",$value);
                             $arrayTargets= [
                                 'patient' => ["patient->reference"],
-                                'allergyintolerance' => ['target->reference']
+                                'allergyintolerance' => ['target->reference'],
+                                'careplan' => ['target->reference']
                             ];
 
                             $this->mapperToEloquent($provenances,$arrayTargets[strtolower($target[0])],$value);
