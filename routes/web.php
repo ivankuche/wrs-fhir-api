@@ -4,6 +4,7 @@ use App\Http\Controllers\CapabilitiesController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ProvenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
 Route::get('patient/recursive', [PatientController::class, 'recursive']);
 Route::get('patient/pagination', [PatientController::class, 'pagination']);
 Route::get('patient/getmodified', [PatientController::class, 'getmodified']);
 Route::get('/{tenantID}/Patient/tenancy/{patientID}',[PatientController::class, 'tenancytest']);
 Route::get('Patient/search', [PatientController::class, 'search']);
+*/
 //Route::resource('{tenantID}/Patient', PatientController::class);
 Route::resource('Patient', PatientController::class);
+Route::resource('Provenance', ProvenanceController::class);
+
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);
 Route::get('capabilitiesaws', [CapabilitiesController::class, 'aws']);
