@@ -30,7 +30,7 @@ class AllergyIntoleranceController extends Controller
         {
             $response= [
                 'resourceType'=>"AllergyIntolerance",
-                'id'=>$allergyintolerance->id,
+                'id'=>strval($allergyintolerance->id),
                 'identifier' => [$allergyintolerance->identifier],
                 'clinicalStatus' => [$allergyintolerance->clinicalStatus],
                 'verificationStatus' => [$allergyintolerance->verificationStatus],
@@ -38,7 +38,7 @@ class AllergyIntoleranceController extends Controller
                 'category' => $allergyintolerance->category,
                 'criticality' => $allergyintolerance->criticality,
                 'code' => [$allergyintolerance->code],
-                'patient' => [$allergyintolerance->patient],
+                'patient' => [strval($allergyintolerance->patient)],
                 'encounter' => [$allergyintolerance->encounter],
                 'onsetDateTime' => $allergyintolerance->onsetDateTime,
                 'onsetAge' => $allergyintolerance->onsetAge,
