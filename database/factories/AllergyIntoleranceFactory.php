@@ -96,10 +96,61 @@ class AllergyIntoleranceFactory extends Factory
             ];
         }
 
+        if ($this->faker->boolean())
+        {
+            $reaction= [
+                "substance"=> [
+                    "coding"=> [
+                        "system"=>"http://www.nlm.nih.gov/research/umls/rxnorm",
+                        "code"=>"1160593",
+                        "display"=>"cashew nut allergenic extract Injectable Product"
+                    ]
+                ],
+                "manifestation"=>[
+                    [
+                      "coding"=> [
+                        [
+                          "system"=> "http://snomed.info/sct",
+                          "code"=> "39579001",
+                          "display"=> "Anaphylactic reaction"
+                        ]
+                      ]
+                    ]
+                ],
+                "description"=>"Challenge Protocol. Severe reaction to subcutaneous cashew extract. Epinephrine administered",
+                "severity"=>"severe",
+            ];
+        }
+        else{
+            $reaction= [
+                "substance"=> [
+                    "coding"=> [
+                        "system"=>"http://www.nlm.nih.gov/research/umls/rxnorm",
+                        "code"=>"1160593",
+                        "display"=>"cashew nut allergenic extract Injectable Product"
+                    ]
+                ],
+                "manifestation"=>[
+                    [
+                      "coding"=> [
+                        [
+                          "system"=> "http://snomed.info/sct",
+                          "code"=> "64305001",
+                          "display"=> "Urticaria"
+                        ]
+                      ]
+                    ]
+                ],
+                "description"=>"The patient reports that the onset of urticaria was within 15 minutes of eating cashews.",
+                "severity"=>"moderate",
+            ];
+        }
+
         return [
             'clinicalStatus' => $clinicalStatus,
             'verificationStatus' => $verificationStatus,
-            'code' => $code
+            'code' => $code,
+            'reaction' => $reaction
         ];
     }
 }

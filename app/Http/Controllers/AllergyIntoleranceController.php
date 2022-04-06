@@ -29,7 +29,7 @@ class AllergyIntoleranceController extends Controller
                 'id'=>strval($allergyintolerance->id),
                 'identifier' => [$allergyintolerance->identifier],
                 'clinicalStatus' => $allergyintolerance->clinicalStatus,
-                'verificationStatus' => [$allergyintolerance->verificationStatus],
+                'verificationStatus' => $allergyintolerance->verificationStatus,
                 'type' => $allergyintolerance->type,
                 'category' => $allergyintolerance->category,
                 'criticality' => $allergyintolerance->criticality,

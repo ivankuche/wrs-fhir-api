@@ -50,7 +50,7 @@ class PatientController extends Controller
             $identifierCast['value']= strval($identifierCast['value']);
             $response= [
                 "resourceType"=>"Patient",
-                "id"=>$patient->identifier['value'],
+                "id"=>strval($patient->identifier['value']),
                 "text"=> [
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
