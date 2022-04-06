@@ -26,22 +26,27 @@ class DatabaseSeeder extends Seeder
                 'system'=> "http://hospital.smarthealthit.org"
             ]]);
 
+            // 1 provenance per each patient created
             $provenance= Provenance::factory(1)->create([
                 'target'=>[
-                    'reference'=>'patient/'.$patient->id,
+                    'reference'=>'Patient/'.$patient->id,
                     'type'=>'Patient'
                 ],
                 'patient'=>[
-                    'reference'=>'patient/'.$patient->id,
+                    'reference'=>'Patient/'.$patient->id,
                     'type'=>'Patient'
                 ],
                 'agent'=>[
                     'who'=> [
-                        'reference'=>'patient/'.$patient->id,
+                        'reference'=>'Patient/'.$patient->id,
                         'type'=>'Patient'
                     ]
                 ],
             ]);
+
+
+
+
         });
 
     }
