@@ -105,18 +105,26 @@ class ProvenanceController extends Controller
         });
     }
 
+    private function evaluateMapper($value)
+    {
+        $return= null;
+        switch ($value)
+        {
+
+        }
+
+        return $return;
+    }
+
     public function index(Request $request)
     {
 
-        $mapper= [
-            "target"=>["patient->reference"],
-
-        ];
+        $mapper= ["target"=>"CUSTOM_LOGIC",];
         $mapperUnderscore= [
             "id"=>"id",
         ];
         $conditions= [];
-        $patients= Provenance::query();
+        $provenances= Provenance::query();
 
         foreach ($request->all() as $key=>$value)
         {
@@ -124,7 +132,7 @@ class ProvenanceController extends Controller
             // Methods with underscore
             if (substr($key,0,1)=="_")
             {
-                $patients->where($mapperUnderscore[substr($key,1)],'=',$value);
+                $provenances->where($mapperUnderscore[substr($key,1)],'=',$value);
             }
             else
             {
@@ -135,28 +143,41 @@ class ProvenanceController extends Controller
                         if (strpos($value,"|")>0)
                         {
                             $explodeValue= explode('|',$value);
-                            $patients->where('identifier->system','=',$explodeValue[0]);
-                            $patients->where('identifier->value','=',$explodeValue[1]);
+                            $provenances->where('identifier->system','=',$explodeValue[0]);
+                            $provenances->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
-                            //$patients->where($mapper[$key],'=',$value);
+                            $this->mapperToEloquent($provenances,$mapper[$key],strtolower($value));
+                            //$provenances->where($mapper[$key],'=',$value);
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
-                        //$patients->where($mapper[$key],'=',$value);
+                    {
+                        if ($key=="target")
+                        {
+                            $target= explode("/",$value);
+                            $arrayTargets= [
+                                'patient' => ["patient->reference"],
+                                'allergyintolerance' => ['target->reference']
+                            ];
+
+                            $this->mapperToEloquent($provenances,$arrayTargets[strtolower($target[0])],$value);
+                        }
+                        else
+                            $this->mapperToEloquent($provenances,$mapper[$key],strtolower($value));
+                    }
+                        //$provenances->where($mapper[$key],'=',$value);
                 }
             }
         }
 
         if (!$request->wantsJson())
-            return response()->xml($patients->limit(100)->get());
+            return response()->xml($provenances->limit(100)->get());
         else
         {
             $finalResponse= [];
             //DB::enableQueryLog();
-            foreach ($patients->limit(100)->get() as $pat)
+            foreach ($provenances->limit(100)->get() as $pat)
             {
                 $response= $this->fhirStructure($pat);
                 $finalResponse[]= $response;
@@ -166,7 +187,7 @@ class ProvenanceController extends Controller
             ///die();
 
             return $finalResponse;
-            //return $patients->limit(100)->get();
+            //return $provenances->limit(100)->get();
         }
 
 
@@ -174,29 +195,29 @@ class ProvenanceController extends Controller
 
     public function pagination(Request $request)
     {
-        $patients= Provenance::inRandomOrder()->paginate(5);//->get();
+        $provenances= Provenance::inRandomOrder()->paginate(5);//->get();
 
 
         if (!$request->wantsJson())
-            return response()->xml($patients);
+            return response()->xml($provenances);
         else
-            return $patients;
+            return $provenances;
     }
 
     public function getmodified(Request $request)
     {
-        $patients= Provenance::inRandomOrder()->limit(100)->get();
+        $provenances= Provenance::inRandomOrder()->limit(100)->get();
 
-        foreach ($patients as $id=>$data)
+        foreach ($provenances as $id=>$data)
         {
-            $patients[$id]['nationality']='USA';
+            $provenances[$id]['nationality']='USA';
         }
 
 
         if (!$request->wantsJson())
-            return response()->xml($patients);
+            return response()->xml($provenances);
         else
-            return $patients;
+            return $provenances;
     }
 
 
@@ -339,9 +360,9 @@ class ProvenanceController extends Controller
 
         /*
         if (!$request->wantsJson())
-            return response()->xml($patients);
+            return response()->xml($provenances);
         else
-            return $patients;
+            return $provenances;
 
         // url will be: http://my.domain.com/test.php?key1=5&key2=ABC;
 
@@ -355,10 +376,10 @@ class ProvenanceController extends Controller
 
     public function search(Request $request)
     {
-        $patients= Provenance::where($request->all())->get();
+        $provenances= Provenance::where($request->all())->get();
         $return= [];
 
-        foreach($patients as $patient)
+        foreach($provenances as $patient)
         {
             $response= $this->fhirStructure($patient);
             $return["resource"][]= $response;

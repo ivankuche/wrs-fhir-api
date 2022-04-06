@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             // 1 provenance per each patient created
             $provenance= Provenance::factory(1)->create([
                 'target'=>[
-                    'reference'=>'AllergyIntolerance/'.$allergyIntolerance->get('id'),
+                    'reference'=>'AllergyIntolerance/'.$allergyIntolerance->first()->id,
                     'type'=>'AllergyIntolerance'
                 ],
                 'patient'=>[
