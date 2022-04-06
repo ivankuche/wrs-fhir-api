@@ -7,12 +7,6 @@ use App\Models\AllergyIntolerance;
 
 class AllergyIntoleranceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
 
     private function filterEmpty(&$array)
     {
@@ -34,12 +28,12 @@ class AllergyIntoleranceController extends Controller
                 'resourceType'=>"AllergyIntolerance",
                 'id'=>strval($allergyintolerance->id),
                 'identifier' => [$allergyintolerance->identifier],
-                'clinicalStatus' => [$allergyintolerance->clinicalStatus],
+                'clinicalStatus' => $allergyintolerance->clinicalStatus,
                 'verificationStatus' => [$allergyintolerance->verificationStatus],
                 'type' => $allergyintolerance->type,
                 'category' => $allergyintolerance->category,
                 'criticality' => $allergyintolerance->criticality,
-                'code' => [$allergyintolerance->code],
+                'code' => $allergyintolerance->code,
                 'patient' => [
                     'reference'=>$patientReferenceID
                 ],
@@ -63,48 +57,6 @@ class AllergyIntoleranceController extends Controller
             $response=[];
 
         return $response;
-    }
-
-    private function renameParams($params)
-    {
-        $mapper= ["_id"=>"id"];
-        $mapperUnderscore= ["id"=>"id"];
-        $output= [];
-
-        foreach ($params as $key=>$value)
-        {
-            if (substr($key,0,1)=="_")
-            {
-                $output[$mapperUnderscore[substr($key,1)]]= $value;
-            }
-            else
-            {
-
-                if (in_array($key,$mapper))
-                    $output[$mapper[$key]]= $value;
-                else
-                    $output[$key]= $value;
-            }
-        }
-
-        return $output;
-    }
-
-    private function validParameters($params)
-    {
-        $valid= ['birthdate','name->text','gender','identifier','_id','_revinclude'];
-        $invalid= [];
-
-        foreach ($params as $key=>$value)
-        {
-            if (!in_array($key,$valid))
-                $invalid[]= $key;
-        }
-
-        if (count($invalid)>0)
-            throw new Exception("Invalid fields: ".implode(", ",$invalid),500);
-
-        return $this->renameParams($params);
     }
 
     private function mapperToEloquent(&$query,$options,$value)
@@ -182,12 +134,6 @@ class AllergyIntoleranceController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AllergyIntolerance  $patient
-     * @return \Illuminate\Http\Response
-     */
     public function show($allergyIntoleranceID)
     {
         $allergyintolerance= AllergyIntolerance::findOrFail($allergyIntoleranceID);
