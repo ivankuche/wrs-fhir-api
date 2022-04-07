@@ -17,6 +17,7 @@ class ProvenanceFactory extends Factory
     public function definition()
     {
         return [
+            'recorded'=>$this->faker->dateTime()
             //
         ];
     }
