@@ -31,6 +31,7 @@ class DeviceFactory extends Factory
                 ]
             ],
             'udiCarrier' => [
+                'carrierHRF' => $this->faker->asciify('********************'),
                 'deviceIdentifier' => $this->faker->asciify('********************'),
             ]
         ];
