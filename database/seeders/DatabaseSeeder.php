@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\AllergyIntolerance;
 use App\Models\CarePlan;
+use App\Models\CareTeam;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Patient;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $patients= Patient::factory(20)->create();
 
         $patients->each(function($patient) {
+            // Patient creation
             $patientObjSource= Patient::find($patient->id);
             $patientObjSource->update(['identifier'=> [
                 'use'=>'usual',
@@ -28,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 'system'=> "http://hospital.smarthealthit.org"
             ]]);
 
-            // 1 provenance per each patient created
+            // Provenance of the created patient
             $provenance= Provenance::factory(1)->create([
                 'target'=>[
                     'reference'=>'Patient/'.$patient->id,
@@ -46,13 +48,16 @@ class DatabaseSeeder extends Seeder
                 ],
             ]);
 
-            // Create on allergy per patient, and also store the provenance
+
+
+            // Allergy Intolerance per patient
             $allergyIntolerance= AllergyIntolerance::factory(1)->create([
                 'patient' => [
                     'reference'=>strval($patient->id),
                 ]
             ]);
-            // 1 provenance per each Allergy Intolerance
+
+            // Provenance of the created allergy intolerance
             $provenance= Provenance::factory(1)->create([
                 'target'=>[
                     'reference'=>'AllergyIntolerance/'.$allergyIntolerance->first()->id,
@@ -70,7 +75,7 @@ class DatabaseSeeder extends Seeder
                 ],
             ]);
 
-            // Create on allergy per patient, and also store the provenance
+            // CarePlan per patient
             $careplan= CarePlan::factory(1)->create([
                 'subject' => [
                     'reference'=>strval($patient->id),
@@ -78,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 ]
             ]);
 
-            // 1 provenance per each CarePlan
+            // Provenance of the created CarePlan
             $provenance= Provenance::factory(1)->create([
                 'target'=>[
                     'reference'=>'CarePlan/'.$careplan->first()->id,
@@ -95,6 +100,35 @@ class DatabaseSeeder extends Seeder
                     ]
                 ],
             ]);
+
+            // CareTeam per patient
+            $careteam= CareTeam::factory(1)->create([
+                'subject' => [
+                    'reference'=>strval($patient->id),
+                    'type'=>'Patient'
+                ]
+            ]);
+
+            // Provenance of the created CareTeam
+            $provenance= Provenance::factory(1)->create([
+                'target'=>[
+                    'reference'=>'CareTeam/'.$careteam->first()->id,
+                    'type'=>'CareTeam'
+                ],
+                'patient'=>[
+                    'reference'=>'Patient/'.$patient->id,
+                    'type'=>'Patient'
+                ],
+                'agent'=>[
+                    'who'=> [
+                        'reference'=>'Patient/'.$patient->id,
+                        'type'=>'Patient'
+                    ]
+                ],
+            ]);
+
+
+
         });
 
     }
