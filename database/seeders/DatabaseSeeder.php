@@ -12,11 +12,75 @@ use App\Models\Provenance;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+    private function provenance($reference,$referenceType,$patient)
+    {
+        // Provenance of the created allergy intolerance
+        $provenance= Provenance::factory(1)->create([
+            'target'=>[
+                'reference'=>$reference,
+                'type'=>$referenceType
+            ],
+            'patient'=>[
+                'reference'=>'Patient/'.$patient->id,
+                'type'=>'Patient'
+            ],
+            'agent'=>[
+                'who'=> [
+                    'reference'=>'Patient/'.$patient->id,
+                    'type'=>'Patient'
+                ]
+            ],
+        ]);
+    }
+
+    private function allergyIntolerance($patient)
+    {
+        // Allergy Intolerance per patient
+        $allergyIntolerance= AllergyIntolerance::factory(1)->create([
+            'patient' => [
+                'reference'=>strval($patient->id),
+            ]
+        ]);
+
+        // Provenance of the created allergy intolerance
+        $this->provenance('AllergyIntolerance/'.$allergyIntolerance->first()->id, 'AllergyIntolerance', $patient);
+    }
+
+    private function carePlan($patient)
+    {
+        // CarePlan per patient
+        $careplan= CarePlan::factory(1)->create([
+            'subject' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ]
+        ]);
+
+        // Provenance of the created CarePlan
+        $this->provenance('CarePlan/'.$careplan->first()->id, 'CarePlan', $patient);
+    }
+
+    private function careTeam($patient)
+    {
+
+        $statuses= ['active','inactive', 'entered-in-error', 'proposed', 'suspended'];
+
+        foreach ($statuses as $status)
+        {
+
+            $careteam= CareTeam::factory(1)->create([
+                'subject' => [
+                    'reference'=>strval($patient->id),
+                    'type'=>'Patient'
+                ],
+                'status' => $status,
+            ]);
+
+            // Provenance of the created CarePlan
+            $this->provenance('CareTeam/'.$careteam->first()->id, 'CareTeam', $patient);
+        }
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -31,104 +95,11 @@ class DatabaseSeeder extends Seeder
             ]]);
 
             // Provenance of the created patient
-            $provenance= Provenance::factory(1)->create([
-                'target'=>[
-                    'reference'=>'Patient/'.$patient->id,
-                    'type'=>'Patient'
-                ],
-                'patient'=>[
-                    'reference'=>'Patient/'.$patient->id,
-                    'type'=>'Patient'
-                ],
-                'agent'=>[
-                    'who'=> [
-                        'reference'=>'Patient/'.$patient->id,
-                        'type'=>'Patient'
-                    ]
-                ],
-            ]);
+            $this->provenance('Patient/'.$patient->id,'Patient',$patient);
 
-
-
-            // Allergy Intolerance per patient
-            $allergyIntolerance= AllergyIntolerance::factory(1)->create([
-                'patient' => [
-                    'reference'=>strval($patient->id),
-                ]
-            ]);
-
-            // Provenance of the created allergy intolerance
-            $provenance= Provenance::factory(1)->create([
-                'target'=>[
-                    'reference'=>'AllergyIntolerance/'.$allergyIntolerance->first()->id,
-                    'type'=>'AllergyIntolerance'
-                ],
-                'patient'=>[
-                    'reference'=>'Patient/'.$patient->id,
-                    'type'=>'Patient'
-                ],
-                'agent'=>[
-                    'who'=> [
-                        'reference'=>'Patient/'.$patient->id,
-                        'type'=>'Patient'
-                    ]
-                ],
-            ]);
-
-            // CarePlan per patient
-            $careplan= CarePlan::factory(1)->create([
-                'subject' => [
-                    'reference'=>strval($patient->id),
-                    'type'=>'Patient'
-                ]
-            ]);
-
-            // Provenance of the created CarePlan
-            $provenance= Provenance::factory(1)->create([
-                'target'=>[
-                    'reference'=>'CarePlan/'.$careplan->first()->id,
-                    'type'=>'CarePlan'
-                ],
-                'patient'=>[
-                    'reference'=>'Patient/'.$patient->id,
-                    'type'=>'Patient'
-                ],
-                'agent'=>[
-                    'who'=> [
-                        'reference'=>'Patient/'.$patient->id,
-                        'type'=>'Patient'
-                    ]
-                ],
-            ]);
-
-            // CareTeam per patient
-            $careteam= CareTeam::factory(1)->create([
-                'subject' => [
-                    'reference'=>strval($patient->id),
-                    'type'=>'Patient'
-                ]
-            ]);
-
-            // Provenance of the created CareTeam
-            $provenance= Provenance::factory(1)->create([
-                'target'=>[
-                    'reference'=>'CareTeam/'.$careteam->first()->id,
-                    'type'=>'CareTeam'
-                ],
-                'patient'=>[
-                    'reference'=>'Patient/'.$patient->id,
-                    'type'=>'Patient'
-                ],
-                'agent'=>[
-                    'who'=> [
-                        'reference'=>'Patient/'.$patient->id,
-                        'type'=>'Patient'
-                    ]
-                ],
-            ]);
-
-
-
+            $this->allergyIntolerance($patient);
+            $this->carePlan($patient);
+            $this->careTeam($patient);
         });
 
     }

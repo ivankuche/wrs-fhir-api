@@ -17,11 +17,6 @@ class CareTeamFactory extends Factory
     public function definition()
     {
         if ($this->faker->boolean())
-            $status= "active";
-        else
-            $status= "proposed";
-
-        if ($this->faker->boolean())
         {
             $category= [
                 "coding"=> [
@@ -106,9 +101,7 @@ class CareTeamFactory extends Factory
         }
 
         return [
-            'status' => $status,
             'category' => $category,
-            'name' => $status,
             'participant' => $participant
 
         ];
