@@ -170,7 +170,7 @@ class PatientFactory extends Factory
                     "use"=>"work"
                 ]],
             'gender'=>$gender,
-            'birthdate'=>$this->faker->date('Y-m-d','now - 5 year'),
+            'birthDate'=>$this->faker->date('Y-m-d','now - 5 year'),
             'deceasedBoolean'=>$deceasedBoolean,
             'deceasedDateTime'=>$deceasedDateTime,
             'address'=> $addressItem,

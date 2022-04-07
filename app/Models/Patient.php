@@ -9,7 +9,7 @@ class Patient extends Model
 {
     use HasFactory;
 
-    protected $fillable= ['identifier','active', 'name', 'telecom', 'gender', 'birthdate',
+    protected $fillable= ['identifier','active', 'name', 'telecom', 'gender', 'birthDate',
     'deceasedBoolean', 'deceasedDateTime', 'address', 'maritalStatus', 'contact'];
 
     protected $casts = [

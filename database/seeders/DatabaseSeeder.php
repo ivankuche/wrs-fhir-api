@@ -10,6 +10,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Patient;
 use App\Models\Provenance;
 use App\Models\Condition;
+use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
 {
@@ -96,6 +97,18 @@ class DatabaseSeeder extends Seeder
         $this->provenance('Condition/'.$condition->first()->id, 'Condition', $patient);
     }
 
+    private function practitioner()
+    {
+
+        $practitioner= Practitioner::factory(1)->create()->first();
+        $practitioner->update(['identifier'=> [
+            'use'=>'usual',
+            'value'=>$practitioner->id,
+            'system'=> "http://hospital.smarthealthit.org"
+        ]]);
+    }
+
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -116,6 +129,7 @@ class DatabaseSeeder extends Seeder
             $this->carePlan($patient);
             $this->careTeam($patient);
             $this->condition($patient);
+            $this->practitioner();
         });
 
     }

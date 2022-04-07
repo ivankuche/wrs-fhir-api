@@ -60,7 +60,7 @@ class PatientController extends Controller
                 "name"=> [$patient->name],
                 "telecom"=> $patient->telecom,
                 "gender"=> $patient->gender,
-                "birthDate"=> $patient->birthdate,
+                "birthDate"=> $patient->birthDate,
                 "deceased"=> [
                     "deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
                     "deceasedDateTime"=> $patient->deceasedDateTime,
@@ -70,18 +70,6 @@ class PatientController extends Controller
                 "contact"=> [$patient->contact],
                 "communication"=> [$patient->communication],
                 // Hardcoded information
-
-                /*
-
-
-
-            AGREGAR
-            Patient.extension:ethnicity
-
-
-
-
-*/
                 "extension"=> [
                     [
                         "extension"=>[
@@ -132,48 +120,6 @@ class PatientController extends Controller
         return $response;
     }
 
-    private function renameParams($params)
-    {
-        $mapper= ["_id"=>"id"];
-        $mapperUnderscore= ["id"=>"id"];
-        $output= [];
-
-        foreach ($params as $key=>$value)
-        {
-            if (substr($key,0,1)=="_")
-            {
-                $output[$mapperUnderscore[substr($key,1)]]= $value;
-            }
-            else
-            {
-
-                if (in_array($key,$mapper))
-                    $output[$mapper[$key]]= $value;
-                else
-                    $output[$key]= $value;
-            }
-        }
-
-        return $output;
-    }
-
-    private function validParameters($params)
-    {
-        $valid= ['birthdate','name->text','gender','identifier','_id','_revinclude'];
-        $invalid= [];
-
-        foreach ($params as $key=>$value)
-        {
-            if (!in_array($key,$valid))
-                $invalid[]= $key;
-        }
-
-        if (count($invalid)>0)
-            throw new Exception("Invalid fields: ".implode(", ",$invalid),500);
-
-        return $this->renameParams($params);
-    }
-
     private function mapperToEloquent(&$query,$options,$value)
     {
         $query->where(function ($element) use ($options,$value) {
@@ -194,12 +140,7 @@ class PatientController extends Controller
             "identifier"=>["identifier->value"]
         ];
         $mapperUnderscore= [
-            "id"=>"id",
-            "revinclude "=>function () {
-                return "sore";
-
-        }];
-        $conditions= [];
+            "id"=>"id"];
         $patients= Patient::query();
 
         foreach ($request->all() as $key=>$value)
@@ -308,15 +249,13 @@ class PatientController extends Controller
 
 
         $arrayRequest= $request->toArray();
-        //print_r(request()->all('birthDate'));
-        //die();
 
         $patient= [
             'name'=>$arrayRequest['name'][0]['given'][0],
             'active'=>$arrayRequest['active'],
             'surname'=>$arrayRequest['name'][0]['family'],
             'gender'=>$arrayRequest['gender'],
-            'birthdate'=>$arrayRequest['birthDate']
+            'birthDate'=>$arrayRequest['birthDate']
         ];
 
 
@@ -383,7 +322,7 @@ class PatientController extends Controller
             'active'=>$arrayRequest['active'],
             'surname'=>$arrayRequest['name'][0]['family'],
             'gender'=>$arrayRequest['gender'],
-            'birthdate'=>$arrayRequest['birthDate']
+            'birthDate'=>$arrayRequest['birthDate']
         ];
 
         $patient->fill($patientTemp);

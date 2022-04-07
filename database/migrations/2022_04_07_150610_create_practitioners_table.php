@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->date('birthDate')->nullable();
             $table->json('photo')->nullable();
-            $table->json('quantification')->nullable();
+            $table->json('qualification')->nullable();
             $table->json('communication')->nullable();
             $table->timestamps();
         });

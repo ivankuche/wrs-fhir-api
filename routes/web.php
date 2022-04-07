@@ -9,6 +9,7 @@ use App\Http\Controllers\AllergyIntoleranceController;
 use App\Http\Controllers\CarePlanController;
 use App\Http\Controllers\CareTeamController;
 use App\Http\Controllers\ConditionController;
+use App\Http\Controllers\PractitionerController;
 
 
 /*
@@ -40,6 +41,7 @@ Route::resource('AllergyIntolerance', AllergyIntoleranceController::class);
 Route::resource('CarePlan', CarePlanController::class);
 Route::resource('CareTeam', CareTeamController::class);
 Route::resource('Condition', ConditionController::class);
+Route::resource('Practitioner', PractitionerController::class);
 
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);
