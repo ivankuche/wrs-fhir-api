@@ -34,7 +34,7 @@ class ProvenanceController extends Controller
                 "target"=> [$provenance->target],
                 "occurredPeriod"=> [$provenance->occurredPeriod],
                 "occurredDateTime"=> $provenance->occurredDateTime,
-                "recorded"=> $provenance->recorded,
+                "recorded"=> date(DATE_ISO8601, strtotime($provenance->recorded)),
                 "policy"=> $provenance->policy,
                 "location"=>$provenance->location,
                 "authorization" => $provenance->location,
