@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Device;
+use Carbon\Carbon;
 
 class DeviceController extends Controller
 {
@@ -37,10 +38,10 @@ class DeviceController extends Controller
                 'identifier' => [$device->identifier],
                 'udi' => [$device->udi],
                 'status' => $device->status,
-                'type' => [$device->type],
+                'type' => $device->type,
                 'lotNumber' => $device->lotNumber,
                 'manufacturer' => $device->manufacturer,
-                'manufactureDate' => $device->manufactureDate,
+                'manufactureDate' => Carbon::parse($device->manufactureDate)->toIso8601String(),
                 'expirationDate' => $device->expirationDate,
                 'model' => $device->model,
                 'version' => $device->version,
