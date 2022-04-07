@@ -10,6 +10,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Patient;
 use App\Models\Provenance;
 use App\Models\Condition;
+use App\Models\Device;
 use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
@@ -49,6 +50,7 @@ class DatabaseSeeder extends Seeder
                         'type'=>'Practitioner'
                     ],
                 ],
+                // Transmitter of the information
                 [
                     "type"=>[
                         "coding" => [
@@ -63,6 +65,7 @@ class DatabaseSeeder extends Seeder
                         "reference" => "Organization/Payer1"
                     ]
                 ],
+                // Author of the information
                 [
                     "type"=>[
                         "coding" => [
@@ -169,6 +172,21 @@ class DatabaseSeeder extends Seeder
         */
     }
 
+    private function device($patient)
+    {
+
+        $device= Device::factory(1)->create([
+            'patient' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Condition
+        $this->provenance('Device/'.$device->first()->id, 'Device', $patient);
+    }
+
+
 
     public function run()
     {
@@ -190,6 +208,7 @@ class DatabaseSeeder extends Seeder
             $this->carePlan($patient);
             $this->careTeam($patient);
             $this->condition($patient);
+            $this->device($patient);
             $this->practitioner();
         });
 
