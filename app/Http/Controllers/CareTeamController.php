@@ -55,7 +55,16 @@ class CareTeamController extends Controller
     {
         $query->where(function ($element) use ($options,$value) {
             foreach ($options as $option)
-                $element->orWhere($option,'=',$value);
+            {
+                if (strpos($value,',')>0)
+                {
+                    $values= explode(',',$value);
+                    $element->orWhereIn($option,$values);
+                }
+                else
+                    $element->orWhere($option,'=',$value);
+
+            }
         });
     }
 
