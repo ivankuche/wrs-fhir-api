@@ -31,9 +31,10 @@ class DatabaseSeeder extends Seeder
             ],
             'agent'=>[
                 [
+                    // On behalf of which organization
                     'onBehalfOf'=> [
-                        'reference'=>'Patient/'.$patient->id,
-                        'type'=>'Patient'
+                        'reference'=>'Organization/'.$patient->id,
+                        'type'=>'Organization'
                     ],
                     'type'=> [
                         "coding"=> [
