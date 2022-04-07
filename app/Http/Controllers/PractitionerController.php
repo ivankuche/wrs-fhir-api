@@ -22,8 +22,10 @@ class PractitionerController extends Controller
     {
         if ($practitioner!=[])
         {
-            $identifierCast= $practitioner->identifier;
-            $identifierCast['value']= strval($identifierCast['value']);
+            $identifiers= $practitioner->identifier;
+            foreach ($identifiers as $key=>$identifier)
+                $identifiers[$key]['value']= strval($identifiers[$key]['value']);
+
             $response= [
                 'resourceType'=>"Practitioner",
                 'id'=>strval($practitioner->id),
@@ -31,7 +33,7 @@ class PractitionerController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
-                "identifier"=> [$identifierCast],
+                "identifier"=> [$identifiers],
                 "active"=> ($practitioner->active?true:false),
                 "name"=> [$practitioner->name],
                 "telecom"=> $practitioner->telecom,
