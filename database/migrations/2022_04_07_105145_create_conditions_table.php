@@ -34,7 +34,6 @@ return new class extends Migration
             $table->json('abatementPeriod')->nullable();
             $table->json('abatementRange')->nullable();
             $table->string('abatementString')->nullable();
-            $table->dateTime('abatementDateTime')->nullable();
             $table->dateTime('recordedDate')->nullable();
             $table->json('recorder')->nullable();
             $table->json('asserter')->nullable();
