@@ -101,11 +101,25 @@ class DatabaseSeeder extends Seeder
     {
 
         $practitioner= Practitioner::factory(1)->create()->first();
+
+        $practitioner->update(['identifier'=> [
+            [
+                "system" => "http://hl7.org.fhir/sid/us-npi",
+                "value" => "1231".$practitioner->id
+            ],
+            [
+                "use"=>"usual",
+                "system" => "http://www.acme.org/practitioners",
+                "value" => $practitioner->id
+            ]
+        ]]);
+        /*/
         $practitioner->update(['identifier'=> [
             'use'=>'usual',
             'value'=>$practitioner->id,
             'system'=> "http://hospital.smarthealthit.org"
         ]]);
+        */
     }
 
 

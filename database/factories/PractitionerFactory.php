@@ -78,6 +78,16 @@ class PractitionerFactory extends Factory
 
         return [
             'identifier'=> [
+                [
+                    "system" => "http://hl7.org.fhir/sid/us-npi",
+                    "value" => "9941339108"
+                ],
+                [
+                    "system" => "http://www.acme.org/practitioners",
+                    "value" => "25456"
+                ]
+            ],
+            /*
                 'use'=>'usual',
                 'value'=>$id,
                 //'system'=> "http://www.acme.org/practitioners",
@@ -90,8 +100,9 @@ class PractitionerFactory extends Factory
                     ]
                 ],
 //                  "system": "http://hl7.org/fhir/sid/us-npi",
-
             ],
+*/
+
             'active'=> $this->faker->boolean(),
             'name'=>[
                 'use'=>'usual',
