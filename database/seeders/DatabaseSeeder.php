@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
 {
     private function provenance($reference,$referenceType,$patient)
     {
+
         // Provenance of the created allergy intolerance
+
+
         $provenance= Provenance::factory(1)->create([
             'target'=>[
                 'reference'=>$reference,
@@ -27,10 +30,53 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Patient'
             ],
             'agent'=>[
-                'who'=> [
-                    'reference'=>'Patient/'.$patient->id,
-                    'type'=>'Patient'
+                [
+                    'onBehalfOf'=> [
+                        'reference'=>'Patient/'.$patient->id,
+                        'type'=>'Patient'
+                    ],
+                    'type'=> [
+                        "coding"=> [
+                            [
+                            "system"=> "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                            "code"=> "AUT"
+                            ]
+                        ]
+                    ],
+                    'who'=> [
+                        'reference'=>'Practitioner/'.$patient->id,
+                        'type'=>'Practitioner'
+                    ],
+                ],
+                [
+                    "type"=>[
+                        "coding" => [
+                            [
+                                "system"=>"http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type",
+                                "code" =>"transmitter",
+                                "display" => "Transmitter"
+                            ]
+                        ]
+                    ],
+                    "who" => [
+                        "reference" => "Organization/Payer1"
+                    ]
+                ],
+                [
+                    "type"=>[
+                        "coding" => [
+                            [
+                                "system"=>"http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type",
+                                "code" =>"author",
+                                "display" => "Author"
+                            ]
+                        ]
+                    ],
+                    "who" => [
+                        "reference" => "Organization/Author1"
+                    ]
                 ]
+                // Extensions
             ],
         ]);
     }
