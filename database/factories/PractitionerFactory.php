@@ -80,7 +80,17 @@ class PractitionerFactory extends Factory
             'identifier'=> [
                 'use'=>'usual',
                 'value'=>$id,
-                'system'=> "http://hospital.smarthealthit.org"
+                //'system'=> "http://www.acme.org/practitioners",
+                "type"=> [
+                    "coding"=> [
+                        [
+                            "system"=> "http://terminology.hl7.org/CodeSystem/v2-0203",
+                            "code"=> "NPI"
+                        ]
+                    ]
+                ],
+//                  "system": "http://hl7.org/fhir/sid/us-npi",
+
             ],
             'active'=> $this->faker->boolean(),
             'name'=>[
