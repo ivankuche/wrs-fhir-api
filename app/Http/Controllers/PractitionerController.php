@@ -42,7 +42,7 @@ class PractitionerController extends Controller
                 "birthDate"=> $practitioner->birthDate,
                 "photo"=> $practitioner->birthDate,
                 "qualification" => $practitioner->qualification,
-                "communication	" => $practitioner->communication,
+                "communication" => $practitioner->communication,
             ];
 
             $response= $this->filterEmpty($response);

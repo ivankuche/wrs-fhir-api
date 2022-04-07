@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
 
         $practitioner->update(['identifier'=> [
             [
-                "system" => "http://hl7.org.fhir/sid/us-npi",
+                "system" => "http://hl7.org/fhir/sid/us-npi",
                 "value" => "1231".$practitioner->id
             ],
             [
