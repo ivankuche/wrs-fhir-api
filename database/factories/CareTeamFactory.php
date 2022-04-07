@@ -65,7 +65,7 @@ class CareTeamFactory extends Factory
             ];
         }
 
-        if ($this->faker->boolean())
+        if (1==1)//$this->faker->boolean())
         {
             $participant= [
                 "role"=> [
@@ -76,8 +76,11 @@ class CareTeamFactory extends Factory
                     ],
                 ],
                 "member" => [
-                    "reference" => "Practitioner/1",
-                    "display" => "Lawrence Gordon, MD"
+                    "reference" => [
+                        'reference'=>"Practitioner/1",
+                        'type'=>"Practitioner",
+                    ]
+                    //"display" => "Lawrence Gordon, MD"
                 ]
 
             ];
@@ -94,7 +97,7 @@ class CareTeamFactory extends Factory
                 ],
                 "member" => [
                     "reference" => "Practitioner/2",
-                    "display" => "Giselle Rimolo, MD"
+                    //"display" => "Giselle Rimolo, MD"
                 ]
 
             ];
