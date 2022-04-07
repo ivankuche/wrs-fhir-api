@@ -35,29 +35,14 @@ return new class extends Migration
             $table->json('abatementRange')->nullable();
             $table->string('abatementString')->nullable();
             $table->dateTime('abatementDateTime')->nullable();
-/*
-
-            "" : "<string>",
-            "recordedDate" : "<dateTime>", // Date record was first recorded
-            "recorder" : { Reference(Practitioner|PractitionerRole|Patient|
-             RelatedPerson) }, // Who recorded the condition
-            "asserter" : { Reference(Practitioner|PractitionerRole|Patient|
-             RelatedPerson) }, // Person who asserts this condition
-            "stage" : [{ // Stage/grade, usually assessed formally
-              "summary" : { CodeableConcept }, // C? Simple summary (disease specific)
-              "assessment" : [{ Reference(ClinicalImpression|DiagnosticReport|Observation) }], // C? Formal record of assessment
-              "type" : { CodeableConcept } // Kind of staging
-            }],
-            "evidence" : [{ // Supporting evidence
-              "code" : [{ CodeableConcept }], // C? Manifestation/symptom
-              "detail" : [{ Reference(Any) }] // C? Supporting information found elsewhere
-            }],
-            "note" : [{ Annotation }] // Additional information about the Condition
-
+            $table->dateTime('recordedDate')->nullable();
+            $table->json('recorder')->nullable();
+            $table->json('asserter')->nullable();
+            $table->json('stage')->nullable();
+            $table->json('evidence')->nullable();
+            $table->json('note')->nullable();
             $table->timestamps();
         });
-        */
-        }
     }
 
     /**
