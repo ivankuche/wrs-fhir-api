@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Provenance;
+use Carbon\Carbon;
 
 class ProvenanceController extends Controller
 {
@@ -34,7 +35,7 @@ class ProvenanceController extends Controller
                 "target"=> [$provenance->target],
                 "occurredPeriod"=> [$provenance->occurredPeriod],
                 "occurredDateTime"=> $provenance->occurredDateTime,
-                "recorded"=> date(DATE_ISO8601, strtotime($provenance->recorded)),
+                "recorded"=> Carbon::parse($provenance->recorded)->toIso8601String(),
                 "policy"=> $provenance->policy,
                 "location"=>$provenance->location,
                 "authorization" => $provenance->location,
