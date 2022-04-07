@@ -24,6 +24,7 @@ class Condition extends Model
         'severity' => 'array',
         'code' => 'array',
         'bodySite' => 'array',
+        'subject' => 'array',
         'encounter' => 'array',
         'onsetPeriod' => 'array',
         'onsetRange' => 'array',

@@ -8,6 +8,8 @@ use App\Http\Controllers\ProvenanceController;
 use App\Http\Controllers\AllergyIntoleranceController;
 use App\Http\Controllers\CarePlanController;
 use App\Http\Controllers\CareTeamController;
+use App\Http\Controllers\ConditionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,7 @@ Route::resource('Provenance', ProvenanceController::class);
 Route::resource('AllergyIntolerance', AllergyIntoleranceController::class);
 Route::resource('CarePlan', CarePlanController::class);
 Route::resource('CareTeam', CareTeamController::class);
+Route::resource('Condition', ConditionController::class);
 
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);
