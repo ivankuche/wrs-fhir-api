@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
                     "type"=>[
                         "coding" => [
                             [
-                                "system"=>"http://hl7.org/fhir/us/core/CodeSystem/us-core-provenance-participant-type",
+                                "system"=>"http://terminology.hl7.org/CodeSystem/provenance-participant-type",
                                 "code" =>"author",
                                 "display" => "Author"
                             ]
