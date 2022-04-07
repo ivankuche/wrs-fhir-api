@@ -85,7 +85,7 @@ class DeviceController extends Controller
     {
 
         $mapper= [
-            "patient"=>["subject->reference"],
+            "patient"=>["patient->reference"],
             //"status"=>["status"]
 
         ];
