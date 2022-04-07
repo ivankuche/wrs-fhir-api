@@ -33,7 +33,7 @@ class PractitionerController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
-                "identifier"=> [$identifiers],
+                "identifier"=> $identifiers,
                 "active"=> ($practitioner->active?true:false),
                 "name"=> [$practitioner->name],
                 "telecom"=> $practitioner->telecom,
