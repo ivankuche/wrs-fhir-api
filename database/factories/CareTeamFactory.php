@@ -76,7 +76,7 @@ class CareTeamFactory extends Factory
                     ],
                 ],
                 "member" => [
-                    'reference'=>"1",
+                    'reference'=>"Practitioner/1",
                     'type'=>"Practitioner",
                     //"display" => "Lawrence Gordon, MD"
                 ]
