@@ -85,7 +85,8 @@ class DiagnosticReportFactory extends Factory
         return [
             'status'=>$status,
             'category'=>$category,
-            'code'=>$code
+            'code'=>$code,
+            'effectiveDateTime' => $this->faker->dateTime()
         ];
     }
 }

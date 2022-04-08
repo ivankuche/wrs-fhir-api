@@ -34,7 +34,7 @@ class DiagnosticReportController extends Controller
                 'basedOn' => $diagnosticreport->basedOn,
                 'status' => $diagnosticreport->status,
                 'category' => [$diagnosticreport->category],
-                'code' => [$diagnosticreport->code],
+                'code' => $diagnosticreport->code,
                 'subject' => $diagnosticreport->subject,
                 'encounter' => $diagnosticreport->encounter,
                 'effectiveDateTime' => $diagnosticreport->effectiveDateTime,
