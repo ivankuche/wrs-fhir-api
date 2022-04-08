@@ -45,7 +45,7 @@ class DiagnosticReportController extends Controller
                 'encounter' => $diagnosticreport->encounter,
                 'effectiveDateTime' => Carbon::parse($diagnosticreport->effectiveDateTime)->toIso8601String(),
                 'effectivePeriod' => [$diagnosticreport->effectivePeriod],
-                'issued' => $diagnosticreport->issued,
+                'issued' => Carbon::parse($diagnosticreport->issued)->toIso8601String(),
                 'performer' => $diagnosticreport->performer,
                 'resultsInterpreter' => $diagnosticreport->resultsInterpreter,
                 'specimen' => $diagnosticreport->specimen,
