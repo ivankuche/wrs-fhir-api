@@ -232,6 +232,13 @@ class DatabaseSeeder extends Seeder
                     "code"=>"LAB",
                     "display" => "Laboratory"
                 ],
+            ],
+            'category'=> [
+                "coding" => [
+                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code"=>"LAB",
+                    "display" => "Laboratory"
+                ],
             ]
         ]);
 
