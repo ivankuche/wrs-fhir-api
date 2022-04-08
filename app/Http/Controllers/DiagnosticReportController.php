@@ -139,7 +139,16 @@ class DiagnosticReportController extends Controller
                             break;
 
                         case "code":
-                            $diagnosticreports->whereJsonContains('code',['coding'=>['code'=>$value]]);
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $diagnosticreports->whereJsonContains('code',['coding'=>['system'=>$explodeValue[0]]]);
+                                $diagnosticreports->whereJsonContains('code',['coding'=>['code'=>$explodeValue[1]]]);
+//                                $diagnosticreports->where('code->coding->system','=',$explodeValue[0]);
+//                                $diagnosticreports->where('code->coding->code','=',$explodeValue[1]);
+                            }
+                            else
+                                $diagnosticreports->whereJsonContains('code',['coding'=>['code'=>$value]]);
                             break;
 
                         default:
