@@ -91,6 +91,7 @@ class DiagnosticReportController extends Controller
         $mapper= [
             "patient"=>["subject->reference"],
             "category"=>["category->coding->code"],
+            "code"=>["code->coding->code"],
             //"status"=>["status"]
 
         ];
@@ -137,6 +138,10 @@ class DiagnosticReportController extends Controller
 
                             break;
 
+                        case "code":
+                            $diagnosticreports->whereJsonContains('code',['coding'=>['code'=>$value]]);
+                            break;
+
                         default:
                             $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
                             break;
@@ -149,6 +154,8 @@ class DiagnosticReportController extends Controller
             return response()->xml($diagnosticreports->limit(100)->get());
         else
         {
+            // Your Eloquent query executed by using get()
+
             $finalResponse= [];
             foreach ($diagnosticreports->limit(100)->get() as $pat)
             {
