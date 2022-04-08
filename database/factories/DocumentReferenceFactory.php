@@ -16,8 +16,59 @@ class DocumentReferenceFactory extends Factory
      */
     public function definition()
     {
+
+
+
         return [
-            //
+            'status' => 'current',
+            'identifier'=> [],
+            'docStatus' => 'preliminary',
+            'type'=> [
+                'coding'=> [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"34108-1",
+                        "display"=>"Outpatient Note"
+                    ]
+                ]
+            ],
+            "category"=> [
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://ihe.net/xds/connectathon/classCodes",
+                            "code"=>"History and Physical",
+                            "display"=>"History and Physical"
+                        ]
+                    ]
+                ]
+            ],
+            'date'=>$this->faker->date(),
+            'custodian'=> [
+                'reference' => 'Organization/1'
+            ],
+            'content' => [
+                'attachment' => [
+                    'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->numerify('*****').'.pdf',
+                    'contentType' => 'document/pdf',
+                ]
+            ],
+
+            /*
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                          "system" => "http://loinc.org",
+                          "code" => "47039-3",
+                          "display" => "Inpatient Admission history and physical note"
+                        ]
+                    ]
+                ]
+            ],
+
+            */
+
         ];
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->json('basedOn')->nullable();
             $table->string('status');
             $table->json('category')->nullable();
+            $table->json('category:LaboratorySlide')->nullable();
             $table->json('code');
             $table->json('subject')->nullable();
             $table->json('encounter')->nullable();

@@ -9,9 +9,9 @@ class DiagnosticReport extends Model
 {
     use HasFactory;
 
-    protected $fillable= ['identifier', 'basedOn', 'status', 'category', 'code', 'subject', 'encounter',
-        'effectiveDateTime', 'effectivePeriod', 'issued', 'performer', 'resultsInterpreter', 'specimen', 'result',
-        'note', 'imagingStudy', 'media', 'composition', 'conclusion', 'conclusionCode', 'presentedForm'
+    protected $fillable= ['identifier', 'basedOn', 'status', 'category', 'category:LaboratorySlide', 'code', 'subject',
+        'encounter', 'effectiveDateTime', 'effectivePeriod', 'issued', 'performer', 'resultsInterpreter', 'specimen',
+        'result', 'note', 'imagingStudy', 'media', 'composition', 'conclusion', 'conclusionCode', 'presentedForm'
 
     ];
 
@@ -19,6 +19,7 @@ class DiagnosticReport extends Model
         'identifier' => 'array',
         'basedOn' => 'array',
         'category' => 'array',
+        'category:LaboratorySlide' => 'array',
         'code' => 'array',
         'subject' => 'array',
         'encounter' => 'array',

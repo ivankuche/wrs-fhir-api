@@ -12,6 +12,7 @@ use App\Models\Provenance;
 use App\Models\Condition;
 use App\Models\Device;
 use App\Models\DiagnosticReport;
+use App\Models\DocumentReference;
 use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
@@ -164,13 +165,6 @@ class DatabaseSeeder extends Seeder
                 "value" => $practitioner->id
             ]
         ]]);
-        /*/
-        $practitioner->update(['identifier'=> [
-            'use'=>'usual',
-            'value'=>$practitioner->id,
-            'system'=> "http://hospital.smarthealthit.org"
-        ]]);
-        */
     }
 
     private function device($patient)
@@ -232,7 +226,7 @@ class DatabaseSeeder extends Seeder
             "presentedForm" => [
                 "url"=>"http://www.demoreport.com/demoreport",
             ],
-            'category'=> [
+            'category:LaboratorySlide'=> [
                 "coding" => [
                     "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
                     "code"=>"LAB",
@@ -243,6 +237,30 @@ class DatabaseSeeder extends Seeder
 
         // Provenance of the created DiagnosticReport
         $this->provenance('DiagnosticReport/'.$diagnosticReport->first()->id, 'DiagnosticReport', $patient);
+    }
+
+    private function documentreference($patient)
+    {
+
+        $document= DocumentReference::factory(1)->create([
+            'subject' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+            'author'=> [
+                'reference'=>'Practitioner/'.$patient->id
+            ]
+        ])->first();
+
+        $document->update(['identifier'=> [
+            [
+                "use"=>"usual",
+                "system" => "urn:ietf:rfc:3986",
+                "value" => $document->id
+            ]
+        ]]);
+        // Provenance of the created Condition
+        $this->provenance('DocumentReference/'.$document->first()->id, 'DocumentReference', $patient);
     }
 
     public function run()
@@ -267,6 +285,7 @@ class DatabaseSeeder extends Seeder
             $this->condition($patient);
             $this->device($patient);
             $this->diagnosticreport($patient);
+            $this->documentreference($patient);
             $this->practitioner();
         });
 
