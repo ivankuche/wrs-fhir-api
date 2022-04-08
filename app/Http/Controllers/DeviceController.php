@@ -117,11 +117,11 @@ class DeviceController extends Controller
                             $devices->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($devices,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($devices,$mapper[$key],$value);
 
                     }
                     else
-                        $this->mapperToEloquent($devices,$mapper[$key],strtolower($value));
+                        $this->mapperToEloquent($devices,$mapper[$key],$value);
                 }
             }
         }

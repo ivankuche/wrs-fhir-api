@@ -83,6 +83,7 @@ class DiagnosticReportController extends Controller
 
         $mapper= [
             "patient"=>["subject->reference"],
+            "category"=>["category->coding->code"],
             //"status"=>["status"]
 
         ];
@@ -113,11 +114,11 @@ class DiagnosticReportController extends Controller
                             $diagnosticreports->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($diagnosticreports,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
 
                     }
                     else
-                        $this->mapperToEloquent($diagnosticreports,$mapper[$key],strtolower($value));
+                        $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
                 }
             }
         }

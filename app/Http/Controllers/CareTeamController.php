@@ -103,11 +103,11 @@ class CareTeamController extends Controller
                             $careteams->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($careteams,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($careteams,$mapper[$key],$value);
 
                     }
                     else
-                        $this->mapperToEloquent($careteams,$mapper[$key],strtolower($value));
+                        $this->mapperToEloquent($careteams,$mapper[$key],$value);
                 }
             }
         }

@@ -148,7 +148,7 @@ class ProvenanceController extends Controller
                             $provenances->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($provenances,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($provenances,$mapper[$key],$value);
                             //$provenances->where($mapper[$key],'=',$value);
 
                     }
@@ -169,7 +169,7 @@ class ProvenanceController extends Controller
                             $this->mapperToEloquent($provenances,$defaultTarget,$value);
                         }
                         else
-                            $this->mapperToEloquent($provenances,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($provenances,$mapper[$key],$value);
                     }
                         //$provenances->where($mapper[$key],'=',$value);
                 }

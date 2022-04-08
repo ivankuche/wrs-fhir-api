@@ -115,11 +115,11 @@ class ConditionController extends Controller
                             $conditions->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($conditions,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($conditions,$mapper[$key],$value);
 
                     }
                     else
-                        $this->mapperToEloquent($conditions,$mapper[$key],strtolower($value));
+                        $this->mapperToEloquent($conditions,$mapper[$key],$value);
                 }
             }
         }

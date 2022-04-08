@@ -101,12 +101,12 @@ class AllergyIntoleranceController extends Controller
                             $patients->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
-                            $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
                             //$patients->where($mapper[$key],'=',$value);
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],strtolower($value));
+                        $this->mapperToEloquent($patients,$mapper[$key],$value);
                         //$patients->where($mapper[$key],'=',$value);
                 }
             }

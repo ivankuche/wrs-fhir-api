@@ -24,21 +24,17 @@ class DiagnosticReportFactory extends Factory
         if ($this->faker->boolean())
             $category= [
                 "coding" => [
-                    [
-                        "system"=>"http://snomed.info/sct",
-                        "code"=>"252275004",
-                        "display"=>"Haematology test"
-                    ]
+                    "system"=>"http://snomed.info/sct",
+                    "code"=>"252275004",
+                    "display"=>"Haematology test"
                 ]
             ];
         else
             $category= [
                 "coding" => [
-                    [
-                        "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
-                        "code"=>"HM",
-                        "display"=>"Complete Hemogram"
-                    ]
+                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code"=>"HM",
+                    "display"=>"Complete Hemogram"
                 ]
             ];
 
