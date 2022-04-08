@@ -11,6 +11,7 @@ use App\Models\Patient;
 use App\Models\Provenance;
 use App\Models\Condition;
 use App\Models\Device;
+use App\Models\DiagnosticReport;
 use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
@@ -186,7 +187,20 @@ class DatabaseSeeder extends Seeder
         $this->provenance('Device/'.$device->first()->id, 'Device', $patient);
     }
 
+    private function diagnosticreport($patient)
+    {
 
+        $diagnosticReport= DiagnosticReport::factory(1)->create([
+            'subject' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Condition
+        $this->provenance('DiagnosticReport/'.$diagnosticReport->first()->id, 'DiagnosticReport', $patient);
+
+    }
 
     public function run()
     {
@@ -209,6 +223,7 @@ class DatabaseSeeder extends Seeder
             $this->careTeam($patient);
             $this->condition($patient);
             $this->device($patient);
+            $this->diagnosticreport($patient);
             $this->practitioner();
         });
 
