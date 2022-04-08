@@ -33,7 +33,8 @@ class DiagnosticReportController extends Controller
                 // Profile of the extension
                 "meta" => [
                     "profile" => [
-                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note"
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab"
                       ]
                 ],
                 'identifier' => [$diagnosticreport->identifier],

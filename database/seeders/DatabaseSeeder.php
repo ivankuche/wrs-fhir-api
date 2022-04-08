@@ -237,6 +237,12 @@ class DatabaseSeeder extends Seeder
                     "system"=>"http://loinc.org",
                     "code"=>"LAB",
                     "display"=>"Laboratory"
+                ],
+                "LaboratorySlice" => [
+                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code"=>"HM",
+                    "display"=>"Hematology"
+
                 ]
             ],
         ]);
