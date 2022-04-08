@@ -195,6 +195,15 @@ class DatabaseSeeder extends Seeder
                 'reference'=>strval($patient->id),
                 'type'=>'Patient'
             ],
+            'encounter' => [
+                'reference'=>"Encounter/".strval($patient->id),
+            ],
+            "performer" => [
+                "reference"=>"Organization/".strval($patient->id),
+            ],
+            "presentedForm" => [
+                "url"=>"http://www.demoreport.com/demoreport",
+            ],
         ]);
 
         // Provenance of the created Condition

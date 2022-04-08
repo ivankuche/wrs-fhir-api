@@ -30,6 +30,12 @@ class DiagnosticReportController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
+                // Profile of the extension
+                "meta" => [
+                    "profile" => [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note"
+                      ]
+                ],
                 'identifier' => [$diagnosticreport->identifier],
                 'basedOn' => $diagnosticreport->basedOn,
                 'status' => $diagnosticreport->status,
@@ -37,7 +43,7 @@ class DiagnosticReportController extends Controller
                 'code' => $diagnosticreport->code,
                 'subject' => $diagnosticreport->subject,
                 'encounter' => $diagnosticreport->encounter,
-                'effectiveDateTime' => $diagnosticreport->effectiveDateTime,
+                'effectiveDateTime' => Carbon::parse($diagnosticreport->effectiveDateTime)->toIso8601String(),
                 'effectivePeriod' => [$diagnosticreport->effectivePeriod],
                 'issued' => $diagnosticreport->issued,
                 'performer' => $diagnosticreport->performer,
