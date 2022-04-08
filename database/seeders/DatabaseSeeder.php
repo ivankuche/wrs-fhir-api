@@ -232,18 +232,12 @@ class DatabaseSeeder extends Seeder
             "presentedForm" => [
                 "url"=>"http://www.demoreport.com/demoreport",
             ],
-            'category'=> [[
+            'category'=> [
                 "coding" => [
-                    "system"=>"http://loinc.org",
-                    "code"=>"LAB",
-                    "display"=>"Laboratory"
-                ],
-                "LaboratorySlice" => [
                     "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
-                    "code"=>"HM",
-
-                ]
-            ],
+                    "code"=>"LAB",
+                    "display" => "Laboratory"
+                ],
             ]
         ]);
 
