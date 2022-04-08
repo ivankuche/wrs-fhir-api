@@ -43,11 +43,11 @@ class DiagnosticReportFactory extends Factory
                 "coding" => [
                     [
                         "system"=>"http://loinc.org",
-                        "code"=>"58410-2",
-                        "display"=>"Complete blood count (hemogram) panel - Blood by Automated count"
+                        "code"=>"LP29684",
+                        "display"=>"Radiology"
                     ],
                 ],
-                "text"=>"Complete Blood Count"
+                "text"=>"Radiology"
             ];
         else
             $code= [
