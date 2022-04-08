@@ -21,23 +21,6 @@ class DiagnosticReportFactory extends Factory
         else
             $status='final';
 
-        if (1==1)//$this->faker->boolean())
-            $category= [
-                "coding" => [
-                    "system"=>"http://loinc.org",
-                    "code"=>"LP29684-5",
-                    "display"=>"Radiology"
-            ]
-            ];
-        else
-            $category= [
-                "coding" => [
-                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
-                    "code"=>"HM",
-                    "display"=>"Complete Hemogram"
-                ]
-            ];
-
         if ($this->faker->boolean())
             $code= [
                 "coding" => [
@@ -61,30 +44,8 @@ class DiagnosticReportFactory extends Factory
             ];
 
 
-
-            /*
-
-        m $table->json('subject')->nullable();
-        $table->json('encounter')->nullable();
-        $table->dateTime('effectiveDateTime')->nullable();
-        $table->json('effectivePeriod')->nullable();
-        $table->dateTime('issued')->nullable();
-        $table->json('performer')->nullable();
-        $table->json('specimen')->nullable();
-        $table->json('result')->nullable();
-        $table->json('note')->nullable();
-        $table->json('imagingStudy')->nullable();
-        $table->json('media')->nullable();
-        $table->json('composition')->nullable();
-        $table->json('resultsInterpreter')->nullable();
-        $table->string('conclusion')->nullable();
-        $table->json('conclusionCode')->nullable();
-        $table->json('presentedForm')->nullable();
-*/
-
         return [
             'status'=>$status,
-            'category'=>$category,
             'code'=>$code,
             'effectiveDateTime' => $this->faker->dateTime(),
             'issued' => $this->faker->dateTime()
