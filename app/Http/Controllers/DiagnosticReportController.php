@@ -105,20 +105,35 @@ class DiagnosticReportController extends Controller
             {
                 if (in_array($key,array_keys($mapper)))
                 {
-                    if ($key=="identifier")
+                    switch ($key)
                     {
-                        if (strpos($value,"|")>0)
-                        {
-                            $explodeValue= explode('|',$value);
-                            $diagnosticreports->where('identifier->system','=',$explodeValue[0]);
-                            $diagnosticreports->where('identifier->value','=',$explodeValue[1]);
-                        }
-                        else
-                            $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
+                        case "identifier":
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $diagnosticreports->where('identifier->system','=',$explodeValue[0]);
+                                $diagnosticreports->where('identifier->value','=',$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
+                            break;
 
+                        case "category":
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $diagnosticreports->where('category->coding->system','=',$explodeValue[0]);
+                                $diagnosticreports->where('category->coding->code','=',$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
+
+                            break;
+
+                        default:
+                            $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
+                            break;
                     }
-                    else
-                        $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
                 }
             }
         }
