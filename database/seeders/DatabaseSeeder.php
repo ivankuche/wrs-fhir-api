@@ -226,13 +226,6 @@ class DatabaseSeeder extends Seeder
             "presentedForm" => [
                 "url"=>"http://www.demoreport.com/demoreport",
             ],
-            'category:LaboratorySlide'=> [
-                "coding" => [
-                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
-                    "code"=>"LAB",
-                    "display" => "Laboratory"
-                ],
-            ],
             'category'=> [
                 "coding" => [
                     "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
