@@ -21,7 +21,7 @@ class DiagnosticReportFactory extends Factory
         else
             $status='final';
 
-        if ($this->faker->boolean())
+        if (1==1)//$this->faker->boolean())
             $category= [
                 "coding" => [
                     "system"=>"http://loinc.org",

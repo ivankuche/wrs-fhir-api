@@ -38,7 +38,7 @@ class DiagnosticReportController extends Controller
                 'subject' => $diagnosticreport->subject,
                 'encounter' => $diagnosticreport->encounter,
                 'effectiveDateTime' => $diagnosticreport->effectiveDateTime,
-                'effectivePeriod' => [$diagnosticreport->category],
+                'effectivePeriod' => [$diagnosticreport->effectivePeriod],
                 'issued' => $diagnosticreport->issued,
                 'performer' => $diagnosticreport->performer,
                 'resultsInterpreter' => $diagnosticreport->resultsInterpreter,
