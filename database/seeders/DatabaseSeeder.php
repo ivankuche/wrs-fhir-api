@@ -184,6 +184,33 @@ class DatabaseSeeder extends Seeder
     private function diagnosticreport($patient)
     {
 
+        // DiagnosticReport for Labs
+        $diagnosticReport= DiagnosticReport::factory(1)->create([
+            'subject' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+            'encounter' => [
+                'reference'=>"Encounter/".strval($patient->id),
+            ],
+            "performer" => [
+                "reference"=>"Organization/".strval($patient->id),
+            ],
+            "presentedForm" => [
+                "url"=>"http://www.demoreport.com/demoreport",
+            ],
+            'category'=> [
+                "coding" => [
+                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
+                    "code"=>"LAB",
+                    "display" => "Laboratory"
+                ],
+            ]
+        ]);
+
+        // Provenance of the created DiagnosticReport
+        $this->provenance('DiagnosticReport/'.$diagnosticReport->first()->id, 'DiagnosticReport', $patient);
+
         // DiagnosticReport for Reports and Notes
         $diagnosticReport= DiagnosticReport::factory(1)->create([
             'subject' => [
@@ -211,32 +238,7 @@ class DatabaseSeeder extends Seeder
         // Provenance of the created DiagnosticReport
         $this->provenance('DiagnosticReport/'.$diagnosticReport->first()->id, 'DiagnosticReport', $patient);
 
-        // DiagnosticReport for Labs
-        $diagnosticReport= DiagnosticReport::factory(1)->create([
-            'subject' => [
-                'reference'=>strval($patient->id),
-                'type'=>'Patient'
-            ],
-            'encounter' => [
-                'reference'=>"Encounter/".strval($patient->id),
-            ],
-            "performer" => [
-                "reference"=>"Organization/".strval($patient->id),
-            ],
-            "presentedForm" => [
-                "url"=>"http://www.demoreport.com/demoreport",
-            ],
-            'category'=> [
-                "coding" => [
-                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
-                    "code"=>"LAB",
-                    "display" => "Laboratory"
-                ],
-            ]
-        ]);
 
-        // Provenance of the created DiagnosticReport
-        $this->provenance('DiagnosticReport/'.$diagnosticReport->first()->id, 'DiagnosticReport', $patient);
     }
 
     private function documentreference($patient)
