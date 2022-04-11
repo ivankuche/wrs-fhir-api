@@ -23,6 +23,7 @@ class PatientFactory extends Factory
         $name= $this->faker->firstName($gender);
         $surname= $this->faker->lastName();
         $deceasedBoolean= null;
+        $deceasedDateTime= null;
 
         if ($this->faker->boolean())
             $deceasedDateTime= $this->faker->date('Y-m-d','now - 2 year');
