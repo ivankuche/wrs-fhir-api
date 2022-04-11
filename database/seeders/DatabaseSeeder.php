@@ -359,6 +359,20 @@ class DatabaseSeeder extends Seeder
 
     }
 
+    public function medicationrequest($patient)
+    {
+        $medicationrequest= Encounter::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Condition
+        $this->provenance('MedicationRequest/'.$medicationrequest->first()->id, 'MedicationRequest', $patient);
+
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -385,6 +399,7 @@ class DatabaseSeeder extends Seeder
             $this->goal($patient);
             $this->immunization($patient);
             $this->encounter($patient);
+            $this->medicationrequest($patient);
             $this->organization();
             $this->practitioner();
         });
