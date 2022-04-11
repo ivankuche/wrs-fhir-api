@@ -16,6 +16,7 @@ use App\Models\DocumentReference;
 use App\Models\Encounter;
 use App\Models\Goal;
 use App\Models\Immunization;
+use App\Models\MedicationRequest;
 use App\Models\Organization;
 use App\Models\Practitioner;
 
@@ -361,7 +362,7 @@ class DatabaseSeeder extends Seeder
 
     public function medicationrequest($patient)
     {
-        $medicationrequest= Encounter::factory(1)->create([
+        $medicationrequest= MedicationRequest::factory(1)->create([
             'subject' => [
                 'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'

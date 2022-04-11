@@ -15,8 +15,10 @@ use App\Http\Controllers\DocumentReferenceController;
 use App\Http\Controllers\EncounterController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ImmunizationController;
+use App\Http\Controllers\MedicationRequestController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PractitionerController;
+use App\Models\MedicationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,7 @@ Route::resource('DocumentReference', DocumentReferenceController::class);
 Route::resource('Goal', GoalController::class);
 Route::resource('Immunization', ImmunizationController::class);
 Route::resource('Encounter', EncounterController::class);
+Route::resource('MedicationRequest', MedicationRequestController::class);
 Route::resource('Organization', OrganizationController::class);
 Route::resource('Practitioner', PractitionerController::class);
 

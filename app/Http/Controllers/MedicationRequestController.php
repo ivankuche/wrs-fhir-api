@@ -92,7 +92,10 @@ class MedicationRequestController extends Controller
     public function index(Request $request)
     {
 
-        $mapper= [];
+        $mapper= [
+            "intent"=>["intent"],
+            "patient"=>["subject->reference"],
+        ];
         $mapperUnderscore= [
             "id"=>"id",
         ];
@@ -124,7 +127,22 @@ class MedicationRequestController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($medicationrequests,$mapper[$key],$value);
+                    {
+                        if ($key=="patient")
+                        {
+                            if (strpos($value,"/")>0)
+                            {
+                                die("ere");
+                                $explodeValue= explode('/',$value);
+                                $this->mapperToEloquent($medicationrequests,$mapper[$key],$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($medicationrequests,$mapper[$key],"Patient/".$value);
+                        }
+                        else
+                            $this->mapperToEloquent($medicationrequests,$mapper[$key],$value);
+
+                    }
                 }
             }
         }
