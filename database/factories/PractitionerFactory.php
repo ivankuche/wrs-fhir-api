@@ -105,10 +105,12 @@ class PractitionerFactory extends Factory
 
             'active'=> $this->faker->boolean(),
             'name'=>[
-                'use'=>'usual',
-                'text'=>$name." ".$surname,
-                'family'=>$surname,
-                'given'=>$name
+                [
+                    'use'=>'usual',
+                    'text'=>$name." ".$surname,
+                    'family'=>$surname,
+                    'given'=>$name
+                ]
             ],
             'telecom'=> [[
                     "system"=>"phone",
@@ -125,17 +127,18 @@ class PractitionerFactory extends Factory
             'address'=> $addressItem,
             'qualification' => [],
             'communication'=> [
-                'language'=> [
-                    'coding'=>[
-                        [
-                            'system'=>'urn:ietf:bcp:47',
-                            'code'=>'en-US',
-                            'display'=>'English (United States)'
-                        ]
+                [
+                    'language'=> [
+                        'coding'=>[
+                            [
+                                'system'=>'urn:ietf:bcp:47',
+                                'code'=>'en-US',
+                                'display'=>'English (United States)'
+                            ]
+                        ],
+                        'text'=> "United States"
                     ],
-                    'text'=> "United States"
-                ],
-                'preferred'=> true
+                ]
             ],
         ];
     }

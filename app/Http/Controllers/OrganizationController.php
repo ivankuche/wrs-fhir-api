@@ -24,7 +24,8 @@ class OrganizationController extends Controller
         {
             $response= [
                 'resourceType'=>"Organization",
-                'id'=>strval($organization->id),
+                //'id'=>strval($organization->id),
+                'id'=>($organization->identifier)[0]['value'],
                 "text"=> [
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
