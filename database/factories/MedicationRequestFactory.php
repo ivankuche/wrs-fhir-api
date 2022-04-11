@@ -20,10 +20,10 @@ class MedicationRequestFactory extends Factory
             'status' => $this->faker->randomElement(['active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown']),
             //'intent' => $this->faker->randomElement(['proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option']),
             'medicationReference' => [
-                "reference"=> "#med0304",
-                "display"=>"Myleran 2mg tablet"
+                "reference"=> "Medication/1",
+                "type"=>"Medication"
             ],
-            'authoredOn' => $this->faker->date(),
+            'authoredOn' => $this->faker->dateTime(),
             "requester"=> [
                 "reference"=>"Practitioner/1",
                 "type"=> "Practitioner"

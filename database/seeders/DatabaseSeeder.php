@@ -16,6 +16,7 @@ use App\Models\DocumentReference;
 use App\Models\Encounter;
 use App\Models\Goal;
 use App\Models\Immunization;
+use App\Models\Medication;
 use App\Models\MedicationRequest;
 use App\Models\Organization;
 use App\Models\Practitioner;
@@ -337,7 +338,7 @@ class DatabaseSeeder extends Seeder
         ]]);
     }
 
-    public function encounter($patient)
+    private function encounter($patient)
     {
         $encounter= Encounter::factory(1)->create([
             'subject' => [
@@ -360,7 +361,12 @@ class DatabaseSeeder extends Seeder
 
     }
 
-    public function medicationrequest($patient)
+    private function medication()
+    {
+        Medication::factory(1)->create();
+    }
+
+    private function medicationrequest($patient)
     {
         $medicationrequest= MedicationRequest::factory(1)->create([
             'subject' => [
@@ -415,6 +421,7 @@ class DatabaseSeeder extends Seeder
             $this->organization();
             $this->practitioner();
         });
+        $this->medication();
         $this->organizationPayer1();
 
     }

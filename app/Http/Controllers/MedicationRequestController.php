@@ -44,7 +44,7 @@ class MedicationRequestController extends Controller
                 'encounter' => [$medicationrequest->encounter],
                 'supportingInformation' => [$medicationrequest->supportingInformation],
                 'authoredOn' => $medicationrequest->authoredOn,
-                'requester' => [$medicationrequest->requester],
+                'requester' => $medicationrequest->requester,
                 'performer' => [$medicationrequest->performer],
                 'performerType' => [$medicationrequest->performerType],
                 'recorder' => [$medicationrequest->recorder],
