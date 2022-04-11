@@ -103,28 +103,26 @@ class CarePlanController extends Controller
                             $patients->where('identifier->value','=',$explodeValue[1]);
                         }
                         else
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                    }
+
+                    else
+                    {
+                        if ($key=="patient")
                         {
-                            if ($key=="patient")
-                            {
-                                $newValue= "";
-                                if (strpos($value,"Patient/")>0)
-                                    $newValue= $value;
-                                else
-                                    $newValue= "Patient/".$value;
-
-                                $this->mapperToEloquent($patients,$mapper[$key],$newValue);
-
-
-                            }
+                            $newValue= "";
+                            if (strpos($value,"Patient/")>0)
+                                $newValue= $value;
                             else
-                                $this->mapperToEloquent($patients,$mapper[$key],$value);
+                                $newValue= "Patient/".$value;
+
+                            $this->mapperToEloquent($patients,$mapper[$key],$newValue);
+
 
                         }
-
+                        else
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
                     }
-                    else
-                        $this->mapperToEloquent($patients,$mapper[$key],$value);
-                        //$patients->where($mapper[$key],'=',$value);
                 }
             }
         }
