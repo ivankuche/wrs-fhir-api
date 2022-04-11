@@ -128,15 +128,12 @@ class PractitionerFactory extends Factory
             'qualification' => [],
             'communication'=> [
                 [
-                    'language'=> [
-                        'coding'=>[
-                            [
-                                'system'=>'urn:ietf:bcp:47',
-                                'code'=>'en-US',
-                                'display'=>'English (United States)'
-                            ]
-                        ],
-                        'text'=> "United States"
+                    'coding'=>[
+                        [
+                            'system'=>'urn:ietf:bcp:47',
+                            'code'=>'en-US',
+                            'display'=>'English (United States)'
+                        ]
                     ],
                 ]
             ],
