@@ -48,7 +48,7 @@ class ObservationController extends Controller
                 'valueCodeableConcept' => $observation->valueCodeableConcept,
                 'valueString' => $observation->valueString,
                 'valueBoolean' => $observation->valueBoolean,
-                'valueInteger' => strval($observation->valueInteger),
+                'valueInteger' => $observation->valueInteger,
                 'valueRange' => $observation->valueRange,
                 'valueRatio' => $observation->valueRatio,
 
