@@ -19,7 +19,7 @@ class ObservationFactory extends Factory
         return [
             'status' => 'final',
             'issued'=> $this->faker->dateTime(),
-            "effectiveDateTime"  => $this->faker->date()
+            "effectiveDateTime"  => $this->faker->date('2020-m-d')
         ];
     }
 }
