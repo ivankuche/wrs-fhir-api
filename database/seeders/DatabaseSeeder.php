@@ -190,7 +190,7 @@ class DatabaseSeeder extends Seeder
         // DiagnosticReport for Labs
         $diagnosticReport= DiagnosticReport::factory(1)->create([
             'subject' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
             'encounter' => [
