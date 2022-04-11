@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Goal>
@@ -23,6 +24,9 @@ class GoalFactory extends Factory
                 'text' => $this->faker->text('100'),
             ],
             'startDate' => $this->faker->date(),
+            'target'=> [
+                'dueDate' => Carbon::parse($this->faker->date())->toIso8601String(),
+            ]
         ];
     }
 }

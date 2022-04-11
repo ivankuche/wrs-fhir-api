@@ -79,7 +79,7 @@ class CareTeamFactory extends Factory
                 ],
                 "member" => [
                     "reference" => "Practitioner/2",
-                    //"display" => "Giselle Rimolo, MD"
+                    "type" => "Practitioner"
                 ]
 
             ];
