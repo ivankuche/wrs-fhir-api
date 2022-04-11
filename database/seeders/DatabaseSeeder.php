@@ -394,11 +394,23 @@ class DatabaseSeeder extends Seeder
 
     private function observation($patient)
     {
+
+        // Smoking Status
         $observation= Observation::factory(1)->create([
             'subject' => [
                 'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
+            "code"=> [
+                "coding"=> [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"72166-2",
+                        "display"=>"Tobacco smoking status"
+                    ]
+                ]
+            ],
+
         ]);
 
         // Provenance of the created MedicationRequest

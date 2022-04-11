@@ -17,17 +17,8 @@ class ObservationFactory extends Factory
     public function definition()
     {
         return [
-            'status' => $this->faker->randomElement(['registered', 'preliminary', 'final', 'amended']),
-            "code"=> [
-                "coding"=> [
-                    [
-                        "system"=>"http://loinc.org",
-                        "code"=>"72166-2",
-                        "display"=>"Tobacco smoking status"
-                    ]
-                ]
-            ],
-            //
+            'status' => 'final',
+            'valueInteger' => 5,
         ];
     }
 }
