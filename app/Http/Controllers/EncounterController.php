@@ -36,7 +36,7 @@ class EncounterController extends Controller
                 'type' => [$encounter->type],
                 'serviceType' => [$encounter->serviceType],
                 'priority' => [$encounter->priority],
-                'subject' => [$encounter->subject],
+                'subject' => $encounter->subject,
                 'episodeOfCare' => [$encounter->episodeOfCare],
                 'basedOn' => [$encounter->basedOn],
                 'participant' => [$encounter->participant],
