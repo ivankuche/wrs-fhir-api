@@ -15,6 +15,7 @@ use App\Models\DiagnosticReport;
 use App\Models\DocumentReference;
 use App\Models\Goal;
 use App\Models\Immunization;
+use App\Models\Organization;
 use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
@@ -152,24 +153,6 @@ class DatabaseSeeder extends Seeder
         $this->provenance('Condition/'.$condition->first()->id, 'Condition', $patient);
     }
 
-    private function practitioner()
-    {
-
-        $practitioner= Practitioner::factory(1)->create()->first();
-
-        $practitioner->update(['identifier'=> [
-            [
-                "system" => "http://hl7.org/fhir/sid/us-npi",
-                "value" => "1231".$practitioner->id
-            ],
-            [
-                "use"=>"usual",
-                "system" => "http://www.acme.org/practitioners",
-                "value" => $practitioner->id
-            ]
-        ]]);
-    }
-
     private function device($patient)
     {
 
@@ -302,6 +285,40 @@ class DatabaseSeeder extends Seeder
 
     }
 
+
+    private function organization()
+    {
+
+        $organization= Organization::factory(1)->create()->first();
+
+        $organization->update(['identifier'=> [
+            [
+                "system" => "urn:ietf:rfc:3986",
+                "value" => "1231".$organization->id
+            ],
+        ]]);
+    }
+
+
+    private function practitioner()
+    {
+
+        $practitioner= Practitioner::factory(1)->create()->first();
+
+        $practitioner->update(['identifier'=> [
+            [
+                "system" => "http://hl7.org/fhir/sid/us-npi",
+                "value" => "1231".$practitioner->id
+            ],
+            [
+                "use"=>"usual",
+                "system" => "http://www.acme.org/practitioners",
+                "value" => $practitioner->id
+            ]
+        ]]);
+    }
+
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -327,6 +344,7 @@ class DatabaseSeeder extends Seeder
             $this->documentreference($patient);
             $this->goal($patient);
             $this->immunization($patient);
+            $this->organization();
             $this->practitioner();
         });
 

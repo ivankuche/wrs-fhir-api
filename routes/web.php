@@ -14,6 +14,7 @@ use App\Http\Controllers\DiagnosticReportController;
 use App\Http\Controllers\DocumentReferenceController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ImmunizationController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PractitionerController;
 
 /*
@@ -50,6 +51,7 @@ Route::resource('DiagnosticReport', DiagnosticReportController::class);
 Route::resource('DocumentReference', DocumentReferenceController::class);
 Route::resource('Goal', GoalController::class);
 Route::resource('Immunization', ImmunizationController::class);
+Route::resource('Organization', OrganizationController::class);
 Route::resource('Practitioner', PractitionerController::class);
 
 

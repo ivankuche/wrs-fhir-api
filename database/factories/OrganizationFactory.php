@@ -16,8 +16,43 @@ class OrganizationFactory extends Factory
      */
     public function definition()
     {
+
+        $address= $this->faker->streetName;
+        $number= $this->faker->buildingNumber;
+        $city= $this->faker->city;
+        $state= $this->faker->state;
+        $postCode= $this->faker->postcode;
+        $periodStart= $this->faker->date('Y-m-d','now - 3 year');
+
+        $addressItem= [
+            'use'=>'home',
+            'type'=>'physical',
+            'text'=>$number." ".$address.", ".$city.", ".$state." ".$postCode,
+            'line'=> [
+                $number." ".$address
+            ],
+            'city'=>$city,
+            'state'=>$state,
+            'postalCode'=>$postCode,
+            'period'=>[
+                'start'=>$periodStart
+            ],
+        ];
+
         return [
-            //
+            'active'=>true,
+            'name'=>$this->faker->company,
+            'telecom'=> [[
+                "system"=>"phone",
+                "value"=>$this->faker->phoneNumber,
+                "use"=>"home"
+            ],
+            [
+                "system"=>"phone",
+                "value"=>$this->faker->phoneNumber,
+                "use"=>"work"
+            ]],
+            'address'=>[$address],
         ];
     }
 }

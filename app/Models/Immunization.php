@@ -14,33 +14,31 @@ class Immunization extends Model
         'occurrenceString', 'recorded', 'primarySource', 'informationSource', 'location', 'site', 'route', 'doseQuantity',
         'performer', 'note', 'reason', 'isSubpotent', 'subpotentReason', 'education', 'programEligibility', 'fundingSource',
         'reaction', 'protocolApplied'
+    ];
 
-
-];
-
-protected $casts = [
-    'identifier' => 'array',
-    'instantiatesCanonical' => 'array',
-    'basedOn' => 'array',
-    'status' => 'array',
-    'statusReason' => 'array',
-    'vaccineCode' => 'array',
-    'manufacturer' => 'array',
-    'patient' => 'array',
-    'encounter' => 'array',
-    'informationSource' => 'array',
-    'location' => 'array',
-    'site' => 'array',
-    'route' => 'array',
-    'doseQuantity' => 'array',
-    'performer' => 'array',
-    'note' => 'array',
-    'reason' => 'array',
-    'subpotentReason' => 'array',
-    'education' => 'array',
-    'programEligibility' => 'array',
-    'fundingSource' => 'array',
-    'reaction' => 'array',
-    'protocolApplied' => 'array',
-];
+    protected $casts = [
+        'identifier' => 'array',
+        'instantiatesCanonical' => 'array',
+        'basedOn' => 'array',
+        'status' => 'array',
+        'statusReason' => 'array',
+        'vaccineCode' => 'array',
+        'manufacturer' => 'array',
+        'patient' => 'array',
+        'encounter' => 'array',
+        'informationSource' => 'array',
+        'location' => 'array',
+        'site' => 'array',
+        'route' => 'array',
+        'doseQuantity' => 'array',
+        'performer' => 'array',
+        'note' => 'array',
+        'reason' => 'array',
+        'subpotentReason' => 'array',
+        'education' => 'array',
+        'programEligibility' => 'array',
+        'fundingSource' => 'array',
+        'reaction' => 'array',
+        'protocolApplied' => 'array',
+    ];
 }
