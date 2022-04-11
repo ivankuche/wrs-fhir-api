@@ -31,10 +31,12 @@ class DatabaseSeeder extends Seeder
                 'reference'=>$reference,
                 'type'=>$referenceType
             ],
+            /*
             'patient'=>[
                 'reference'=>'Patient/'.$patient->id,
                 'type'=>'Patient'
             ],
+            */
             'agent'=>[
                 [
                     // On behalf of which organization
@@ -178,9 +180,11 @@ class DatabaseSeeder extends Seeder
             ],
             'encounter' => [
                 'reference'=>"Encounter/".strval($patient->id),
+                'type'=>'Encounter'
             ],
             "performer" => [
                 "reference"=>"Organization/".strval($patient->id),
+                'type'=>'Organization'
             ],
             "presentedForm" => [
                 "url"=>"http://www.demoreport.com/demoreport",
@@ -294,11 +298,23 @@ class DatabaseSeeder extends Seeder
         $organization->update(['identifier'=> [
             [
                 "system" => "urn:ietf:rfc:3986",
-                "value" => "Payer1"
+                "value" => strval($organization->id)
             ],
         ]]);
     }
 
+    private function organizationPayer1()
+    {
+
+        $organization= Organization::factory(1)->create()->first();
+
+        $organization->update(['identifier'=> [
+            [
+                "system" => "urn:ietf:rfc:3986",
+                "value" => "Payer1"
+            ],
+        ]]);
+    }
 
     private function practitioner()
     {
@@ -347,6 +363,7 @@ class DatabaseSeeder extends Seeder
             $this->organization();
             $this->practitioner();
         });
+        $this->organizationPayer1();
 
     }
 }
