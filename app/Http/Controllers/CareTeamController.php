@@ -107,7 +107,20 @@ class CareTeamController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($careteams,$mapper[$key],$value);
+                    {
+                        if ($key=="patient")
+                        {
+                            if (strpos($value,"Patient/")!==false)
+                                $newValue= $value;
+                            else
+                                $newValue= "Patient/".$value;
+
+                            $this->mapperToEloquent($careteams,$mapper[$key],$newValue);
+                        }
+                        else
+                            $this->mapperToEloquent($careteams,$mapper[$key],$value);
+
+                    }
                 }
             }
         }

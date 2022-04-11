@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
 
             $careteam= CareTeam::factory(1)->create([
                 'subject' => [
-                    'reference'=>strval($patient->id),
+                    'reference'=>'Patient/'.strval($patient->id),
                     'type'=>'Patient'
                 ],
                 'status' => $status,
