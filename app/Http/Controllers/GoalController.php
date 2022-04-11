@@ -111,7 +111,20 @@ class GoalController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($goals,$mapper[$key],$value);
+                    {
+                        if ($key=="patient")
+                        {
+                            if (strpos($value,"/")>0)
+                            {
+                                $explodeValue= explode('/',$value);
+                                $this->mapperToEloquent($goals,$mapper[$key],$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($goals,$mapper[$key],"Patient/".$value);
+                        }
+                        else
+                            $this->mapperToEloquent($goals,$mapper[$key],$value);
+                    }
                 }
             }
         }

@@ -90,7 +90,7 @@ class ImmunizationController extends Controller
     {
 
         $mapper= [
-            "patient"=>["subject->reference"],
+            "patient"=>["patient->reference"],
             //"status"=>["status"]
 
         ];
@@ -125,7 +125,20 @@ class ImmunizationController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($immunizations,$mapper[$key],$value);
+                    {
+                        if ($key=="patient")
+                        {
+                            if (strpos($value,"/")>0)
+                            {
+                                $explodeValue= explode('/',$value);
+                                $this->mapperToEloquent($immunizations,$mapper[$key],$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($immunizations,$mapper[$key],"Patient/".$value);
+                        }
+                        else
+                            $this->mapperToEloquent($immunizations,$mapper[$key],$value);
+                    }
                 }
             }
         }
