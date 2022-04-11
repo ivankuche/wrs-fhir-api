@@ -33,9 +33,11 @@ class CarePlanFactory extends Factory
         {
             $category= [
                 "coding"=> [
-                    "system"=> "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
-                    "code"=> "assess-plan",
-                    "display"=> "Assessment and Plan of Treatment"
+                    [
+                        "system"=> "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                        "code"=> "assess-plan",
+                        "display"=> "Assessment and Plan of Treatment"
+                    ]
                 ],
                 "text"=>"Weight management plan"
             ];
@@ -45,9 +47,11 @@ class CarePlanFactory extends Factory
         {
             $category= [
                 "coding"=> [
-                    "system"=> "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
-                    "code"=> "assess-plan",
-                    "display"=> "Assessment and Plan of Treatment"
+                    [
+                        "system"=> "http://hl7.org/fhir/us/core/CodeSystem/careplan-category",
+                        "code"=> "assess-plan",
+                        "display"=> "Assessment and Plan of Treatment"
+                    ]
                 ],
                 "text"=>"Assessment and Plan of Treatment"
             ];

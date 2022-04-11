@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 use Storage;
-use DB;
+use Carbon\Carbon;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -62,7 +62,7 @@ class PatientController extends Controller
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthDate,
                 "deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
-                "deceasedDateTime"=> $patient->deceasedDateTime,
+                "deceasedDateTime"=> Carbon::parse($patient->deceasedDateTime,)->toIso8601String(),
                 "address"=> [$patient->address],
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],

@@ -25,9 +25,11 @@ class DeviceFactory extends Factory
             'serialNumber' => $this->faker->asciify('********************'),
             'type' => [
                 'coding' => [
-                    "system" => "http://snomed.info/sct",
-                    "code" => "19257004",
-                    "display" => "Defibrillator, device"
+                    [
+                        "system" => "http://snomed.info/sct",
+                        "code" => "19257004",
+                        "display" => "Defibrillator, device"
+                    ]
                 ]
             ],
             'udiCarrier' => [

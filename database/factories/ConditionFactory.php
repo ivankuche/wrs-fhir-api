@@ -40,9 +40,11 @@ class ConditionFactory extends Factory
         {
             $category= [
                 "coding"=> [
-                    "system"=> "http://terminology.hl7.org/CodeSystem/condition-category",
-                    "code"=> "encounter-diagnosis",
-                    "display"=> "Encounter Diagnosis"
+                    [
+                        "system"=> "http://terminology.hl7.org/CodeSystem/condition-category",
+                        "code"=> "encounter-diagnosis",
+                        "display"=> "Encounter Diagnosis"
+                    ]
                 ],
             ];
         }
@@ -50,9 +52,11 @@ class ConditionFactory extends Factory
         {
             $category= [
                 "coding"=> [
-                    "system"=> "http://snomed.info/sct",
-                    "code"=> "439401001",
-                    "display"=> "Diagnosis"
+                    [
+                        "system"=> "http://snomed.info/sct",
+                        "code"=> "439401001",
+                        "display"=> "Diagnosis"
+                    ]
                 ],
             ];
         }
@@ -61,9 +65,11 @@ class ConditionFactory extends Factory
         {
             $code= [
                 "coding"=> [
-                    "system"=> "http://snomed.info/sct",
-                    "code"=> "39065001",
-                    "display"=> "Burn of ear"
+                    [
+                        "system"=> "http://snomed.info/sct",
+                        "code"=> "39065001",
+                        "display"=> "Burn of ear"
+                    ]
                 ],
                 "text"=>"Burnt Ear"
             ];
@@ -72,9 +78,11 @@ class ConditionFactory extends Factory
         {
             $code= [
                 "coding"=> [
-                    "system"=> "http://snomed.info/sct",
-                    "code"=> "25906001",
-                    "display"=> "Disorder of ear"
+                    [
+                        "system"=> "http://snomed.info/sct",
+                        "code"=> "25906001",
+                        "display"=> "Disorder of ear"
+                    ]
                 ],
                 "text"=>"Ear disorder"
             ];

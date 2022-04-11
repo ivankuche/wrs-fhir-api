@@ -20,9 +20,11 @@ class CareTeamFactory extends Factory
         {
             $category= [
                 "coding"=> [
-                    "system"=> "http://loinc.org",
-                    "code"=> "LA27976-2",
-                    "display"=> "Encounter-focused care team"
+                    [
+                        "system"=> "http://loinc.org",
+                        "code"=> "LA27976-2",
+                        "display"=> "Encounter-focused care team"
+                    ]
                 ],
             ];
         }
@@ -30,50 +32,28 @@ class CareTeamFactory extends Factory
         {
             $category= [
                 "coding"=> [
-                    "system"=> "http://loinc.org",
-                    "code"=> "LA27980-4",
-                    "display"=> "Clinical research-focused care team"
+                    [
+                        "system"=> "http://loinc.org",
+                        "code"=> "LA27980-4",
+                        "display"=> "Clinical research-focused care team"
+                    ]
                 ],
             ];
         }
 
         if ($this->faker->boolean())
-            $name= "Care team #1: Avengers of health";
-        else
-            $name= "CareTim - Tim at your needs";
-
-
-
-        if ($this->faker->boolean())
-        {
-            $category= [
-                "coding"=> [
-                    "system"=> "http://loinc.org",
-                    "code"=> "LA27976-2",
-                    "display"=> "Encounter-focused care team"
-                ],
-            ];
-        }
-        else
-        {
-            $category= [
-                "coding"=> [
-                    "system"=> "http://loinc.org",
-                    "code"=> "LA27980-4",
-                    "display"=> "Clinical research-focused care team"
-                ],
-            ];
-        }
-
-        if (1==1)//$this->faker->boolean())
         {
             $participant= [
                 "role"=> [
-                    "coding"=> [
-                        "system"=> "http://snomed.info/sct",
-                        "code"=> "17561000",
-                        "display"=> "Cardiologist"
-                    ],
+                    [
+                        "coding"=> [
+                            [
+                                "system"=> "http://snomed.info/sct",
+                                "code"=> "17561000",
+                                "display"=> "Cardiologist"
+                            ]
+                        ],
+                    ]
                 ],
                 "member" => [
                     'reference'=>"Practitioner/1",
