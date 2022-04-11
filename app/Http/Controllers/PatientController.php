@@ -19,6 +19,16 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    private function filterEmpty(&$array)
+    {
+        foreach ( $array as $key => $item ) {
+            is_array ( $item ) && $array [$key] = $this->filterEmpty( $item );
+            if (empty ( $array [$key] ))
+                unset ( $array [$key] );
+        }
+        return $array;
+    }
+
 
     private function codeGender($gender)
     {
@@ -49,6 +59,10 @@ class PatientController extends Controller
             $identifierCast= $patient->identifier;
             $identifierCast['value']= strval($identifierCast['value']);
 
+            $deceased= null;
+            if ($patient->deceasedDateTime!=null)
+                $deceased= Carbon::parse($patient->deceasedDateTime)->toIso8601String();
+
             $response= [
                 "resourceType"=>"Patient",
                 "id"=>strval($patient->identifier['value']),
@@ -62,8 +76,8 @@ class PatientController extends Controller
                 "telecom"=> $patient->telecom,
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthDate,
-                "deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
-                "deceasedDateTime"=> Carbon::parse($patient->deceasedDateTime,)->toIso8601String(),
+                //"deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
+                "deceasedDateTime"=> $deceased,
                 "address"=> [$patient->address],
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
@@ -112,6 +126,9 @@ class PatientController extends Controller
                 ],
 
             ];
+
+            $response= $this->filterEmpty($response);
+
         }
         else
             $response=[];
