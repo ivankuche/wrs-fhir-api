@@ -29,13 +29,13 @@ class OrganizationController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
-                'identifier' => [$organization->identifier],
-                'active' => $organization->active,
+                'identifier' => $organization->identifier,
+                'active' => ($organization->active?true:false),
                 'type' => [$organization->type],
                 'name' => $organization->name,
                 'alias' => $organization->alias,
-                'telecom' => [$organization->telecom],
-                'address' => [$organization->address],
+                'telecom' => $organization->telecom,
+                'address' => $organization->address,
                 'partOf' => [$organization->partOf],
                 'contact' => [$organization->contact],
                 'endpoint' => [$organization->endpoint],
@@ -125,7 +125,9 @@ class OrganizationController extends Controller
 
     public function show($organizationID)
     {
-        $organization= Organization::orWhere(['id'=>$organizationID])->orWhere(['name'=>$organizationID])->first();
+        $organization= Organization::orWhere(['id'=>$organizationID])->orWhereJsonContains('identifier',['value'=>$organizationID])->first();
+//        $documentreferences->whereJsonContains('code',['coding'=>['code'=>$explodeValue[1]]]);
+
         if ($organization==null)
             throw new NotFoundResourceException();
 
