@@ -101,7 +101,7 @@ class ObservationController extends Controller
     {
 
         $mapper= [
-            "intent"=>["intent"],
+            "code"=>["code"],
             "patient"=>["subject->reference"],
         ];
         $mapperUnderscore= [
@@ -122,34 +122,43 @@ class ObservationController extends Controller
             {
                 if (in_array($key,array_keys($mapper)))
                 {
-                    if ($key=="identifier")
+                    switch ($key)
                     {
-                        if (strpos($value,"|")>0)
-                        {
-                            $explodeValue= explode('|',$value);
-                            $observations->where('identifier->system','=',$explodeValue[0]);
-                            $observations->where('identifier->value','=',$explodeValue[1]);
-                        }
-                        else
-                            $this->mapperToEloquent($observations,$mapper[$key],$value);
+                        case "identifier":
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $observations->where('identifier->system','=',$explodeValue[0]);
+                                $observations->where('identifier->value','=',$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($observations,$mapper[$key],$value);
+                            break;
 
-                    }
-                    else
-                    {
-                        if ($key=="patient")
-                        {
+                            case "code":
+                                if (strpos($value,"|")>0)
+                                {
+                                    $explodeValue= explode('|',$value);
+                                    $observations->whereJsonContains('code',['coding'=>['system'=>$explodeValue[0]]]);
+                                    $observations->whereJsonContains('code',['coding'=>['code'=>$explodeValue[1]]]);
+                                }
+                                else
+                                    $observations->whereJsonContains('code',['coding'=>['code'=>$value]]);
+                                break;
+
+                            case "patient":
                             if (strpos($value,"/")>0)
                             {
-                                die("ere");
                                 $explodeValue= explode('/',$value);
                                 $this->mapperToEloquent($observations,$mapper[$key],$explodeValue[1]);
                             }
                             else
                                 $this->mapperToEloquent($observations,$mapper[$key],"Patient/".$value);
-                        }
-                        else
-                            $this->mapperToEloquent($observations,$mapper[$key],$value);
+                            break;
 
+                        default:
+                            $this->mapperToEloquent($observations,$mapper[$key],$value);
+                            break;
                     }
                 }
             }

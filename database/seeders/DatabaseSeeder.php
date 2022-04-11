@@ -421,8 +421,39 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        // Provenance of the created MedicationRequest
+        // Provenance of the created Observation
         $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+
+        // Pediatric Weight for Height
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "code"=> [
+                "coding"=> [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"77606-2",
+                        "display"=>"Weight-for-length Per age and sex"
+                    ]
+                ]
+            ],
+            "valueCodeableConcept" => [
+               "coding" => [
+                    [
+                        "system" =>"http://snomed.info/sct",
+                        "code" => "248358009"
+                    ]
+                ],
+                "text" =>"Weight for height "
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
 
     }
 
