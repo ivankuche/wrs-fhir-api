@@ -17,11 +17,16 @@ class MedicationRequestFactory extends Factory
     public function definition()
     {
         return [
-            'status' => $this->faker->randomElement(['active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown']),
+            'status' => [$this->faker->randomElement(['active', 'on-hold', 'cancelled', 'completed', 'entered-in-error', 'stopped', 'draft', 'unknown'])],
             //'intent' => $this->faker->randomElement(['proposal', 'plan', 'order', 'original-order', 'reflex-order', 'filler-order', 'instance-order', 'option']),
             'medicationReference' => [
                 "reference"=> "#med0304",
                 "display"=>"Myleran 2mg tablet"
+            ],
+            'authoredOn' => $this->faker->date(),
+            "requester"=> [
+                "reference"=>"Practitioner/1",
+                "type"=> "Practitioner"
             ]
             //
         ];
