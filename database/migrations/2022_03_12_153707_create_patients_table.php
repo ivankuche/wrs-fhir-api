@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('telecom')->nullable();
             $table->string('gender');
             $table->date('birthDate');
-            $table->boolean('deceasedBoolean');
+            $table->boolean('deceasedBoolean')->nullable();
             $table->date('deceasedDateTime')->nullable();
             $table->json('address')->nullable();
             $table->json('maritalStatus')->nullable();
