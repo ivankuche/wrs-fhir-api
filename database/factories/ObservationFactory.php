@@ -22,8 +22,8 @@ class ObservationFactory extends Factory
                 "coding"=> [
                     [
                         "system"=>"http://loinc.org",
-                        "code"=>"718-7",
-                        "display"=>"Hemoglobin [Mass/volume] in Blood"
+                        "code"=>"72166-2",
+                        "display"=>"Tobacco smoking status"
                     ]
                 ]
             ],
