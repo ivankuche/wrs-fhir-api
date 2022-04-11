@@ -134,7 +134,8 @@ class DiagnosticReportController extends Controller
                                 $diagnosticreports->where('category->coding->code','=',$explodeValue[1]);
                             }
                             else
-                                $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
+                                $diagnosticreports->whereJsonContains('category',['coding'=>['code'=>$value]]);
+                                //$this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);
 
                             break;
 
