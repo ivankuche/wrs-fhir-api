@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
                         ]
                     ],
                     "who" => [
-                        "reference" => "Organization/Payer1"
+                        "reference" => "Organization/1"
                     ]
                 ],
                 // Author of the information
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
                         ]
                     ],
                     "who" => [
-                        "reference" => "Organization/Author1"
+                        "reference" => "Organization/1"
                     ]
                 ]
                 // Extensions
