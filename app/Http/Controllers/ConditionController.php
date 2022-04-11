@@ -127,12 +127,12 @@ class ConditionController extends Controller
                             else
                                 $newValue= "Patient/".$value;
 
-                            $this->mapperToEloquent($patients,$mapper[$key],$newValue);
+                            $this->mapperToEloquent($conditions,$mapper[$key],$newValue);
 
 
                         }
                         else
-                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                            $this->mapperToEloquent($conditions,$mapper[$key],$value);
 
                     }
                 }
