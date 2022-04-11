@@ -31,7 +31,7 @@ class MedicationRequestController extends Controller
                 ],
                 'identifier' => $medicationrequest->identifier,
                 'status' => $medicationrequest->status,
-                'statusReason' => [$medicationrequest->status],
+                'statusReason' => [$medicationrequest->statusReason],
                 'intent' => $medicationrequest->intent,
                 'category' => [$medicationrequest->category],
                 'priority' => $medicationrequest->priority,
