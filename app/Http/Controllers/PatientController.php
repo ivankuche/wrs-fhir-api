@@ -61,10 +61,8 @@ class PatientController extends Controller
                 "telecom"=> $patient->telecom,
                 "gender"=> $patient->gender,
                 "birthDate"=> $patient->birthDate,
-                "deceased"=> [
-                    "deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
-                    "deceasedDateTime"=> $patient->deceasedDateTime,
-                ],
+                "deceasedBoolean"=> ($patient->deceasedBoolean?true:false),
+                "deceasedDateTime"=> $patient->deceasedDateTime,
                 "address"=> [$patient->address],
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],

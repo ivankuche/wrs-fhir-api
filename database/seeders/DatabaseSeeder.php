@@ -14,6 +14,7 @@ use App\Models\Device;
 use App\Models\DiagnosticReport;
 use App\Models\DocumentReference;
 use App\Models\Goal;
+use App\Models\Immunization;
 use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
@@ -280,6 +281,20 @@ class DatabaseSeeder extends Seeder
 
     }
 
+    private function immunization($patient)
+    {
+        $immunization= Immunization::factory(1)->create([
+            'patient' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Condition
+        $this->provenance('Immunization/'.$immunization->first()->id, 'Immunization', $patient);
+
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -304,6 +319,7 @@ class DatabaseSeeder extends Seeder
             $this->diagnosticreport($patient);
             $this->documentreference($patient);
             $this->goal($patient);
+            $this->immunization($patient);
             $this->practitioner();
         });
 

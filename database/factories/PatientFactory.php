@@ -104,7 +104,7 @@ class PatientFactory extends Factory
                 ],
                 "name"=> [
                     "family"=>$this->faker->lastName(),
-                    "given"=> $this->faker->firstName,
+                    "given"=> [$this->faker->firstName],
                 ],
                 "telecom"=> [
                     [
@@ -157,7 +157,7 @@ class PatientFactory extends Factory
                 'use'=>'usual',
                 'text'=>$name." ".$surname,
                 'family'=>$surname,
-                'given'=>$name
+                'given'=>[$name]
             ],
             'telecom'=> [[
                     "system"=>"phone",

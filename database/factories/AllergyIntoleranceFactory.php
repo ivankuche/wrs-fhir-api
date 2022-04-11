@@ -101,9 +101,11 @@ class AllergyIntoleranceFactory extends Factory
             $reaction= [
                 "substance"=> [
                     "coding"=> [
-                        "system"=>"http://www.nlm.nih.gov/research/umls/rxnorm",
-                        "code"=>"1160593",
-                        "display"=>"cashew nut allergenic extract Injectable Product"
+                        [
+                            "system"=>"http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code"=>"1160593",
+                            "display"=>"cashew nut allergenic extract Injectable Product"
+                        ]
                     ]
                 ],
                 "manifestation"=>[
@@ -125,9 +127,11 @@ class AllergyIntoleranceFactory extends Factory
             $reaction= [
                 "substance"=> [
                     "coding"=> [
-                        "system"=>"http://www.nlm.nih.gov/research/umls/rxnorm",
-                        "code"=>"1160593",
-                        "display"=>"cashew nut allergenic extract Injectable Product"
+                        [
+                            "system"=>"http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code"=>"1160593",
+                            "display"=>"cashew nut allergenic extract Injectable Product"
+                        ]
                     ]
                 ],
                 "manifestation"=>[
