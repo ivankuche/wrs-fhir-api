@@ -41,7 +41,7 @@ class OrganizationFactory extends Factory
 
         return [
             'active'=>true,
-            'name'=>$this->faker->company,
+            'name'=>'Payer1',
             'telecom'=> [[
                 "system"=>"phone",
                 "value"=>$this->faker->phoneNumber,

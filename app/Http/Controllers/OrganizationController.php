@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Organization;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class OrganizationController extends Controller
 {
@@ -124,7 +125,10 @@ class OrganizationController extends Controller
 
     public function show($organizationID)
     {
-        $organization= Organization::findOrFail($organizationID);
+        $organization= Organization::orWhere(['id'=>$organizationID])->orWhere(['name'=>$organizationID])->first();
+        if (count($organization->all())==0)
+            throw new NotFoundResourceException();
+
         $response= $this->fhirStructure($organization);
         $finalResponse= ["resource"=>$response];
 
