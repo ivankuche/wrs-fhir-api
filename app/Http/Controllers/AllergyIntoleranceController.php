@@ -107,7 +107,22 @@ class AllergyIntoleranceController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],$value);
+                    {
+                        if ($key=="patient")
+                        {
+                            $newValue= "";
+                            if (strpos($value,"Patient/")>0)
+                                $newValue= $value;
+                            else
+                                $newValue= "Patient/".$value;
+
+                            $this->mapperToEloquent($patients,$mapper[$key],$newValue);
+
+
+                        }
+                        else
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                    }
                         //$patients->where($mapper[$key],'=',$value);
                 }
             }
