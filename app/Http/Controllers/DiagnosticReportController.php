@@ -130,8 +130,8 @@ class DiagnosticReportController extends Controller
                             if (strpos($value,"|")>0)
                             {
                                 $explodeValue= explode('|',$value);
-                                $diagnosticreports->where('category->coding->system','=',$explodeValue[0]);
-                                $diagnosticreports->where('category->coding->code','=',$explodeValue[1]);
+                                $diagnosticreports->whereJsonContains('category',['coding'=>['system'=>$explodeValue[0]]]);
+                                $diagnosticreports->whereJsonContains('category',['coding'=>['code'=>$explodeValue[1]]]);
                             }
                             else
                                 $diagnosticreports->whereJsonContains('category',['coding'=>['code'=>$value]]);
