@@ -224,9 +224,11 @@ class DatabaseSeeder extends Seeder
             ],
             'encounter' => [
                 'reference'=>"Encounter/".strval($patient->id),
+                'type'=>'Encounter'
             ],
             "performer" => [
                 "reference"=>"Organization/".strval($patient->id),
+                'type'=>'Organization'
             ],
             "presentedForm" => [
                 "url"=>"http://www.demoreport.com/demoreport",
