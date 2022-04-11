@@ -294,7 +294,7 @@ class DatabaseSeeder extends Seeder
         $organization->update(['identifier'=> [
             [
                 "system" => "urn:ietf:rfc:3986",
-                "value" => "1231".$organization->id
+                "value" => "Payer1"
             ],
         ]]);
     }
