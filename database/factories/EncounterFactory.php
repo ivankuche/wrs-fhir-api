@@ -22,6 +22,15 @@ class EncounterFactory extends Factory
                 "system"=>"http://terminology.hl7.org/CodeSystem/v3-ActCode",
                 "code"=>"IMP",
                 "display"=>"inpatient encounter"
+            ],
+            'type' => [
+                "coding"=> [
+                    [
+                        "system"=> "http://snomed.info/sct",
+                        "code"=> "11429006",
+                        "display"=> "Consultation"
+                    ]
+                ]
             ]
         ];
     }

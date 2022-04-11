@@ -30,7 +30,7 @@ class EncounterController extends Controller
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
                 'identifier' => [$encounter->identifier],
-                'status' => [$encounter->status],
+                'status' => $encounter->status,
                 'class' => $encounter->class,
                 'classHistory' => [$encounter->classHistory],
                 'type' => [$encounter->type],
