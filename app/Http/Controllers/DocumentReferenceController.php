@@ -29,13 +29,6 @@ class DocumentReferenceController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
-                // Profile of the extension
-                "meta" => [
-                    "profile" => [
-                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note",
-                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab"
-                      ]
-                ],
                 'identifier' => [$documentreference->identifier],
                 'basedOn' => $documentreference->basedOn,
                 'status' => $documentreference->status,
@@ -151,6 +144,17 @@ class DocumentReferenceController extends Controller
                             else
                                 $documentreferences->whereJsonContains('code',['coding'=>['code'=>$value]]);
                             break;
+
+                            case "patient":
+                                if (strpos($value,"/")>0)
+                                {
+                                    $explodeValue= explode('/',$value);
+                                    $this->mapperToEloquent($documentreferences,$mapper[$key],$explodeValue[0]);
+                                }
+                                else
+                                    $this->mapperToEloquent($documentreferences,$mapper[$key],$value);
+                                break;
+
 
                         default:
                             $this->mapperToEloquent($documentreferences,$mapper[$key],$value);
