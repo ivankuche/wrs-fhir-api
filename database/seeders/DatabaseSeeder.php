@@ -367,11 +367,22 @@ class DatabaseSeeder extends Seeder
                 'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
+            'intent'=>'proposal'
         ]);
 
-        // Provenance of the created Condition
+        // Provenance of the created MedicationRequest
         $this->provenance('MedicationRequest/'.$medicationrequest->first()->id, 'MedicationRequest', $patient);
 
+        $medicationrequest= MedicationRequest::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            'intent'=>'plan'
+        ]);
+
+        // Provenance of the created MedicationRequest
+        $this->provenance('MedicationRequest/'.$medicationrequest->first()->id, 'MedicationRequest', $patient);
     }
 
     public function run()
