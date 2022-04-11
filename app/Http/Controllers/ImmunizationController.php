@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Immunization;
+use Carbon\Carbon;
 
 class ImmunizationController extends Controller
 {
@@ -34,13 +35,13 @@ class ImmunizationController extends Controller
                 'basedOn' => [$immunization->basedOn],
                 'status' => [$immunization->status],
                 'statusReason' => [$immunization->statusReason],
-                'vaccineCode' => [$immunization->vaccineCode],
+                'vaccineCode' => $immunization->vaccineCode,
                 'manufacturer' => [$immunization->manufacturer],
                 'lotNumber' => $immunization->lotNumber,
                 'expirationDate' => $immunization->expirationDate,
-                'patient' => [$immunization->patient],
+                'patient' => $immunization->patient,
                 'encounter' => [$immunization->encounter],
-                'occurrenceDateTime' => $immunization->occurrenceDateTime,
+                'occurrenceDateTime' => Carbon::parse($immunization->occurrenceDateTime)->toIso8601String(),
                 'occurrenceString' => $immunization->occurrenceString,
                 'recorded' => $immunization->recorded,
                 'primarySource' => $immunization->primarySource,
