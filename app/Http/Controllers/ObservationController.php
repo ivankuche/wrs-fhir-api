@@ -43,7 +43,7 @@ class ObservationController extends Controller
                 'effectivePeriod' => $observation->effectivePeriod,
                 'effectiveTiming' => $observation->effectiveTiming,
                 'effectiveInstant' => $observation->effectiveInstant,
-                'issued' => Carbon::parse($observation->issued)->toIso8601String(),,
+                'issued' => Carbon::parse($observation->issued)->toIso8601String(),
                 'performer' => $observation->performer,
                 'valueQuantity' => $observation->valueQuantity,
                 'valueCodeableConcept' => $observation->valueCodeableConcept,
