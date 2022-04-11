@@ -283,6 +283,7 @@ class DatabaseSeeder extends Seeder
                 'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
+
         ]);
 
         // Provenance of the created Condition

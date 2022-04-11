@@ -33,7 +33,7 @@ class ImmunizationController extends Controller
                 'instantiatesCanonical' => [$immunization->instantiatesCanonical],
                 'instantiatesUri' => $immunization->instantiatesUri,
                 'basedOn' => [$immunization->basedOn],
-                'status' => [$immunization->status],
+                'status' => $immunization->status,
                 'statusReason' => [$immunization->statusReason],
                 'vaccineCode' => $immunization->vaccineCode,
                 'manufacturer' => [$immunization->manufacturer],
