@@ -94,7 +94,8 @@ class DatabaseSeeder extends Seeder
         // Allergy Intolerance per patient
         $allergyIntolerance= AllergyIntolerance::factory(1)->create([
             'patient' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
+                'type' => 'Patient',
             ]
         ]);
 
