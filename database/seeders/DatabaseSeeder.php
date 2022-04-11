@@ -343,10 +343,19 @@ class DatabaseSeeder extends Seeder
                 'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
-        ]);
+        ])->first();
+
+        $encounter->update(['identifier'=> [
+            [
+                "use"=>"usual",
+                "system" => "http://www.amc.nl/zorgportal/identifiers/visits",
+                "value" => $encounter->id
+            ]
+        ]]);
+
 
         // Provenance of the created Condition
-        $this->provenance('Encounter/'.$encounter->first()->id, 'Encounter', $patient);
+        $this->provenance('Encounter/'.$encounter->id, 'Encounter', $patient);
 
     }
 

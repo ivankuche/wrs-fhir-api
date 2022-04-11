@@ -109,7 +109,7 @@ class PractitionerFactory extends Factory
                     'use'=>'usual',
                     'text'=>$name." ".$surname,
                     'family'=>$surname,
-                    'given'=>$name
+                    'given'=>[$name]
                 ]
             ],
             'telecom'=> [[

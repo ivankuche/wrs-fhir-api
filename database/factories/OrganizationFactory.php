@@ -25,7 +25,6 @@ class OrganizationFactory extends Factory
         $periodStart= $this->faker->date('Y-m-d','now - 3 year');
 
         $addressItem= [
-            'use'=>'home',
             'type'=>'physical',
             'text'=>$number." ".$address.", ".$city.", ".$state." ".$postCode,
             'line'=> [
@@ -45,12 +44,10 @@ class OrganizationFactory extends Factory
             'telecom'=> [[
                 "system"=>"phone",
                 "value"=>$this->faker->phoneNumber,
-                "use"=>"home"
             ],
             [
                 "system"=>"phone",
                 "value"=>$this->faker->phoneNumber,
-                "use"=>"work"
             ]],
             'address'=>[$addressItem],
         ];
