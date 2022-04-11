@@ -126,7 +126,7 @@ class OrganizationController extends Controller
     public function show($organizationID)
     {
         $organization= Organization::orWhere(['id'=>$organizationID])->orWhere(['name'=>$organizationID])->first();
-        if (count($organization->all())==0)
+        if ($organization==null)
             throw new NotFoundResourceException();
 
         $response= $this->fhirStructure($organization);

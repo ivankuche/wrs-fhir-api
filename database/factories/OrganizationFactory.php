@@ -52,7 +52,7 @@ class OrganizationFactory extends Factory
                 "value"=>$this->faker->phoneNumber,
                 "use"=>"work"
             ]],
-            'address'=>[$address],
+            'address'=>[$addressItem],
         ];
     }
 }
