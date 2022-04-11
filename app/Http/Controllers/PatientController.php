@@ -48,6 +48,7 @@ class PatientController extends Controller
         {
             $identifierCast= $patient->identifier;
             $identifierCast['value']= strval($identifierCast['value']);
+
             $response= [
                 "resourceType"=>"Patient",
                 "id"=>strval($patient->identifier['value']),
