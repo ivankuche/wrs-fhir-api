@@ -187,8 +187,9 @@ class DocumentReferenceController extends Controller
     {
         $documentreference= DocumentReference::findOrFail($allergyIntoleranceID);
         $response= $this->fhirStructure($documentreference);
-        $finalResponse= ["resource"=>$response];
+        return $response;
+        //$finalResponse= ["resource"=>$response];
 
-        return $finalResponse;
+        //return $finalResponse;
     }
 }
