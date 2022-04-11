@@ -299,7 +299,7 @@ class DatabaseSeeder extends Seeder
 
         $organization->update(['identifier'=> [
             [
-                "system" => "urn:ietf:rfc:3986",
+                "system" => "urn:uuid:53fefa32-fcbb-4ff8-8a92-55ee120877b7",
                 "value" => strval($organization->id)
             ],
         ]]);
