@@ -143,7 +143,7 @@ class DatabaseSeeder extends Seeder
 
         $condition= Condition::factory(1)->create([
             'subject' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
         ]);
