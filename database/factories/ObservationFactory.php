@@ -19,6 +19,7 @@ class ObservationFactory extends Factory
         return [
             'status' => 'final',
             'valueInteger' => 5,
+            'issued'=> $this->faker->dateTime()
         ];
     }
 }

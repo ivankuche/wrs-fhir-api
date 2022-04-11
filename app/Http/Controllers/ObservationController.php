@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Observation;
+use Carbon\Carbon;
 
 class ObservationController extends Controller
 {
@@ -42,7 +43,7 @@ class ObservationController extends Controller
                 'effectivePeriod' => $observation->effectivePeriod,
                 'effectiveTiming' => $observation->effectiveTiming,
                 'effectiveInstant' => $observation->effectiveInstant,
-                'issued' => $observation->issued,
+                'issued' => Carbon::parse($observation->issued)->toIso8601String(),,
                 'performer' => $observation->performer,
                 'valueQuantity' => $observation->valueQuantity,
                 'valueCodeableConcept' => $observation->valueCodeableConcept,
