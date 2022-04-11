@@ -67,11 +67,15 @@ class CareTeamFactory extends Factory
         {
             $participant= [
                 "role"=> [
-                    "coding"=> [
-                        "system"=> "http://snomed.info/sct",
-                        "code"=> "453231000124104",
-                        "display"=> "Primary care provider"
-                    ],
+                    [
+                        "coding"=> [
+                            [
+                                "system"=> "http://snomed.info/sct",
+                                "code"=> "453231000124104",
+                                "display"=> "Primary care provider"
+                            ]
+                        ],
+                    ]
                 ],
                 "member" => [
                     "reference" => "Practitioner/2",
