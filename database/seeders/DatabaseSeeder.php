@@ -175,7 +175,7 @@ class DatabaseSeeder extends Seeder
 
         $device= Device::factory(1)->create([
             'patient' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
         ]);

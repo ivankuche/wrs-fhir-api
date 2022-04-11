@@ -121,7 +121,23 @@ class DeviceController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($devices,$mapper[$key],$value);
+                    {
+
+                        if ($key=="patient")
+                        {
+                            $newValue= "";
+                            if (strpos($value,"Patient/")>0)
+                                $newValue= $value;
+                            else
+                                $newValue= "Patient/".$value;
+
+                            $this->mapperToEloquent($devices,$mapper[$key],$newValue);
+
+
+                        }
+                        else
+                            $this->mapperToEloquent($devices,$mapper[$key],$value);
+                    }
                 }
             }
         }
