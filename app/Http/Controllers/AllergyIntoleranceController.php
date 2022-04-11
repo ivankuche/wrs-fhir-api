@@ -34,7 +34,7 @@ class AllergyIntoleranceController extends Controller
                 'category' => $allergyintolerance->category,
                 'criticality' => $allergyintolerance->criticality,
                 'code' => $allergyintolerance->code,
-                'patient' => [ $allergyintolerance->patient],
+                'patient' => $allergyintolerance->patient,
                 /*
                     'reference'=>$patientReferenceID
                 ],*/
