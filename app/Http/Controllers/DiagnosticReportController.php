@@ -30,6 +30,7 @@ class DiagnosticReportController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
+                /*
                 // Profile of the extension
                 "meta" => [
                     "profile" => [
@@ -37,6 +38,7 @@ class DiagnosticReportController extends Controller
                         "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab"
                       ]
                 ],
+                */
                 'identifier' => [$diagnosticreport->identifier],
                 'basedOn' => $diagnosticreport->basedOn,
                 'status' => $diagnosticreport->status,
