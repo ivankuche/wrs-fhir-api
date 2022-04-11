@@ -435,9 +435,9 @@ class DatabaseSeeder extends Seeder
                 [
                     "coding" => [
                         [
-                          "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
                             "code"=>"vital-signs",
-                          "display"=>"Vital Signs"
+                            "display"=>"Vital Signs"
                         ]
                     ],
                     "text" => "Vital Signs"
@@ -464,6 +464,198 @@ class DatabaseSeeder extends Seeder
         // Provenance of the created Observation
         $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
 
+        // Laboratory Result
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"laboratory",
+                            "display"=>"Laboratory"
+                        ]
+                    ],
+                    "text" => "Laboratory"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"5811-5",
+                        "display"=>"Specific gravity of Urine by Test strip"
+                    ]
+                ],
+                "text" => "SPEC GRAV"
+            ],
+            "valueQuantity" => [
+                "value" =>1.017,
+                "system" => "http://unitsofmeasure.org",
+                "code" => "{urine specific gravity}"
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Pediatric BMI for Age
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"59576-9",
+                        "display"=>"Body mass index (BMI) [Percentile] Per age and sex"
+                    ]
+                ],
+                "text" => "BMI"
+            ],
+            "valueQuantity" => [
+                "value" =>65,
+                "unit"  => "%",
+                "code" => "%",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Pulse oximetry
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"2708-6",
+                        "display"=>"Oxygen saturation in Arterial blood"
+                    ]
+                ],
+                "text" => "oxygen_saturation"
+            ],
+            "valueQuantity" => [
+                "value" =>99,
+                "unit"  => "%O2",
+                "code" => "%",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Pediatric Head Occipital-frontal Circumference Percentile
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"8289-1",
+                        "display"=>"Head Occipital-frontal circumference Percentile"
+                    ]
+                ],
+                "text" => "Head Occipital-frontal circumference Percentile"
+            ],
+            "valueQuantity" => [
+                "value" =>82,
+                "unit"  => "%",
+                "code" => "%",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Body Height
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"8302-2",
+                        "display"=>"Body height"
+                    ]
+                ],
+                "text" => "Body height"
+            ],
+            "valueQuantity" => [
+                "value" =>1.72,
+                "unit"  => "m",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
 
     }
 

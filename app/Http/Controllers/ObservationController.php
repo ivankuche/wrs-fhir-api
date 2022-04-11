@@ -39,7 +39,7 @@ class ObservationController extends Controller
                 'subject' => $observation->subject,
                 'focus' => $observation->focus,
                 'encounter' => $observation->encounter,
-                'effectiveDateTime' => $observation->effectiveDateTime,
+                'effectiveDateTime' => Carbon::parse($observation->effectiveDateTime)->toIso8601String(),
                 'effectivePeriod' => $observation->effectivePeriod,
                 'effectiveTiming' => $observation->effectiveTiming,
                 'effectiveInstant' => $observation->effectiveInstant,
