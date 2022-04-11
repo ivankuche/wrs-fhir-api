@@ -410,7 +410,15 @@ class DatabaseSeeder extends Seeder
                     ]
                 ]
             ],
-
+            "valueCodeableConcept" => [
+               "coding" => [
+                    [
+                        "system" =>"http://snomed.info/sct",
+                        "code" => "428041000124106"
+                    ]
+                ],
+                "text" =>"Current some day smoker"
+            ]
         ]);
 
         // Provenance of the created MedicationRequest
