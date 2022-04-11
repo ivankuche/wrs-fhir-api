@@ -140,11 +140,11 @@ class ObservationController extends Controller
                                 if (strpos($value,"|")>0)
                                 {
                                     $explodeValue= explode('|',$value);
-                                    $observations->where('category->coding->system','=',$explodeValue[0]);
-                                    $observations->where('category->coding->code','=',$explodeValue[1]);
+                                    $observations->whereJsonContains('category',['coding'=>['system'=>$explodeValue[0]]]);
+                                    $observations->whereJsonContains('category',['coding'=>['code'=>$explodeValue[1]]]);
                                 }
                                 else
-                                    $this->mapperToEloquent($observations,$mapper[$key],$value);
+                                $observations->whereJsonContains('category',['coding'=>['code'=>$value]]);
 
                                 break;
 
