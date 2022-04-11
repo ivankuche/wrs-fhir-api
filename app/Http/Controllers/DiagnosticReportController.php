@@ -47,7 +47,7 @@ class DiagnosticReportController extends Controller
                 'effectiveDateTime' => Carbon::parse($diagnosticreport->effectiveDateTime)->toIso8601String(),
                 'effectivePeriod' => [$diagnosticreport->effectivePeriod],
                 'issued' => Carbon::parse($diagnosticreport->issued)->toIso8601String(),
-                'performer' => $diagnosticreport->performer,
+                'performer' => [$diagnosticreport->performer],
                 'resultsInterpreter' => $diagnosticreport->resultsInterpreter,
                 'specimen' => $diagnosticreport->specimen,
                 'result' => $diagnosticreport->result,
@@ -150,6 +150,16 @@ class DiagnosticReportController extends Controller
                             else
                                 $diagnosticreports->whereJsonContains('code',['coding'=>['code'=>$value]]);
                             break;
+
+                            case "patient":
+                                $newValue= "";
+                                if (strpos($value,"Patient/")>0)
+                                    $newValue= $value;
+                                else
+                                    $newValue= "Patient/".$value;
+
+                                $this->mapperToEloquent($diagnosticreports,$mapper[$key],$newValue);
+                                break;
 
                         default:
                             $this->mapperToEloquent($diagnosticreports,$mapper[$key],$value);

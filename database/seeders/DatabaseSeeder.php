@@ -204,9 +204,11 @@ class DatabaseSeeder extends Seeder
             ],
             'category'=> [
                 "coding" => [
-                    "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
-                    "code"=>"LAB",
-                    "display" => "Laboratory"
+                    [
+                        "system"=>"http://terminology.hl7.org/CodeSystem/v2-0074",
+                        "code"=>"LAB",
+                        "display" => "Laboratory"
+                    ]
                 ],
             ]
         ]);
@@ -217,7 +219,7 @@ class DatabaseSeeder extends Seeder
         // DiagnosticReport for Reports and Notes
         $diagnosticReport= DiagnosticReport::factory(1)->create([
             'subject' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
             'encounter' => [
@@ -231,9 +233,11 @@ class DatabaseSeeder extends Seeder
             ],
             'category'=> [
                 "coding" => [
-                    "system"=>"http://loinc.org",
-                    "code"=>"LP29684-5",
-                    "display"=>"Radiology"
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"LP29684-5",
+                        "display"=>"Radiology"
+                    ]
                 ]
             ],
         ]);
