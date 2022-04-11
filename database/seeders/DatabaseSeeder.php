@@ -431,23 +431,33 @@ class DatabaseSeeder extends Seeder
                 'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
-            "code"=> [
-                "coding"=> [
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                          "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                          "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signs"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
                     [
                         "system"=>"http://loinc.org",
                         "code"=>"77606-2",
                         "display"=>"Weight-for-length Per age and sex"
                     ]
-                ]
-            ],
-            "valueCodeableConcept" => [
-               "coding" => [
-                    [
-                        "system" =>"http://snomed.info/sct",
-                        "code" => "248358009"
-                    ]
                 ],
-                "text" =>"Weight for height "
+                "text" => "BMI"
+            ],
+            "valueQuantity" => [
+                "value" =>65,
+                "unit" => "%",
+                "system" => "http://unitsofmeasure.org",
+                "code" => "%"
             ]
         ]);
 

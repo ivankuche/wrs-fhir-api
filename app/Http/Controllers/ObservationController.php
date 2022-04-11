@@ -102,6 +102,7 @@ class ObservationController extends Controller
 
         $mapper= [
             "code"=>["code"],
+            "category"=>["category"],
             "patient"=>["subject->reference"],
         ];
         $mapperUnderscore= [
@@ -134,6 +135,18 @@ class ObservationController extends Controller
                             else
                                 $this->mapperToEloquent($observations,$mapper[$key],$value);
                             break;
+
+                            case "category":
+                                if (strpos($value,"|")>0)
+                                {
+                                    $explodeValue= explode('|',$value);
+                                    $observations->where('category->coding->system','=',$explodeValue[0]);
+                                    $observations->where('category->coding->code','=',$explodeValue[1]);
+                                }
+                                else
+                                    $this->mapperToEloquent($observations,$mapper[$key],$value);
+
+                                break;
 
                             case "code":
                                 if (strpos($value,"|")>0)
