@@ -25,7 +25,7 @@ class GoalFactory extends Factory
             ],
             'startDate' => $this->faker->date(),
             'target'=> [
-                'dueDate' => Carbon::parse($this->faker->date())->toIso8601String(),
+                'dueDate' => $this->faker->date('Y-m-d'),
             ]
         ];
     }
