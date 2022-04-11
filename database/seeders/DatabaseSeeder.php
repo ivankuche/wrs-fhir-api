@@ -243,7 +243,7 @@ class DatabaseSeeder extends Seeder
 
         $document= DocumentReference::factory(1)->create([
             'subject' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
             'author'=> [
@@ -266,7 +266,7 @@ class DatabaseSeeder extends Seeder
     {
         $goal= Goal::factory(1)->create([
             'subject' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
         ]);
@@ -280,7 +280,7 @@ class DatabaseSeeder extends Seeder
     {
         $immunization= Immunization::factory(1)->create([
             'patient' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
         ]);
@@ -339,7 +339,7 @@ class DatabaseSeeder extends Seeder
     {
         $encounter= Encounter::factory(1)->create([
             'subject' => [
-                'reference'=>strval($patient->id),
+                'reference'=>'Patient/'.strval($patient->id),
                 'type'=>'Patient'
             ],
         ]);
