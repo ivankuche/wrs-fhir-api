@@ -17,7 +17,14 @@ class EncounterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'status'=> $this->faker->randomElement(['planned', 'arrived', 'triaged', 'in-progress', 'onleave', 'finished', 'cancelled']),
+            'class'=> [
+                [
+                    "system"=>"http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                    "code"=>"IMP",
+                    "display"=>"inpatient encounter"
+                ]
+            ]
         ];
     }
 }

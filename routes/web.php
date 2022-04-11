@@ -12,6 +12,7 @@ use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DiagnosticReportController;
 use App\Http\Controllers\DocumentReferenceController;
+use App\Http\Controllers\EncounterController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ImmunizationController;
 use App\Http\Controllers\OrganizationController;
@@ -51,6 +52,7 @@ Route::resource('DiagnosticReport', DiagnosticReportController::class);
 Route::resource('DocumentReference', DocumentReferenceController::class);
 Route::resource('Goal', GoalController::class);
 Route::resource('Immunization', ImmunizationController::class);
+Route::resource('Encounter', EncounterController::class);
 Route::resource('Organization', OrganizationController::class);
 Route::resource('Practitioner', PractitionerController::class);
 

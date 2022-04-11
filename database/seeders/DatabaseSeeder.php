@@ -13,6 +13,7 @@ use App\Models\Condition;
 use App\Models\Device;
 use App\Models\DiagnosticReport;
 use App\Models\DocumentReference;
+use App\Models\Encounter;
 use App\Models\Goal;
 use App\Models\Immunization;
 use App\Models\Organization;
@@ -334,6 +335,19 @@ class DatabaseSeeder extends Seeder
         ]]);
     }
 
+    public function encounter($patient)
+    {
+        $encounter= Encounter::factory(1)->create([
+            'subject' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Condition
+        $this->provenance('Encounter/'.$encounter->first()->id, 'Encounter', $patient);
+
+    }
 
     public function run()
     {
@@ -360,6 +374,7 @@ class DatabaseSeeder extends Seeder
             $this->documentreference($patient);
             $this->goal($patient);
             $this->immunization($patient);
+            $this->encounter($patient);
             $this->organization();
             $this->practitioner();
         });
