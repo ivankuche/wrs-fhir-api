@@ -31,7 +31,7 @@ class EncounterController extends Controller
                 ],
                 'identifier' => [$encounter->identifier],
                 'status' => [$encounter->status],
-                'class' => [$encounter->class],
+                'class' => $encounter->class,
                 'classHistory' => [$encounter->classHistory],
                 'type' => [$encounter->type],
                 'serviceType' => [$encounter->serviceType],

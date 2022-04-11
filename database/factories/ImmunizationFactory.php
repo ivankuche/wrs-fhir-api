@@ -28,6 +28,7 @@ class ImmunizationFactory extends Factory
                 "text"=>"Fluvax (Influenza)"
             ],
             'occurrenceDateTime' => $this->faker->dateTime(),
+            'primarySource' => "true"
         ];
     }
 }
