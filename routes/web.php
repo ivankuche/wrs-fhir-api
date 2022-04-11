@@ -12,6 +12,7 @@ use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DiagnosticReportController;
 use App\Http\Controllers\DocumentReferenceController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\PractitionerController;
 use App\Models\DiagnosticReport;
 
@@ -47,6 +48,7 @@ Route::resource('Condition', ConditionController::class);
 Route::resource('Device', DeviceController::class);
 Route::resource('DiagnosticReport', DiagnosticReportController::class);
 Route::resource('DocumentReference', DocumentReferenceController::class);
+Route::resource('Goal', GoalController::class);
 Route::resource('Practitioner', PractitionerController::class);
 
 

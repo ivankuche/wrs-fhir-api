@@ -13,6 +13,7 @@ use App\Models\Condition;
 use App\Models\Device;
 use App\Models\DiagnosticReport;
 use App\Models\DocumentReference;
+use App\Models\Goal;
 use App\Models\Practitioner;
 
 class DatabaseSeeder extends Seeder
@@ -265,6 +266,20 @@ class DatabaseSeeder extends Seeder
         $this->provenance('DocumentReference/'.$document->first()->id, 'DocumentReference', $patient);
     }
 
+    private function goal($patient)
+    {
+        $goal= Goal::factory(1)->create([
+            'subject' => [
+                'reference'=>strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Condition
+        $this->provenance('Goal/'.$goal->first()->id, 'Goal', $patient);
+
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -288,6 +303,7 @@ class DatabaseSeeder extends Seeder
             $this->device($patient);
             $this->diagnosticreport($patient);
             $this->documentreference($patient);
+            $this->goal($patient);
             $this->practitioner();
         });
 
