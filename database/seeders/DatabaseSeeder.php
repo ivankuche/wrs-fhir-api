@@ -18,6 +18,7 @@ use App\Models\Goal;
 use App\Models\Immunization;
 use App\Models\Medication;
 use App\Models\MedicationRequest;
+use App\Models\Observation;
 use App\Models\Organization;
 use App\Models\Practitioner;
 
@@ -391,6 +392,20 @@ class DatabaseSeeder extends Seeder
         $this->provenance('MedicationRequest/'.$medicationrequest->first()->id, 'MedicationRequest', $patient);
     }
 
+    private function observation($patient)
+    {
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created MedicationRequest
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -418,6 +433,7 @@ class DatabaseSeeder extends Seeder
             $this->immunization($patient);
             $this->encounter($patient);
             $this->medicationrequest($patient);
+            $this->observation($patient);
             $this->organization();
             $this->practitioner();
         });

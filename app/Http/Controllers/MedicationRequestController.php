@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MedicationRequest;
+use Carbon\Carbon;
+
 
 class MedicationRequestController extends Controller
 {
@@ -43,7 +45,7 @@ class MedicationRequestController extends Controller
                 'subject' => $medicationrequest->subject,
                 'encounter' => [$medicationrequest->encounter],
                 'supportingInformation' => [$medicationrequest->supportingInformation],
-                'authoredOn' => $medicationrequest->authoredOn,
+                'authoredOn' => Carbon::parse($medicationrequest->authoredOn)->toIso8601String(),
                 'requester' => $medicationrequest->requester,
                 'performer' => [$medicationrequest->performer],
                 'performerType' => [$medicationrequest->performerType],

@@ -19,6 +19,7 @@ use App\Http\Controllers\MedicationRequestController;
 use App\Http\Controllers\MedicationController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PractitionerController;
+use App\Http\Controllers\ObservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,7 @@ Route::resource('Encounter', EncounterController::class);
 Route::resource('MedicationRequest', MedicationRequestController::class);
 Route::resource('Medication', MedicationController::class);
 Route::resource('Organization', OrganizationController::class);
+Route::resource('Observation', ObservationController::class);
 Route::resource('Practitioner', PractitionerController::class);
 
 
