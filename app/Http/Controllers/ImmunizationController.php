@@ -44,7 +44,7 @@ class ImmunizationController extends Controller
                 'occurrenceDateTime' => Carbon::parse($immunization->occurrenceDateTime)->toIso8601String(),
                 'occurrenceString' => $immunization->occurrenceString,
                 'recorded' => $immunization->recorded,
-                'primarySource' => $immunization->primarySource,
+                'primarySource' => ($immunization->primarySource?true:false),
                 'informationSource' => [$immunization->informationSource],
                 'location' => [$immunization->location],
                 'site' => [$immunization->site],
