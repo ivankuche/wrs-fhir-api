@@ -22,7 +22,7 @@ class AllergyIntoleranceController extends Controller
     {
         if ($allergyintolerance!=[])
         {
-            $patientReferenceID= strval($allergyintolerance->patient['reference']);
+            //$patientReferenceID= strval($allergyintolerance->patient['reference']);
 
             $response= [
                 'resourceType'=>"AllergyIntolerance",
@@ -34,9 +34,10 @@ class AllergyIntoleranceController extends Controller
                 'category' => $allergyintolerance->category,
                 'criticality' => $allergyintolerance->criticality,
                 'code' => $allergyintolerance->code,
-                'patient' => [
+                'patient' => [ $allergyintolerance->patient],
+                /*
                     'reference'=>$patientReferenceID
-                ],
+                ],*/
                 'encounter' => [$allergyintolerance->encounter],
                 'onsetDateTime' => $allergyintolerance->onsetDateTime,
                 'onsetAge' => $allergyintolerance->onsetAge,
