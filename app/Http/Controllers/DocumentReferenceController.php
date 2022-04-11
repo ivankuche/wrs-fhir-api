@@ -149,7 +149,7 @@ class DocumentReferenceController extends Controller
                                 if (strpos($value,"/")>0)
                                 {
                                     $explodeValue= explode('/',$value);
-                                    $this->mapperToEloquent($documentreferences,$mapper[$key],$explodeValue[0]);
+                                    $this->mapperToEloquent($documentreferences,$mapper[$key],$explodeValue[1]);
                                 }
                                 else
                                     $this->mapperToEloquent($documentreferences,$mapper[$key],$value);
