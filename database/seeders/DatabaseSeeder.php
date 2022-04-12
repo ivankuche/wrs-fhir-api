@@ -21,6 +21,7 @@ use App\Models\Observation;
 use App\Models\Organization;
 use App\Models\Practitioner;
 use App\Models\Procedure;
+use App\Models\Location;
 
 class DatabaseSeeder extends Seeder
 {
@@ -881,6 +882,11 @@ class DatabaseSeeder extends Seeder
 
     }
 
+    private function location()
+    {
+        $location= Location::factory(1)->create();
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -912,6 +918,7 @@ class DatabaseSeeder extends Seeder
             $this->organization();
             $this->practitioner();
             $this->procedure($patient);
+            $this->location();
         });
         $this->medication();
         $this->organizationPayer1();
