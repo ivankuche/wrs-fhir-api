@@ -34,7 +34,7 @@ class ImmunizationController extends Controller
                 'instantiatesUri' => $immunization->instantiatesUri,
                 'basedOn' => [$immunization->basedOn],
                 'status' => $immunization->status,
-                'statusReason' => [$immunization->statusReason],
+                'statusReason' => $immunization->statusReason,
                 'vaccineCode' => $immunization->vaccineCode,
                 'manufacturer' => [$immunization->manufacturer],
                 'lotNumber' => $immunization->lotNumber,

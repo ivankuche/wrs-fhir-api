@@ -124,11 +124,11 @@ class DocumentReferenceController extends Controller
                             if (strpos($value,"|")>0)
                             {
                                 $explodeValue= explode('|',$value);
-                                $documentreferences->where('category->coding->system','=',$explodeValue[0]);
-                                $documentreferences->where('category->coding->code','=',$explodeValue[1]);
+                                $documentreferences->whereJsonContains('category',['coding'=>['system'=>$explodeValue[0]]]);
+                                $documentreferences->whereJsonContains('category',['coding'=>['code'=>$explodeValue[1]]]);
                             }
                             else
-                                $this->mapperToEloquent($documentreferences,$mapper[$key],$value);
+                                $documentreferences->whereJsonContains('category',['coding'=>['code'=>$value]]);
 
                             break;
 
