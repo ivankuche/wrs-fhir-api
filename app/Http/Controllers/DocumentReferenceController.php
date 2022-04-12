@@ -44,7 +44,7 @@ class DocumentReferenceController extends Controller
                 'date'=>Carbon::parse($documentreference->date)->toIso8601String(),
                 'author' => [$documentreference->author],
                 'attester'  => [$documentreference->attester],
-                'custodian' => [$documentreference->custodian],
+                'custodian' => $documentreference->custodian,
                 'relatesTo' => [$documentreference->relatesTo],
                 'description' => [$documentreference->description],
                 'securityLabel' => [$documentreference->securityLabel],
