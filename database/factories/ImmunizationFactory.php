@@ -28,7 +28,16 @@ class ImmunizationFactory extends Factory
                 "text"=>"Fluvax (Influenza)"
             ],
             'occurrenceDateTime' => $this->faker->dateTime(),
-            'primarySource' => true
+            'primarySource' => true,
+            "statusReason"=> [
+                "coding" => [
+                    [
+                        "system"=>"http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                        "code"=>"MEDPREC",
+                        "display"=> "medical precaution"
+                    ]
+                ]
+            ],
         ];
     }
 }

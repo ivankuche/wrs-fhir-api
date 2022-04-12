@@ -49,7 +49,7 @@ class DocumentReferenceController extends Controller
                 'description' => [$documentreference->description],
                 'securityLabel' => [$documentreference->securityLabel],
                 'content' => [$documentreference->content],
-                'context' => [$documentreference->context],
+                'context' => $documentreference->context,
                 'sourcePatientInfo' => [$documentreference->sourcePatientInfo],
                 'related' => [$documentreference->related],
             ];
