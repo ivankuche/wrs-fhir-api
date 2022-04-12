@@ -726,20 +726,26 @@ class DatabaseSeeder extends Seeder
                 ]
             ],
             "component" => [
-                "code"  => [
-                    [
-                        "coding" => [
-                            "system"=>"http://loinc.org",
-                            "code"=>"8480-6",
-                            "display"=>"Systolic blood pressure"
+                [
+                    "code"  => [
+                        [
+                            "coding" => [
+                                "system"=>"http://loinc.org",
+                                "code"=>"8480-6",
+                                "display"=>"Systolic blood pressure"
+                            ],
                         ],
                     ],
-                    [
-                        "coding" => [
+                ],
+                [
+                    "code"  => [
+                        [
+                            "coding" => [
                                 "system"=>"http://loinc.org",
                                 "code"=>"8462-4",
                                 "display"=>"Diastolic blood pressure"
-                        ]
+                            ]
+                        ],
                     ],
                 ],
             ],
