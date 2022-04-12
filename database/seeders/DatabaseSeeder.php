@@ -776,11 +776,6 @@ class DatabaseSeeder extends Seeder
                 ],
                 "text" => "Blood pressure"
             ],
-            "valueQuantity" => [
-                "value" =>15,
-                "unit"  => "mm[Hg]",
-                "system" => "http://unitsofmeasure.org",
-            ]
         ]);
 
         // Provenance of the created Observation
