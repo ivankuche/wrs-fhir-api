@@ -884,7 +884,15 @@ class DatabaseSeeder extends Seeder
 
     private function location()
     {
-        $location= Location::factory(1)->create();
+        $location= Location::factory(1)->create()->first();
+
+        $location->update(['identifier'=> [
+            [
+//                "use"=>"usual",
+//                "system" => "http://www.amc.nl/zorgportal/identifiers/visits",
+                "value" => strval($location->id)
+            ]
+        ]]);
     }
 
     public function run()
