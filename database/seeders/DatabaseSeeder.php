@@ -263,7 +263,7 @@ class DatabaseSeeder extends Seeder
             [
                 "use"=>"usual",
                 //"system" => "urn:ietf:rfc:3986",
-                "value" => $document->id
+                "value" => strval($document->id)
             ]
         ]]);
         // Provenance of the created Condition
