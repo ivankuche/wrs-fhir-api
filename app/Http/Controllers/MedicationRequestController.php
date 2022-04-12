@@ -58,7 +58,7 @@ class MedicationRequestController extends Controller
                 'groupIdentifier' => [$medicationrequest->groupIdentifier],
                 'courseOfTherapyType' => [$medicationrequest->courseOfTherapyType],
                 'note' => [$medicationrequest->note],
-                'dosageInstruction' => [$medicationrequest->dosageInstruction],
+                'dosageInstruction' => $medicationrequest->dosageInstruction,
                 'dispenseRequest' => [$medicationrequest->dispenseRequest],
                 'substitution' => [$medicationrequest->substitution],
                 'priorPrescription' => [$medicationrequest->priorPrescription],
