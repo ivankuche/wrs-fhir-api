@@ -66,7 +66,7 @@ class ObservationController extends Controller
                 'referenceRange' => $observation->referenceRange,
                 'hasMember' => $observation->hasMember,
                 'derivedFrom' => $observation->derivedFrom,
-                'component' => [$observation->component],
+                'component' => $observation->component,
             ];
 
             $response= $this->filterEmpty($response);
