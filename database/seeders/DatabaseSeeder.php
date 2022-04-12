@@ -725,27 +725,44 @@ class DatabaseSeeder extends Seeder
                     "text" => "Vital Signsn"
                 ]
             ],
-            "component" => [
+
+
+
+
+
+            "component"=> [
                 [
-                    "code"  => [
-                        [
-                            "coding" => [
+                    "code" => [
+                        "coding"=> [
+                            [
                                 "system"=>"http://loinc.org",
                                 "code"=>"8480-6",
                                 "display"=>"Systolic blood pressure"
                             ],
-                        ],
+                        ]
+                    ],
+                    "valueQuantity" => [
+                        "value" =>15,
+                        "unit"  => "mm[Hg]",
+                        "system" => "http://unitsofmeasure.org",
+                        "code" =>  "mm[Hg]",
                     ],
                 ],
                 [
-                    "code"  => [
-                        [
-                            "coding" => [
+                    "code" => [
+                        "coding"=> [
+                            [
                                 "system"=>"http://loinc.org",
                                 "code"=>"8462-4",
                                 "display"=>"Diastolic blood pressure"
-                            ]
-                        ],
+                            ],
+                        ]
+                    ],
+                    "valueQuantity" => [
+                        "value" =>15,
+                        "unit"  => "mm[Hg]",
+                        "system" => "http://unitsofmeasure.org",
+                        "code" =>  "mm[Hg]",
                     ],
                 ],
             ],
