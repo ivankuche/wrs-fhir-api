@@ -52,7 +52,7 @@ class DiagnosticReportController extends Controller
                 'performer' => [$diagnosticreport->performer],
                 'resultsInterpreter' => $diagnosticreport->resultsInterpreter,
                 'specimen' => $diagnosticreport->specimen,
-                'result' => $diagnosticreport->result,
+                'result' => [$diagnosticreport->result],
                 'note' => [$diagnosticreport->note],
                 'imagingStudy' => $diagnosticreport->imagingStudy,
                 'media' => [$diagnosticreport->media],
