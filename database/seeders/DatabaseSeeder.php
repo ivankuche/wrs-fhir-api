@@ -1090,8 +1090,8 @@ class DatabaseSeeder extends Seeder
         });
         $this->medication();
         $this->organizationPayer1();
-        $this->extraDocuments();
-        $this->extraReports();
+        //$this->extraDocuments();
+        //$this->extraReports();
 
     }
 }
