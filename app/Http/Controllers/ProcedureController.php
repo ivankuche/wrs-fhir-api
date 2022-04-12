@@ -95,7 +95,7 @@ class ProcedureController extends Controller
             "code"=>["code"],
             "category"=>["category"],
             "patient"=>["subject->reference"],
-            "date"=>["effectiveDateTime"]
+            "date"=>["performedDateTime"]
         ];
         $mapperUnderscore= [
             "id"=>"id",
@@ -171,7 +171,7 @@ class ProcedureController extends Controller
                                     break;
                             }
 
-                            $procedures->where('effectiveDateTime',$evaluator,date('Y-m-d H:i:s',strtotime(substr($value,2))));
+                            $procedures->where('performedDateTime',$evaluator,date('Y-m-d H:i:s',strtotime(substr($value,2))));
                             break;
 
                         default:

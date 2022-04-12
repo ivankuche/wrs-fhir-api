@@ -658,9 +658,10 @@ class DatabaseSeeder extends Seeder
                 "text" => "Body height"
             ],
             "valueQuantity" => [
-                "value" =>1.72,
-                "unit"  => "m",
+                "value" =>172,
+                "unit"  => "cm",
                 "system" => "http://unitsofmeasure.org",
+                "code" => "cm"
             ]
         ]);
 
@@ -699,6 +700,7 @@ class DatabaseSeeder extends Seeder
                 "value" =>38.1,
                 "unit"  => "Cel",
                 "system" => "http://unitsofmeasure.org",
+                "code" => "Cel"
             ]
         ]);
 
@@ -794,6 +796,7 @@ class DatabaseSeeder extends Seeder
                 "value" =>42,
                 "unit"  => "kg",
                 "system" => "http://unitsofmeasure.org",
+                "code" => "kg"
             ]
         ]);
 
@@ -832,6 +835,7 @@ class DatabaseSeeder extends Seeder
                 "value" =>142,
                 "unit"  => "/min",
                 "system" => "http://unitsofmeasure.org",
+                "code" =>  "/min",
             ]
         ]);
 
@@ -870,6 +874,7 @@ class DatabaseSeeder extends Seeder
                 "value" =>65,
                 "unit"  => "/min",
                 "system" => "http://unitsofmeasure.org",
+                "code"  => "/min",
             ]
         ]);
 

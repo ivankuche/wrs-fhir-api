@@ -18,6 +18,7 @@ class ProcedureFactory extends Factory
     {
         return [
             'status' => $this->faker->randomElement(['preparation', 'in-progress', 'not-done', 'on-hold', 'stopped', 'completed', 'entered-in-error', 'unknown']),
+            "performedDateTime"  => $this->faker->date()
             //
         ];
     }

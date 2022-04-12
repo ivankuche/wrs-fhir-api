@@ -52,9 +52,6 @@ class ObservationController extends Controller
                 'valueInteger' => $observation->valueInteger,
                 'valueRange' => $observation->valueRange,
                 'valueRatio' => $observation->valueRatio,
-
-
-
                 'valueSampledData' => $observation->valueSampledData,
                 'valueTime' => $observation->valueTime,
                 'valueDateTime' => $observation->valueDateTime,
@@ -69,7 +66,7 @@ class ObservationController extends Controller
                 'referenceRange' => $observation->referenceRange,
                 'hasMember' => $observation->hasMember,
                 'derivedFrom' => $observation->derivedFrom,
-                'component' => $observation->component,
+                'component' => [$observation->component],
             ];
 
             $response= $this->filterEmpty($response);
