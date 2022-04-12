@@ -51,6 +51,23 @@ class DocumentReferenceFactory extends Factory
                 'attachment' => [
                     'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->numerify('*****').'.txt',
                     'contentType' => 'text/plain',
+                ],
+                "format" => [
+                    "system"=>"urn:oid:1.3.6.1.4.1.19376.1.2.3",
+                    "code"=>"urn:ihe:pcc:handp:2008"
+                ],
+            ],
+            "context"=> [
+
+                "encounter"=> [
+                    [
+                      "reference"=> "Encounter/1",
+                      "type"=>"Encounter"
+                    ]
+                ],
+                "period"=> [
+                    "start"=>"2004-12-23T08:00:00+10:00",
+                    "end"=>"2004-12-23T08:01:00+10:00"
                 ]
             ],
 
