@@ -29,7 +29,7 @@ class DocumentReferenceController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
-                'identifier' => [$documentreference->identifier],
+                'identifier' => $documentreference->identifier,
                 'basedOn' => $documentreference->basedOn,
                 'status' => $documentreference->status,
                 'docStatus' => $documentreference->docStatus,

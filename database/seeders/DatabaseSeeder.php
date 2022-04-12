@@ -352,7 +352,7 @@ class DatabaseSeeder extends Seeder
             [
                 "use"=>"usual",
                 "system" => "http://www.amc.nl/zorgportal/identifiers/visits",
-                "value" => $encounter->id
+                "value" => strval($encounter->id)
             ]
         ]]);
 
