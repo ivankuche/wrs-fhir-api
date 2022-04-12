@@ -28,18 +28,24 @@ class MedicationRequestFactory extends Factory
                 "reference"=>"Practitioner/1",
                 "type"=> "Practitioner"
             ],
-            "reportedBoolean"=>true,
+            "reportedBoolean"=>"true",
             "encounter" => [
                 "reference"=>"Encounter/1",
                 "type"=>"Encounter",
             ],
+            /*
             "dose"=>[
                 "dosageInstruction"=> [
                     [
                         "text"=>"Take 4 tablets daily for 7 days starting January 16, 2015",
                     ]
                 ],
+            ],*/
+            "dosageInstruction"=> [
+                [
+                    "text"=>"Take 4 tablets daily for 7 days starting January 16, 2015",
+                ]
             ],
-        ];
+    ];
     }
 }

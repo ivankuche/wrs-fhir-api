@@ -36,6 +36,7 @@ class OrganizationFactory extends Factory
             'period'=>[
                 'start'=>$periodStart
             ],
+            'country'=> $this->faker->country()
         ];
 
         return [

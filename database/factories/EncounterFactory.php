@@ -49,7 +49,10 @@ class EncounterFactory extends Factory
             "location"=> [
                 [
                     "location"=> [
+                        "reference"=>"Location/1",
+                        "type"=>"Location",
                         "display"=>"Emergency Waiting Room"
+
                     ]
                 ]
             ],

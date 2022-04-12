@@ -310,6 +310,10 @@ class DatabaseSeeder extends Seeder
                 "system" => "urn:uuid:53fefa32-fcbb-4ff8-8a92-55ee120877b7",
                 "value" => strval($organization->id)
             ],
+            [
+                "system" => "http://hl7.org/fhir/sid/us-npi",
+                "value" => "1231".$organization->id
+            ],
         ]]);
     }
 
@@ -563,6 +567,46 @@ class DatabaseSeeder extends Seeder
                     ],
                     "text" => "Vital Signsn"
                 ]
+            ],
+
+
+
+
+            "component"=> [
+                [
+                    "code" => [
+                        "coding"=> [
+                            [
+                                "system"=>"http://loinc.org",
+                                "code"=>"3151-8",
+                                "display"=>"Inhaled oxygen flow rate"
+                            ],
+                        ]
+                    ],
+                    "valueQuantity" => [
+                        "value" =>5,
+                        "unit"  => "L/min",
+                        "system" => "http://unitsofmeasure.org",
+                        "code" =>  "L/min",
+                    ],
+                ],
+                [
+                    "code" => [
+                        "coding"=> [
+                            [
+                                "system"=>"http://loinc.org",
+                                "code"=>"3150-0",
+                                "display"=>"Inhaled oxygen concentration"
+                            ],
+                        ]
+                    ],
+                    "valueQuantity" => [
+                        "value" =>92,
+                        "unit"  => "%",
+                        "system" => "http://unitsofmeasure.org",
+                        "code" =>  "%",
+                    ],
+                ],
             ],
             "code"  => [
                 "coding" => [
