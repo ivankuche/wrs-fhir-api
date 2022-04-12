@@ -29,7 +29,7 @@ class EncounterController extends Controller
                     "status"=> "generated",
                     "div"=> "<div xmlns=\"http://www.w3.org/1999/xhtml\">Success!</div>"
                 ],
-                'identifier' => [$encounter->identifier],
+                'identifier' => $encounter->identifier,
                 'status' => $encounter->status,
                 'class' => $encounter->class,
                 'classHistory' => [$encounter->classHistory],
@@ -39,16 +39,16 @@ class EncounterController extends Controller
                 'subject' => $encounter->subject,
                 'episodeOfCare' => [$encounter->episodeOfCare],
                 'basedOn' => [$encounter->basedOn],
-                'participant' => [$encounter->participant],
+                'participant' => $encounter->participant,
                 'appointment' => [$encounter->appointment],
                 'period' => [$encounter->period],
                 'length' => [$encounter->length],
-                'reasonCode' => [$encounter->reasonCode],
+                'reasonCode' => $encounter->reasonCode,
                 'reasonReference' => [$encounter->reasonReference],
                 'diagnosis' => [$encounter->diagnosis],
                 'account' => [$encounter->account],
                 'hospitalization' => [$encounter->hospitalization],
-                'location' => [$encounter->location],
+                'location' => $encounter->location,
                 'serviceProvider' => [$encounter->serviceProvider],
             ];
 

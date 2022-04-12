@@ -128,51 +128,51 @@ class ProcedureController extends Controller
                                 $this->mapperToEloquent($procedures,$mapper[$key],$value);
                             break;
 
-                            case "category":
-                                if (strpos($value,"|")>0)
-                                {
-                                    $explodeValue= explode('|',$value);
-                                    $procedures->whereJsonContains('category',['coding'=>['system'=>$explodeValue[0]]]);
-                                    $procedures->whereJsonContains('category',['coding'=>['code'=>$explodeValue[1]]]);
-                                }
-                                else
-                                $procedures->whereJsonContains('category',['coding'=>['code'=>$value]]);
+                        case "category":
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $procedures->whereJsonContains('category',['coding'=>['system'=>$explodeValue[0]]]);
+                                $procedures->whereJsonContains('category',['coding'=>['code'=>$explodeValue[1]]]);
+                            }
+                            else
+                            $procedures->whereJsonContains('category',['coding'=>['code'=>$value]]);
 
-                                break;
-
-                            case "code":
-                                if (strpos($value,"|")>0)
-                                {
-                                    $explodeValue= explode('|',$value);
-                                    $procedures->whereJsonContains('code',['coding'=>['system'=>$explodeValue[0]]]);
-                                    $procedures->whereJsonContains('code',['coding'=>['code'=>$explodeValue[1]]]);
-                                }
-                                else
-                                    $procedures->whereJsonContains('code',['coding'=>['code'=>$value]]);
-                                break;
-
-                            case "patient":
-                                if (strpos($value,"/")>0)
-                                {
-                                    $explodeValue= explode('/',$value);
-                                    $this->mapperToEloquent($procedures,$mapper[$key],$explodeValue[1]);
-                                }
-                                else
-                                    $this->mapperToEloquent($procedures,$mapper[$key],"Patient/".$value);
                             break;
 
-                            case "date":
+                        case "code":
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $procedures->whereJsonContains('code',['coding'=>['system'=>$explodeValue[0]]]);
+                                $procedures->whereJsonContains('code',['coding'=>['code'=>$explodeValue[1]]]);
+                            }
+                            else
+                                $procedures->whereJsonContains('code',['coding'=>['code'=>$value]]);
+                            break;
 
-                                $evaluator= "=";
-                                switch (substr($value,0,2))
-                                {
-                                    case "gt":
-                                        $evaluator= ">";
-                                        break;
-                                }
+                        case "patient":
+                            if (strpos($value,"/")>0)
+                            {
+                                $explodeValue= explode('/',$value);
+                                $this->mapperToEloquent($procedures,$mapper[$key],$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($procedures,$mapper[$key],"Patient/".$value);
+                        break;
 
-                                $procedures->where('effectiveDateTime',$evaluator,date('Y-m-d H:i:s',strtotime($value)));
-                                break;
+                        case "date":
+
+                            $evaluator= "=";
+                            switch (substr($value,0,2))
+                            {
+                                case "gt":
+                                    $evaluator= ">";
+                                    break;
+                            }
+
+                            $procedures->where('effectiveDateTime',$evaluator,date('Y-m-d H:i:s',strtotime(substr($value,2))));
+                            break;
 
                         default:
                             $this->mapperToEloquent($procedures,$mapper[$key],$value);
