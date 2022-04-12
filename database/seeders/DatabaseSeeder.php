@@ -262,7 +262,7 @@ class DatabaseSeeder extends Seeder
         $document->update(['identifier'=> [
             [
                 "use"=>"usual",
-                "system" => "urn:ietf:rfc:3986",
+                //"system" => "urn:ietf:rfc:3986",
                 "value" => $document->id
             ]
         ]]);

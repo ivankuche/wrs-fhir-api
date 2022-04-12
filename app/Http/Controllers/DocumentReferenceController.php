@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\DocumentReference;
+use Carbon\Carbon;
 
 class DocumentReferenceController extends Controller
 {
@@ -33,15 +34,15 @@ class DocumentReferenceController extends Controller
                 'basedOn' => $documentreference->basedOn,
                 'status' => $documentreference->status,
                 'docStatus' => $documentreference->docStatus,
-                'type'=> [$documentreference->type],
+                'type'=> $documentreference->type,
                 'category'=> $documentreference->category,
-                'subject'=> [$documentreference->subject],
+                'subject'=> $documentreference->subject,
                 'encounter' => [$documentreference->encounter],
                 'event' => [$documentreference->event],
                 'facilityType' => [$documentreference->facilityType],
                 'practiceSetting' => [$documentreference->practiceSetting],
                 'period' => [$documentreference->period],
-                'date'=>$documentreference->date,
+                'date'=>Carbon::parse($documentreference->date)->toIso8601String(),
                 'author' => [$documentreference->author],
                 'attester'  => [$documentreference->attester],
                 'custodian' => [$documentreference->custodian],
