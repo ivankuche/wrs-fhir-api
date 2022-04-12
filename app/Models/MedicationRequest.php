@@ -13,7 +13,7 @@ class MedicationRequest extends Model
         'reportedBoolean', 'reportedReference', 'medicationCodeableConcept', 'medicationReference', 'subject', 'encounter',
         'supportingInformation', 'authoredOn', 'requester', 'performer', 'performerType', 'recorder', 'reasonCode',
         'reasonReference', 'instantiatesCanonical', 'instantiatesUri', 'basedOn', 'groupIdentifier', 'courseOfTherapyType',
-        'insurance', 'note', 'dosageInstruction', 'dispenseRequest', 'substitution', 'priorPrescription', 'detectedIssue',
+        'insurance', 'note', 'dose', 'dosageInstruction', 'dispenseRequest', 'substitution', 'priorPrescription', 'detectedIssue',
         'eventHistory'
     ];
 
@@ -38,6 +38,7 @@ class MedicationRequest extends Model
         'courseOfTherapyType' => 'array',
         'insurance' => 'array',
         'note' => 'array',
+        'dose' => 'array',
         'dosageInstruction' => 'array',
         'dispenseRequest' => 'array',
         'substitution' => 'array',

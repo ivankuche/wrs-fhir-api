@@ -44,6 +44,7 @@ return new class extends Migration
             $table->json('courseOfTherapyType')->nullable();
             $table->json('insurance')->nullable();
             $table->json('note')->nullable();
+            $table->json('dose')->nullable();
             $table->json('dosageInstruction')->nullable();
             $table->json('dispenseRequest')->nullable();
             $table->json('substitution')->nullable();

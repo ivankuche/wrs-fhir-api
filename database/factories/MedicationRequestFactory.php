@@ -28,7 +28,7 @@ class MedicationRequestFactory extends Factory
                 "reference"=>"Practitioner/1",
                 "type"=> "Practitioner"
             ],
-            "reported"=>"true",
+            "reportedBoolean"=>true,
             "encounter" => [
                 "reference"=>"Encounter/1",
                 "type"=>"Encounter",
