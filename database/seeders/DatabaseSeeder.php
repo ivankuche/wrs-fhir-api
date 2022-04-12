@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\AllergyIntolerance;
 use App\Models\CarePlan;
 use App\Models\CareTeam;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Patient;
 use App\Models\Provenance;
@@ -21,6 +20,7 @@ use App\Models\MedicationRequest;
 use App\Models\Observation;
 use App\Models\Organization;
 use App\Models\Practitioner;
+use App\Models\Procedure;
 
 class DatabaseSeeder extends Seeder
 {
@@ -657,6 +657,228 @@ class DatabaseSeeder extends Seeder
         // Provenance of the created Observation
         $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
 
+        // Body Temperature
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"8310-5",
+                        "display"=>"Body temperature"
+                    ]
+                ],
+                "text" => "Body temperature"
+            ],
+            "valueQuantity" => [
+                "value" =>38.1,
+                "unit"  => "Cel",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Blood pressure
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "component" => [
+                "code"  => [
+                    "coding" => [
+                        [
+                            "system"=>"http://loinc.org",
+                            "code"=>"8480-6",
+                            "display"=>"Systolic blood pressure"
+                        ]
+                    ],
+                    "coding" => [
+                        [
+                            "system"=>"http://loinc.org",
+                            "code"=>"8462-4",
+                            "display"=>"Diastolic blood pressure"
+                        ]
+                    ],
+                ],
+
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"85354-9",
+                        "display"=>"Blood pressure"
+                    ]
+                ],
+                "text" => "Blood pressure"
+            ],
+            "valueQuantity" => [
+                "value" =>15,
+                "unit"  => "mm[Hg]",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Body weight
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"29463-7",
+                        "display"=>"Body weight"
+                    ]
+                ],
+                "text" => "Body weight"
+            ],
+            "valueQuantity" => [
+                "value" =>42,
+                "unit"  => "kg",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Heart rate
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"8867-4",
+                        "display"=>"Heart rate"
+                    ]
+                ],
+                "text" => "Heart rate"
+            ],
+            "valueQuantity" => [
+                "value" =>142,
+                "unit"  => "/min",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+        // Respiratory rate
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+            "category" =>[
+                [
+                    "coding" => [
+                        [
+                            "system"=>"http://terminology.hl7.org/CodeSystem/observation-category",
+                            "code"=>"vital-signs",
+                            "display"=>"Vital Signs"
+                        ]
+                    ],
+                    "text" => "Vital Signsn"
+                ]
+            ],
+            "code"  => [
+                "coding" => [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"9279-1",
+                        "display"=>"Respiratory rate"
+                    ]
+                ],
+                "text" => "Respiratory rate"
+            ],
+            "valueQuantity" => [
+                "value" =>65,
+                "unit"  => "/min",
+                "system" => "http://unitsofmeasure.org",
+            ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+    }
+
+    private function procedure($patient)
+    {
+        $procedure= Procedure::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/'.strval($patient->id),
+                'type'=>'Patient'
+            ],
+        ]);
+
+        // Provenance of the created Procedure
+        $this->provenance('Procedure/'.$procedure->first()->id, 'Procedure', $patient);
+
     }
 
     public function run()
@@ -689,6 +911,7 @@ class DatabaseSeeder extends Seeder
             $this->observation($patient);
             $this->organization();
             $this->practitioner();
+            $this->procedure($patient);
         });
         $this->medication();
         $this->organizationPayer1();
