@@ -34,7 +34,7 @@ class DocumentReferenceController extends Controller
                 'status' => $documentreference->status,
                 'docStatus' => $documentreference->docStatus,
                 'type'=> [$documentreference->type],
-                'category'=> [$documentreference->category],
+                'category'=> $documentreference->category,
                 'subject'=> [$documentreference->subject],
                 'encounter' => [$documentreference->encounter],
                 'event' => [$documentreference->event],
