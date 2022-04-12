@@ -104,6 +104,7 @@ class ObservationController extends Controller
             "code"=>["code"],
             "category"=>["category"],
             "patient"=>["subject->reference"],
+            "date"=>["effectiveDateTime"]
         ];
         $mapperUnderscore= [
             "id"=>"id",
@@ -160,14 +161,27 @@ class ObservationController extends Controller
                                 break;
 
                             case "patient":
-                            if (strpos($value,"/")>0)
-                            {
-                                $explodeValue= explode('/',$value);
-                                $this->mapperToEloquent($observations,$mapper[$key],$explodeValue[1]);
-                            }
-                            else
-                                $this->mapperToEloquent($observations,$mapper[$key],"Patient/".$value);
+                                if (strpos($value,"/")>0)
+                                {
+                                    $explodeValue= explode('/',$value);
+                                    $this->mapperToEloquent($observations,$mapper[$key],$explodeValue[1]);
+                                }
+                                else
+                                    $this->mapperToEloquent($observations,$mapper[$key],"Patient/".$value);
                             break;
+
+                            case "date":
+
+                                $evaluator= "=";
+                                switch (substr($value,0,2))
+                                {
+                                    case "gt":
+                                        $evaluator= ">";
+                                        break;
+                                }
+
+                                $observations->where('effectiveDateTime',$evaluator,date('Y-m-d H:i:s',strtotime($value)));
+                                break;
 
                         default:
                             $this->mapperToEloquent($observations,$mapper[$key],$value);
