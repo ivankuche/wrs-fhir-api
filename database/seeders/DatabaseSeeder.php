@@ -970,6 +970,91 @@ class DatabaseSeeder extends Seeder
         ]]);
     }
 
+    private function extraDocuments()
+    {
+        $documents= [
+            "11488-4"=>"Consult note",
+            "18842-5"=>"Discharge summary",
+            "34117-2"=>"History and physical note",
+            "28570-0"=>"Procedure note",
+            "11506-3"=>"Progress note"
+        ];
+
+        foreach ($documents as $typeID=>$typeDescription)
+        {
+
+            $document= DocumentReference::factory(1)->create([
+                'subject' => [
+                    'reference'=>'Patient/1',
+                    'type'=>'Patient'
+                ],
+                'author'=> [
+                    'reference'=>'Practitioner/1'
+                ],
+                'type'=> [
+                    'coding'=> [
+                        [
+                            "system"=>"http://loinc.org",
+                            "code"=>$typeID,
+                            "display"=>$typeDescription
+                        ]
+                    ]
+                ],
+            ])->first();
+
+            $document->update(['identifier'=> [
+                [
+                    "use"=>"usual",
+                    //"system" => "urn:ietf:rfc:3986",
+                    "value" => $document->id,
+                ]
+            ]]);
+        }
+    }
+
+    private function extraReports()
+    {
+        $reports= [
+            "LP29708-2"=>"Cardiology",
+            "LP7839-6"=>"Pathology"
+        ];
+
+        foreach ($reports as $categoryID=>$categoryDescription)
+        {
+
+            $diagnosticReport= DiagnosticReport::factory(1)->create([
+                'subject' => [
+                    'reference'=>'Patient/1',
+                    'type'=>'Patient'
+                ],
+                'encounter' => [
+                    'reference'=>"Encounter/1",
+                    'type'=>'Encounter'
+                ],
+                "performer" => [
+                    "reference"=>"Organization/1",
+                    'type'=>'Organization'
+                ],
+                "result" => [
+                    "reference"=>"Observation/1",
+                    'type'=>'Observation'
+                ],
+                "presentedForm" => [
+                    "url"=>"http://www.demoreport.com/demoreport",
+                ],
+                'category'=> [
+                    "coding" => [
+                        [
+                            "system"=>"http://loinc.org",
+                            "code"=>$categoryID,
+                            "display"=>$categoryDescription
+                        ]
+                    ],
+                ]
+            ]);
+        }
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -1005,6 +1090,8 @@ class DatabaseSeeder extends Seeder
         });
         $this->medication();
         $this->organizationPayer1();
+        $this->extraDocuments();
+        $this->extraReports();
 
     }
 }
