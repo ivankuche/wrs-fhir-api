@@ -191,6 +191,10 @@ class DatabaseSeeder extends Seeder
                 "reference"=>"Organization/".strval($patient->id),
                 'type'=>'Organization'
             ],
+            "result" => [
+                "reference"=>"Observation/".strval($patient->id),
+                'type'=>'Observation'
+            ],
             "presentedForm" => [
                 "url"=>"http://www.demoreport.com/demoreport",
             ],
@@ -566,6 +570,11 @@ class DatabaseSeeder extends Seeder
                         "system"=>"http://loinc.org",
                         "code"=>"2708-6",
                         "display"=>"Oxygen saturation in Arterial blood"
+                    ],
+                    [
+                        "system" => "http://loinc.org",
+                        "code" => "59408-5",
+                        "display" => "Oxygen saturation in Arterial blood by Pulse oximetry"
                     ]
                 ],
                 "text" => "oxygen_saturation"
