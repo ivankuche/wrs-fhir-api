@@ -86,6 +86,7 @@ class DocumentReferenceController extends Controller
             "patient"=>["subject->reference"],
             "category"=>["category->coding->code"],
             "code"=>["code->coding->code"],
+            "type"=>["type->coding->code"]
             //"status"=>["status"]
 
         ];
