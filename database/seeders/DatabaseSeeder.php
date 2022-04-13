@@ -1055,6 +1055,45 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    private function dataAbsent()
+    {
+
+        // Data Absent
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/1',
+                'type'=>'Patient'
+            ],
+            "code"=> [
+                "coding"=> [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"72166-2",
+                        "display"=>"Tobacco smoking status"
+                    ]
+                ]
+            ],
+            'dataAbsentReason' => [
+                "code" => [
+                    "coding" => [
+                        [
+                            "system"=> "https://build.fhir.org/codesystem-data-absent-reason.html",
+                            "code"=>"asked-declined",
+                            "display" => "Asked But Declined",
+                        ]
+                    ]
+                ]
+
+            ]
+        ]);
+
+        $patient= new Patient();
+        $patient->id= 1;
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
+
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -1092,6 +1131,7 @@ class DatabaseSeeder extends Seeder
         $this->organizationPayer1();
         //$this->extraDocuments();
         //$this->extraReports();
+        $this->dataAbsent();
 
     }
 }
