@@ -48,7 +48,10 @@ class DiagnosticReportFactory extends Factory
             'status'=>$status,
             'code'=>$code,
             'effectiveDateTime' => $this->faker->dateTime(),
-            'issued' => $this->faker->dateTime()
-        ];
+            'issued' => $this->faker->dateTime(),
+            "presentedForm" => [
+                "url"=>"http://www.demoreport.com/demoreport/".$this->faker->firstName,
+            ],
+    ]   ;
     }
 }

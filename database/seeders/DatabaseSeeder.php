@@ -195,9 +195,6 @@ class DatabaseSeeder extends Seeder
                 "reference"=>"Observation/".strval($patient->id),
                 'type'=>'Observation'
             ],
-            "presentedForm" => [
-                "url"=>"http://www.demoreport.com/demoreport/",
-            ],
             'category'=> [
                 "coding" => [
                     [
@@ -225,9 +222,6 @@ class DatabaseSeeder extends Seeder
             "performer" => [
                 "reference"=>"Organization/".strval($patient->id),
                 'type'=>'Organization'
-            ],
-            "presentedForm" => [
-                "url"=>"http://www.demoreport.com/demoreport",
             ],
             'category'=> [
                 "coding" => [
@@ -1038,9 +1032,6 @@ class DatabaseSeeder extends Seeder
                 "result" => [
                     "reference"=>"Observation/1",
                     'type'=>'Observation'
-                ],
-                "presentedForm" => [
-                    "url"=>"http://www.demoreport.com/demoreport",
                 ],
                 'category'=> [
                     "coding" => [
