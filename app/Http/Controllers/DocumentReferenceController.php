@@ -145,16 +145,28 @@ class DocumentReferenceController extends Controller
                                 $documentreferences->whereJsonContains('code',['coding'=>['code'=>$value]]);
                             break;
 
-                            case "patient":
-                                if (strpos($value,"/")>0)
-                                {
-                                    $explodeValue= explode('/',$value);
-                                    $this->mapperToEloquent($documentreferences,$mapper[$key],"Patient/".$explodeValue[1]);
-                                }
-                                else
-                                    $this->mapperToEloquent($documentreferences,$mapper[$key],"Patient/".$value);
-                                break;
+                        case "patient":
+                            if (strpos($value,"/")>0)
+                            {
+                                $explodeValue= explode('/',$value);
+                                $this->mapperToEloquent($documentreferences,$mapper[$key],"Patient/".$explodeValue[1]);
+                            }
+                            else
+                                $this->mapperToEloquent($documentreferences,$mapper[$key],"Patient/".$value);
+                            break;
 
+                        case "type":
+                            if (strpos($value,"|")>0)
+                            {
+                                $explodeValue= explode('|',$value);
+                                $documentreferences->whereJsonContains('type',['coding'=>['system'=>$explodeValue[0]]]);
+                                $documentreferences->whereJsonContains('type',['coding'=>['code'=>$explodeValue[1]]]);
+//                                $documentreferences->where('code->coding->system','=',$explodeValue[0]);
+//                                $documentreferences->where('code->coding->code','=',$explodeValue[1]);
+                            }
+                            else
+                                $documentreferences->whereJsonContains('type',['coding'=>['code'=>$value]]);
+                            break;
 
                         default:
                             $this->mapperToEloquent($documentreferences,$mapper[$key],$value);
