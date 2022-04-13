@@ -1073,22 +1073,12 @@ class DatabaseSeeder extends Seeder
                     ]
                 ]
             ],
-
-            "effectiveDateTime" => [
+            "valueCodeableConcept" => [
                 "extension"=> [
                     [
                         "url"=> "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
                         "valueCode"=> "unknown"
                 ]]
-            ],
-            "valueCodeableConcept" => [
-                "coding" => [
-                     [
-                         "system" =>"http://snomed.info/sct",
-                         "code" => "428041000124106"
-                     ]
-                 ],
-                 "text" =>"Current some day smoker"
              ]
         ]);
 
