@@ -1058,7 +1058,10 @@ class DatabaseSeeder extends Seeder
     private function dataAbsent()
     {
 
-        // Data Absent
+        $patient= new Patient();
+        $patient->id= 1;
+
+        // Data Absent extension
         $observation= Observation::factory(1)->create([
             'subject' => [
                 'reference'=>'Patient/1',
@@ -1082,11 +1085,37 @@ class DatabaseSeeder extends Seeder
              ]
         ]);
 
-        $patient= new Patient();
-        $patient->id= 1;
         // Provenance of the created Observation
         $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
 
+        // Data Absent CodeSystem
+        $observation= Observation::factory(1)->create([
+            'subject' => [
+                'reference'=>'Patient/1',
+                'type'=>'Patient'
+            ],
+            "code"=> [
+                "coding"=> [
+                    [
+                        "system"=>"http://loinc.org",
+                        "code"=>"72166-2",
+                        "display"=>"Tobacco smoking status"
+                    ]
+                ]
+            ],
+            "valueCodeableConcept" => [
+                "coding"=> [
+                    [
+                        "system"=>"http://terminology.hl7.org/CodeSystem/data-absent-reason",
+                        "code"=>"asked-unknown",
+                        "display"=>"Asked But Unknown"
+                    ]
+                ]
+             ]
+        ]);
+
+        // Provenance of the created Observation
+        $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
     }
 
     public function run()
