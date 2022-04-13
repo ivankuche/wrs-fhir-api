@@ -49,7 +49,7 @@ class DocumentReferenceFactory extends Factory
             ],
             'content' => [
                 'attachment' => [
-                    'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->numerify('*****').'.txt',
+                    'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->firstName().'.txt',
                     'contentType' => 'text/plain',
                 ],
                 "format" => [
