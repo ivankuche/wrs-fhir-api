@@ -974,12 +974,10 @@ class DatabaseSeeder extends Seeder
     {
         $documents= [
             "11488-4"=>"Consult note",
-            /*
             "18842-5"=>"Discharge summary",
             "34117-2"=>"History and physical note",
             "28570-0"=>"Procedure note",
             "11506-3"=>"Progress note"
-            */
         ];
 
         foreach ($documents as $typeID=>$typeDescription)
