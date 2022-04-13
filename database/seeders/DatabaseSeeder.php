@@ -1106,9 +1106,10 @@ class DatabaseSeeder extends Seeder
             "valueCodeableConcept" => [
                 "coding"=> [
                     [
+                        "use" => "preferred",
                         "system"=>"http://terminology.hl7.org/CodeSystem/data-absent-reason",
-                        "code"=>"asked-unknown",
-                        "display"=>"Asked But Unknown"
+                        "code"=>"unknown",
+                        "display"=>"Unknown"
                     ]
                 ]
              ]
