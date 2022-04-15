@@ -124,14 +124,7 @@ class PatientController extends Controller
                     ],
                     [
                         "url"=>"http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
-                        "valueCodeableConcept" => [
-                            [
-                                "coding" => [
-//                                    "system"=> "http://hl7.org/fhir/ValueSet/gender-identity",
-                                    "code"=>$patient->genderIdentity
-                                ],
-                            ]
-                        ],
+                        "valueString" => $patient->genderIdentity
                     ]
 
                 ],
