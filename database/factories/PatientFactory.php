@@ -21,8 +21,6 @@ class PatientFactory extends Factory
         $gender = $this->faker->randomElement(['male', 'female']);
         $genderIdentity = $this->faker->randomElement(['male','female','non-binary','transgender-male','transgender-female', 'other', 'non-disclose']);
 
-        $gender= "transgender-male";
-
         $name= $this->faker->firstName($gender);
         $surname= $this->faker->lastName();
         $deceasedBoolean= null;

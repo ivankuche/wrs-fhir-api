@@ -102,8 +102,12 @@ class PatientController extends Controller
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
                     ],
                     [
-                        "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
-                        "valueCode"=>$this->codeGender($patient->gender)
+                        "extension"=>[
+                            [
+                                "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+                                "valueCode"=>$this->codeGender($patient->gender)
+                            ],
+                        ]
                     ],
                     [
                         "extension"=>[
