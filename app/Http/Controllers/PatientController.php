@@ -114,17 +114,21 @@ class PatientController extends Controller
                                     "code" =>"2186-5",
                                     "display"=> "Not Hispanic or Latino"
                                 ]
-                                ],
-                                [
-                                    "url"=>"text",
-                                    "valueString"=>"Not Hispanic or Latino"
-                                ]
+                            ],
+                            [
+                                "url"=>"text",
+                                "valueString"=>"Not Hispanic or Latino"
+                            ]
                         ],
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
                     ],
                     [
-                        "url"=>"http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
-                        "valueString" => $patient->genderIdentity
+                        "extension"=>[
+                            [
+                                "url"=>"http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
+                                "valueString" => $patient->genderIdentity
+                            ],
+                        ]
                     ]
 
                 ],
