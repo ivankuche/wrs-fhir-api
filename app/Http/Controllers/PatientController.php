@@ -123,13 +123,8 @@ class PatientController extends Controller
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
                     ],
                     [
-                        "extension"=>[
-                            [
-                                "url"=>"text",
-                                "valueCodeableConcept"=>[
-                                    "valueString"=>"male"
-                                ]
-                            ],
+                        "value"=>[
+                            ["male"]
                         ],
                         "url"=>"http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
 //                        "extension"=>[],
