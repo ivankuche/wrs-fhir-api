@@ -124,7 +124,7 @@ class PatientController extends Controller
                     ],
                     [
                         "url"=>"http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
-                        "valueCodeableConcept"=>"male"
+                        "valueCodeableConcept"=>["male"]
                     ]
 
                 ],
