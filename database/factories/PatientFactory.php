@@ -191,8 +191,7 @@ class PatientFactory extends Factory
                 'preferred'=> true
             ],
             'genderIdentity' => [
-                "system"=>"http://hl7.org/fhir/ValueSet/gender-identity",
-                "code"=>$genderIdentity,
+                "coding"=>$genderIdentity,
             ]
         ];
     }
