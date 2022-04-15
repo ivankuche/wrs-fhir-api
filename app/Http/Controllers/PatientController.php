@@ -82,22 +82,21 @@ class PatientController extends Controller
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
                 "communication"=> [$patient->communication],
-                "genderIdentity" => $patient->genderIdentity,
                 // Hardcoded information
                 "extension"=> [
                     [
                         "extension"=>[
                             [
-                            "url"=>"ombCategory",
-                            "valueCoding"=> [
-                                "system" =>"urn:oid:2.16.840.1.113883.6.238",
-                                "code" =>"2106-3",
-                                "display"=> "White"
-                            ]
+                                "url"=>"ombCategory",
+                                "valueCoding"=> [
+                                    "system" =>"urn:oid:2.16.840.1.113883.6.238",
+                                    "code" =>"2106-3",
+                                    "display"=> "White"
+                                ]
                             ],
                             [
-                            "url"=>"text",
-                            "valueString"=>"White"
+                                "url"=>"text",
+                                "valueString"=>"White"
                             ]
                         ],
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
@@ -109,23 +108,24 @@ class PatientController extends Controller
                     [
                         "extension"=>[
                             [
-                            "url"=>"ombCategory",
-                            "valueCoding"=> [
-                                "system" =>"urn:oid:2.16.840.1.113883.6.238",
-                                "code" =>"2186-5",
-                                "display"=> "Not Hispanic or Latino"
-                            ]
+                                "url"=>"ombCategory",
+                                "valueCoding"=> [
+                                    "system" =>"urn:oid:2.16.840.1.113883.6.238",
+                                    "code" =>"2186-5",
+                                    "display"=> "Not Hispanic or Latino"
+                                ]
                             ],
                             [
-                            "url"=>"text",
-                            "valueString"=>"Not Hispanic or Latino"
+                                "url"=>"text",
+                                "valueString"=>"Not Hispanic or Latino"
                             ]
                         ],
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
                     ],
                     [
                         // Gender identity: transgender
-                        "url" => "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity"
+                        "url" => "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
+                        "code" =>$patient->genderIdentity
                     ]
 
                 ],
