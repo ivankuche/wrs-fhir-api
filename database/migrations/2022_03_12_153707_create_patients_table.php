@@ -29,7 +29,7 @@ return new class extends Migration
             $table->json('contact')->nullable();
 
             // Extension
-            $table->json('genderIdentity')->nullable();
+            $table->string('genderIdentity')->nullable();
             $table->timestamps();
         });
     }

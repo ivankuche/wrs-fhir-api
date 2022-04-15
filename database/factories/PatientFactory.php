@@ -190,9 +190,7 @@ class PatientFactory extends Factory
                 ],
                 'preferred'=> true
             ],
-            'genderIdentity' => [
-                "coding"=>$genderIdentity,
-            ]
+            'genderIdentity' => $genderIdentity,
         ];
     }
 }
