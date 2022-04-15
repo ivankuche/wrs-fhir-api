@@ -82,6 +82,7 @@ class PatientController extends Controller
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
                 "communication"=> [$patient->communication],
+                "genderIdentity" => $patient->genderIdentity,
                 // Hardcoded information
                 "extension"=> [
                     [
@@ -121,6 +122,10 @@ class PatientController extends Controller
                             ]
                         ],
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+                    ],
+                    [
+                        // Gender identity: transgender
+                        "url" => "http://hl7.org/fhir/StructureDefinition/patient-genderIdentity"
                     ]
 
                 ],

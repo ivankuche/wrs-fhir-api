@@ -27,6 +27,9 @@ return new class extends Migration
             $table->json('maritalStatus')->nullable();
             $table->json('communication')->nullable();
             $table->json('contact')->nullable();
+
+            // Extension
+            $table->json('genderIdentity')->nullable();
             $table->timestamps();
         });
     }

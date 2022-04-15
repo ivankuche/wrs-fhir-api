@@ -19,6 +19,7 @@ class PatientFactory extends Factory
     public function definition()
     {
         $gender = $this->faker->randomElement(['male', 'female']);
+        $genderIdentity = $this->faker->randomElement(['male','female','non-binary','transgender-male','transgender-female', 'other', 'non-disclose']);
 
         $gender= "transgender-male";
 
@@ -191,6 +192,10 @@ class PatientFactory extends Factory
                 ],
                 'preferred'=> true
             ],
+            'genderIdentity' => [
+                "system"=>"http://hl7.org/fhir/ValueSet/gender-identity",
+                "code"=>$genderIdentity,
+            ]
         ];
     }
 }
