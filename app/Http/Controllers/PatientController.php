@@ -125,6 +125,7 @@ class PatientController extends Controller
                     [
                         "extension"=>[
                             [
+                                "url"=>"text",
                                 "valueCodeableConcept"=>[
                                     "valueString"=>"male"
                                 ]
