@@ -122,6 +122,10 @@ class PatientController extends Controller
                         ],
                         "url"=>"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
                     ],
+                    /*
+
+                    Patient Gender identity (transgender)
+
                     [
                         "url"=>"http://hl7.org/fhir/StructureDefinition/patient-genderIdentity",
                         "valueCodeableConcept"=>[$this->codeGender($patient->gender)]
@@ -131,6 +135,7 @@ class PatientController extends Controller
                             "valueString"=>"male"
                         ]*/
                     ]
+                    */
 
                 ],
 
