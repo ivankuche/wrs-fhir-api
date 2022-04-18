@@ -133,7 +133,7 @@ class PatientController extends Controller
                         /*
                         "valueCodeableConcept"=>[
                             "valueString"=>"male"
-                        ]*/
+                        ]
                     ]
                     */
 
