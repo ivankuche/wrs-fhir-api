@@ -49,8 +49,10 @@ class DocumentReferenceFactory extends Factory
             ],
             'content' => [
                 'attachment' => [
-                    'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->firstName().'.txt',
-                    'contentType' => 'text/plain',
+                    [
+                        'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->firstName().'.txt',
+                        'contentType' => 'text/plain',
+                    ]
                 ],
                 "format" => [
                     "system"=>"urn:oid:1.3.6.1.4.1.19376.1.2.3",
