@@ -15,7 +15,7 @@ class Device extends Model
 
 
 
-    protected $fillable= ['identifier', 'udi', 'status', 'type', 'lotNumber', 'manufacturer', 'manufactureDate',
+    protected $fillable= ['identifier', 'status', 'type', 'lotNumber', 'manufacturer', 'manufactureDate',
         'expirationDate',' model', 'version', 'patient', 'owner', 'contact', 'location', 'url', 'note', 'safety',
         'distinctIdentifier', 'serialNumber', 'udiCarrier'
     ];
@@ -23,7 +23,6 @@ class Device extends Model
 
     protected $casts = [
         'identifier' => 'array',
-        'udi' => 'array',
         'type' => 'array',
         'patient' => 'array',
         'owner' => 'array',

@@ -36,7 +36,6 @@ class DeviceController extends Controller
                       ]
                 ],
                 'identifier' => [$device->identifier],
-                //'udi' => [$device->udi],
                 'status' => $device->status,
                 'type' => $device->type,
                 'lotNumber' => $device->lotNumber,

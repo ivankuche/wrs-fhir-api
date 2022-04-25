@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->json('identifier')->nullable();
-            $table->json('udi')->nullable();
             $table->string('status')->nullable();
             $table->json('type')->nullable();
             $table->string('lotNumber')->nullable();
