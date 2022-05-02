@@ -203,7 +203,11 @@ class DatabaseSeeder extends Seeder
                         "display" => "Laboratory"
                     ]
                 ],
-            ]
+            ],
+            "presentedForm" => [
+                "url"=>"http://www.demoreport.com/demoreport/".$patient->id.".txt",
+            ],
+
         ]);
 
         // Provenance of the created DiagnosticReport
@@ -232,6 +236,9 @@ class DatabaseSeeder extends Seeder
                     ]
                 ]
             ],
+            "presentedForm" => [
+                "url"=>"http://www.demoreport.com/demoreport/".$patient->id.".txt",
+            ],
         ]);
 
         // Provenance of the created DiagnosticReport
@@ -250,7 +257,19 @@ class DatabaseSeeder extends Seeder
             ],
             'author'=> [
                 'reference'=>'Practitioner/'.$patient->id
-            ]
+            ],
+            'content' => [
+                'attachment' => [
+                    'url' => "http://www.demoreport.com/demoreport/".$patient->id.".txt",
+                    'contentType' => 'text/plain',
+                ],
+                "format" => [
+                    "system"=>"urn:oid:1.3.6.1.4.1.19376.1.2.3",
+                    "code"=>"urn:ihe:pcc:handp:2008"
+                ],
+            ],
+
+
         ])->first();
 
         $document->update(['identifier'=> [
