@@ -47,7 +47,6 @@ class DocumentReferenceFactory extends Factory
             'custodian'=> [
                 'reference' => 'Organization/1'
             ],
-            /*
             'content' => [
                 'attachment' => [
                     'url' => 'http://www.demodocument.com/demodocument/'.$this->faker->firstName().'.txt',
@@ -58,7 +57,6 @@ class DocumentReferenceFactory extends Factory
                     "code"=>"urn:ihe:pcc:handp:2008"
                 ],
             ],
-            */
             "context"=> [
 
                 "encounter"=> [
