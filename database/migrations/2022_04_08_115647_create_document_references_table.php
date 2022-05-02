@@ -34,7 +34,7 @@ return new class extends Migration
             $table->json('relatesTo')->nullable();
             $table->text('description')->nullable();
             $table->json('securityLabel')->nullable();
-            $table->json('content');
+            $table->json('content')->nullable();
             $table->json('context')->nullable();
             $table->json('sourcePatientInfo')->nullable();
             $table->json('related')->nullable();
