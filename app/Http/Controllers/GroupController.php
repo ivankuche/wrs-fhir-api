@@ -38,7 +38,7 @@ class GroupController extends Controller
                 'quantity' => $group->quantity,
                 'managingEntity' => $group->managingEntity,
                 'characteristic' => [$group->characteristic],
-                'member' => [$group->member],
+                'member' => $group->member,
             ];
 
             $response= $this->filterEmpty($response);
@@ -144,9 +144,7 @@ class GroupController extends Controller
     {
         $group= Group::findOrFail($groupID);
         $response= $this->fhirStructure($group);
-        $finalResponse= ["resource"=>$response];
-
-        return $finalResponse;
+        return $response;
     }
 
 }
