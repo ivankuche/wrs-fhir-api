@@ -22,6 +22,7 @@ use App\Models\Organization;
 use App\Models\Practitioner;
 use App\Models\Procedure;
 use App\Models\Location;
+use App\Models\Group;
 
 class DatabaseSeeder extends Seeder
 {
@@ -346,19 +347,23 @@ class DatabaseSeeder extends Seeder
     private function practitioner()
     {
 
-        $practitioner= Practitioner::factory(1)->create()->first();
+        $practitioners= Practitioner::factory(10)->create();
 
-        $practitioner->update(['identifier'=> [
-            [
-                "system" => "http://hl7.org/fhir/sid/us-npi",
-                "value" => "1231".$practitioner->id
-            ],
-            [
-                "use"=>"usual",
-                "system" => "http://www.acme.org/practitioners",
-                "value" => $practitioner->id
-            ]
-        ]]);
+        $practitioners->each(function($practitioner) {
+            // Practitioner creation
+            $practitionerObjSource= Practitioner::find($practitioner->id);
+            $practitionerObjSource->update(['identifier'=> [
+                [
+                    "system" => "http://hl7.org/fhir/sid/us-npi",
+                    "value" => "1231".$practitioner->id
+                ],
+                [
+                    "use"=>"usual",
+                    "system" => "http://www.acme.org/practitioners",
+                    "value" => $practitioner->id
+                ]
+            ]]);
+        });
     }
 
     private function encounter($patient)
@@ -1128,6 +1133,104 @@ class DatabaseSeeder extends Seeder
         $this->provenance('Observation/'.$observation->first()->id, 'Observation', $patient);
     }
 
+    public function group()
+    {
+
+        // Group #1 for Patients
+        $group= Group::factory(1)->create([
+            'type' => 'person',
+            "member"=> [
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/9',
+                        'type'=>'Patient'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/21',
+                        'type'=>'Patient'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/7',
+                        'type'=>'Patient'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/14',
+                        'type'=>'Patient'
+                    ]
+                ],
+            ],
+        ]);
+
+        // Group #2 of Patients
+        $group= Group::factory(1)->create([
+            'type' => 'person',
+            "member"=> [
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/4',
+                        'type'=>'Patient'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/2',
+                        'type'=>'Patient'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/8',
+                        'type'=>'Patient'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Patient/17',
+                        'type'=>'Patient'
+                    ]
+                ],
+            ],
+        ]);
+
+        // Group #1 of Practitioners
+        $group= Group::factory(1)->create([
+            'type' => 'practitioner',
+            "member"=> [
+                [
+                    "entity"=> [
+                        'reference'=>'Practitioner/3',
+                        'type'=>'Practitioner'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Practitioner/7',
+                        'type'=>'Practitioner'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Practitioner/8',
+                        'type'=>'Practitioner'
+                    ]
+                ],
+                [
+                    "entity"=> [
+                        'reference'=>'Practitioner/9',
+                        'type'=>'Practitioner'
+                    ]
+                ],
+            ],
+        ]);
+
+    }
+
     public function run()
     {
         $patients= Patient::factory(20)->create();
@@ -1166,6 +1269,7 @@ class DatabaseSeeder extends Seeder
         $this->extraDocuments();
         $this->extraReports();
         $this->dataAbsent();
+        $this->group();
 
     }
 }

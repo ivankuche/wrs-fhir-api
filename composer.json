@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "dcarbone/php-fhir-generated": "^2.0",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.4",
         "jailtonsc/laravel-response-xml": "^3.0",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",

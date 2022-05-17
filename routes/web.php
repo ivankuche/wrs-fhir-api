@@ -22,6 +22,8 @@ use App\Http\Controllers\PractitionerController;
 use App\Http\Controllers\ObservationController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProcedureController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +67,7 @@ Route::resource('Observation', ObservationController::class);
 Route::resource('Location', LocationController::class);
 Route::resource('Practitioner', PractitionerController::class);
 Route::resource('Procedure', ProcedureController::class);
+Route::resource('Group', GroupController::class);
 
 
 Route::get('capabilities', [CapabilitiesController::class, 'index']);
@@ -75,4 +78,7 @@ Route::get('auth', [AuthController::class, 'auth']);
 Route::get('denyauth', [AuthController::class, 'deny']);
 Route::get('authorize', [AuthController::class, 'authorization']);
 Route::get('denyauthorize', [AuthController::class, 'denyauthorization']);
+
+
+Route::get('fhirds', [TestController::class, 'datasource']);
 
