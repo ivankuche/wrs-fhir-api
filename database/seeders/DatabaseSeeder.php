@@ -998,35 +998,42 @@ class DatabaseSeeder extends Seeder
             "11506-3"=>"Progress note"
         ];
 
+        $patients= Patient::all();
+
         foreach ($documents as $typeID=>$typeDescription)
         {
 
-            $document= DocumentReference::factory(1)->create([
-                'subject' => [
-                    'reference'=>'Patient/1',
-                    'type'=>'Patient'
-                ],
-                'author'=> [
-                    'reference'=>'Practitioner/1'
-                ],
-                'type'=> [
-                    'coding'=> [
-                        [
-                            "system"=>"http://loinc.org",
-                            "code"=>$typeID,
-                            "display"=>$typeDescription
+            foreach ($patients as $patient)
+            {
+                $document= DocumentReference::factory(1)->create([
+                    'subject' => [
+                        'reference'=>'Patient/'.$patient->id,
+                        'type'=>'Patient'
+                    ],
+                    'author'=> [
+                        'reference'=>'Practitioner/1'
+                    ],
+                    'type'=> [
+                        'coding'=> [
+                            [
+                                "system"=>"http://loinc.org",
+                                "code"=>$typeID,
+                                "display"=>$typeDescription
+                            ]
                         ]
-                    ]
-                ],
-            ])->first();
+                    ],
+                ])->first();
 
-            $document->update(['identifier'=> [
-                [
-                    "use"=>"usual",
-                    //"system" => "urn:ietf:rfc:3986",
-                    "value" => strval($document->id),
-                ]
-            ]]);
+                $document->update(['identifier'=> [
+                    [
+                        "use"=>"usual",
+                        //"system" => "urn:ietf:rfc:3986",
+                        "value" => strval($document->id),
+                    ]
+                ]]);
+
+            }
+
         }
     }
 
@@ -1037,36 +1044,41 @@ class DatabaseSeeder extends Seeder
             "LP7839-6"=>"Pathology"
         ];
 
+        $patients= Patient::all();
+
         foreach ($reports as $categoryID=>$categoryDescription)
         {
 
-            $diagnosticReport= DiagnosticReport::factory(1)->create([
-                'subject' => [
-                    'reference'=>'Patient/1',
-                    'type'=>'Patient'
-                ],
-                'encounter' => [
-                    'reference'=>"Encounter/1",
-                    'type'=>'Encounter'
-                ],
-                "performer" => [
-                    "reference"=>"Organization/1",
-                    'type'=>'Organization'
-                ],
-                "result" => [
-                    "reference"=>"Observation/1",
-                    'type'=>'Observation'
-                ],
-                'category'=> [
-                    "coding" => [
-                        [
-                            "system"=>"http://loinc.org",
-                            "code"=>$categoryID,
-                            "display"=>$categoryDescription
-                        ]
+            foreach ($patients as $patient)
+            {
+                $diagnosticReport= DiagnosticReport::factory(1)->create([
+                    'subject' => [
+                        'reference'=>'Patient/'.$patient->id,
+                        'type'=>'Patient'
                     ],
-                ]
-            ]);
+                    'encounter' => [
+                        'reference'=>"Encounter/1",
+                        'type'=>'Encounter'
+                    ],
+                    "performer" => [
+                        "reference"=>"Organization/1",
+                        'type'=>'Organization'
+                    ],
+                    "result" => [
+                        "reference"=>"Observation/1",
+                        'type'=>'Observation'
+                    ],
+                    'category'=> [
+                        "coding" => [
+                            [
+                                "system"=>"http://loinc.org",
+                                "code"=>$categoryID,
+                                "display"=>$categoryDescription
+                            ]
+                        ],
+                    ]
+                ]);
+            }
         }
     }
 
