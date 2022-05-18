@@ -82,6 +82,7 @@ class EncounterController extends Controller
 
         $mapper= [
             "patient"=>["subject->reference"],
+            "subject"=>["subject->reference"],
             //"status"=>["status"]
 
         ];
