@@ -1148,7 +1148,7 @@ class DatabaseSeeder extends Seeder
                 ],
                 [
                     "entity"=> [
-                        'reference'=>'Patient/21',
+                        'reference'=>'Patient/1',
                         'type'=>'Patient'
                     ]
                 ],
