@@ -1248,7 +1248,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //$patients= Patient::factory(20)->create();
-        $patients= Patient::where(['id'=>500]);
+        //$patients= Patient::where(['id'=>500]);
+        $patients= Patient::factory(1)->create(['id'=>500]);
 
         $patients->each(function($patient) {
             // Patient creation
