@@ -26,6 +26,8 @@ use App\Models\Group;
 
 class DatabaseSeeder extends Seeder
 {
+    var $practitionerDefault= 3346591;
+
     private function provenance($reference,$referenceType,$patient)
     {
 
@@ -59,7 +61,7 @@ class DatabaseSeeder extends Seeder
                         ]
                     ],
                     'who'=> [
-                        'reference'=>'Practitioner/'.$patient->id,
+                        'reference'=>'Practitioner/'.$this->practitionerDefault,//.$patient->id,
                         'type'=>'Practitioner'
                     ],
                 ],
@@ -257,7 +259,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Patient'
             ],
             'author'=> [
-                'reference'=>'Practitioner/'.$patient->id
+                'reference'=>'Practitioner/'.$this->practitionerDefault,//.$patient->id
             ],
             'content' => [
                 'attachment' => [
@@ -1011,7 +1013,7 @@ class DatabaseSeeder extends Seeder
                         'type'=>'Patient'
                     ],
                     'author'=> [
-                        'reference'=>'Practitioner/1'
+                        'reference'=>'Practitioner/'.$this->practitionerDefault,//1'
                     ],
                     'type'=> [
                         'coding'=> [
@@ -1245,7 +1247,8 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        $patients= Patient::factory(20)->create();
+        //$patients= Patient::factory(20)->create();
+        $patients= Patient::where(['id'=>500]);
 
         $patients->each(function($patient) {
             // Patient creation
@@ -1276,6 +1279,7 @@ class DatabaseSeeder extends Seeder
             $this->procedure($patient);
             $this->location();
         });
+
         $this->medication();
         $this->organizationPayer1();
         $this->extraDocuments();
