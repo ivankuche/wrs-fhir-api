@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
                 [
                     // On behalf of which organization
                     'onBehalfOf'=> [
-                        'reference'=>'Organization/'.$patient->id,
+                        'reference'=>'Organization/1',//$patient->id,
                         'type'=>'Organization'
                     ],
                     'type'=> [
@@ -191,7 +191,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Encounter'
             ],
             "performer" => [
-                "reference"=>"Organization/".strval($patient->id),
+                "reference"=>"Organization/1",//.strval($patient->id),
                 'type'=>'Organization'
             ],
             "result" => [
@@ -227,7 +227,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Encounter'
             ],
             "performer" => [
-                "reference"=>"Organization/".strval($patient->id),
+                "reference"=>"Organization/1",//.strval($patient->id),
                 'type'=>'Organization'
             ],
             'category'=> [
