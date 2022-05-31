@@ -187,7 +187,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Patient'
             ],
             'encounter' => [
-                'reference'=>"Encounter/".strval($patient->id),
+                'reference'=>"Encounter/1",//.strval($patient->id),
                 'type'=>'Encounter'
             ],
             "performer" => [
@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Organization'
             ],
             "result" => [
-                "reference"=>"Observation/".strval($patient->id),
+                "reference"=>"Observation/1",//.strval($patient->id),
                 'type'=>'Observation'
             ],
             'category'=> [
@@ -223,7 +223,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Patient'
             ],
             'encounter' => [
-                'reference'=>"Encounter/".strval($patient->id),
+                'reference'=>"Encounter/1",//.strval($patient->id),
                 'type'=>'Encounter'
             ],
             "performer" => [
@@ -1087,13 +1087,13 @@ class DatabaseSeeder extends Seeder
     private function dataAbsent()
     {
 
-        $patient= new Patient();
-        $patient->id= 1;
+        $patient= Patient::first();
+        //$patient->id= 1;
 
         // Data Absent extension
         $observation= Observation::factory(1)->create([
             'subject' => [
-                'reference'=>'Patient/1',
+                'reference'=>'Patient/'.$patient->id,
                 'type'=>'Patient'
             ],
             "code"=> [
@@ -1120,7 +1120,7 @@ class DatabaseSeeder extends Seeder
         // Data Absent CodeSystem
         $observation= Observation::factory(1)->create([
             'subject' => [
-                'reference'=>'Patient/1',
+                'reference'=>'Patient/'.$patient->id,
                 'type'=>'Patient'
             ],
             "code"=> [
