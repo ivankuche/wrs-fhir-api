@@ -13,6 +13,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DiagnosticReportController;
 use App\Http\Controllers\DocumentReferenceController;
 use App\Http\Controllers\EncounterController;
+use App\Http\Controllers\FHIRValueSetController;
 use App\Http\Controllers\GoalController;
 use App\Http\Controllers\ImmunizationController;
 use App\Http\Controllers\MedicationRequestController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\ObservationController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SnomedCTController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -82,3 +84,5 @@ Route::get('denyauthorize', [AuthController::class, 'denyauthorization']);
 
 Route::get('fhirds', [TestController::class, 'datasource']);
 
+Route::get('FHIRValueSet/{ValueSet}/{Term?}/{Sort?}',[FHIRValueSetController::class, 'getvalueset']);
+Route::get('SnomedCT/{ConceptGroup}/{Term?}/{Sort?}',[SnomedCTController::class, 'query']);
