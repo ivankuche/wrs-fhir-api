@@ -77,6 +77,9 @@ class SnomedCTController extends Controller
 
         $url= "https://snowstorm.msal.gov.ar/MAIN/concepts";
 
+        // Future WRS endpoint
+        //$url= "https://snowstorm.wrs.cloud/MAIN/concepts";
+
         $params= [
             "query"=>[
                 'activeFilter'=>true,
@@ -112,6 +115,29 @@ class SnomedCTController extends Controller
 
     }
 
+    private function releaseStatus()
+    {
+
+        $client = new Client();
+
+        $url= "https://snowstorm.msal.gov.ar/branches/MAIN";
+
+        // Future WRS endpoint
+        //$url= "https://snowstorm.wrs.cloud/branches/MAIN";
+
+
+        $response= $client->request('GET',$url);
+
+        if ($response->getStatusCode()==200)
+        {
+            $body= json_decode($response->getBody());
+
+            return $body;
+        }
+        else
+            throw new InternalErrorException($response->getStatusCode());
+    }
+
     public function query($ConceptGroup,$Term=null,$Sort=null)
     {
         if (array_key_exists($ConceptGroup,$this->ValueSets))
@@ -131,7 +157,10 @@ class SnomedCTController extends Controller
             else
                 $return= $this->queryConcept($this->ValueSets[$ConceptGroup],$Term,$Sort);
 
-            return $return;
+            return [
+                "meta"=>$this->releaseStatus(),
+                "data"=>$return
+            ];
         }
 
         throw new NotFoundHttpException("ValueSet not found");
