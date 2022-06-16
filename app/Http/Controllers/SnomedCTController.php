@@ -40,11 +40,11 @@ class SnomedCTController extends Controller
 
 
 
+        // Items removed due to inactive in SNOMED: <<267425008 OR <<190753003 OR <<413427002. Make script to check invalid concepts.
+        // Addedd <<105590001 as defined in https://build.fhir.org/valueset-substance-code.html
+        "AllergyIntoleranceSubstanceProductConditionandNegationCodes"=>"<<418038007 OR <<29736007 OR <<340519003 OR <<716186003 OR <<105590001",
 
-
-
-
-
+        "CarePlanActivityStatusReason"=>"<!183932001 OR <!416406003 OR <!416237000 OR <!428119001 OR <!416432009 OR <!394908001 OR 410536001", // Removed 416064006 and 183944003 as deprecated
 
     ];
 
@@ -165,4 +165,10 @@ class SnomedCTController extends Controller
 
         throw new NotFoundHttpException("ValueSet not found");
     }
+
+    public function getMethods()
+    {
+        return array_keys($this->ValueSets);
+    }
+
 }

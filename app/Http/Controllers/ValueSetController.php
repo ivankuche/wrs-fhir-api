@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use GuzzleHttp\Client;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
+use App\Http\Controllers\FHIRValueSetController;
 
 
 class ValueSetController extends Controller
@@ -13,7 +14,7 @@ class ValueSetController extends Controller
 
     private $sources= [
         "FHIRValueSet",
-//        "SnomedCT",
+        "SnomedCT",
     ];
 
     private function getMethods()
@@ -21,6 +22,13 @@ class ValueSetController extends Controller
         $methods= [];
         foreach ($this->sources as $sourceMethod)
         {
+            $className= "\\App\\Http\\Controllers\\".$sourceMethod."Controller";
+            $class= new $className;
+
+            foreach ($class->getMethods() as $elementMethod)
+                $methods[$elementMethod][]= $sourceMethod;
+
+            /*
             $urlMethod= url($sourceMethod."/methods");
             $clientMethod = new Client();
             $responseMethod = $clientMethod->get($urlMethod,['verify' => false, 'headers'=>['Connection' => 'close']]); // Verify false to avoid auto SSL errors
@@ -33,7 +41,7 @@ class ValueSetController extends Controller
             }
             else
                 throw new InternalErrorException($responseMethod->getStatusCode());
-
+            */
         }
 
         return $methods;
@@ -44,13 +52,6 @@ class ValueSetController extends Controller
     {
 
         $methods= $this->getMethods();
-        /*
-        $methods=  [
-            "AddressType" => [
-                "FHIRValueSet"
-            ]
-        ];
-        */
 
         if (array_key_exists($ValueSet,$methods))
         {

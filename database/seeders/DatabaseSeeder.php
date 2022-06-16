@@ -1281,6 +1281,56 @@ class DatabaseSeeder extends Seeder
             $this->location();
         });
 
+
+
+
+        /* Additional patients for consent management test */
+
+        $patients= Patient::factory(20)->create();
+
+        $patients->each(function($patient) {
+            // Patient creation
+            $patientObjSource= Patient::find($patient->id);
+            $patientObjSource->update(['identifier'=> [
+                'use'=>'usual',
+                'value'=>$patient->id,
+                'system'=> "http://hospital.smarthealthit.org"
+            ]]);
+
+            // Provenance of the created patient
+            $this->provenance('Patient/'.$patient->id,'Patient',$patient);
+
+            $this->allergyIntolerance($patient);
+            $this->carePlan($patient);
+            $this->careTeam($patient);
+            $this->condition($patient);
+            $this->device($patient);
+            $this->diagnosticreport($patient);
+            $this->documentreference($patient);
+            $this->goal($patient);
+            $this->immunization($patient);
+            $this->encounter($patient);
+            $this->medicationrequest($patient);
+            $this->observation($patient);
+            $this->organization();
+            $this->practitioner();
+            $this->procedure($patient);
+            $this->location();
+        });
+
+
+        /* End of additional patients */
+
+
+
+
+
+
+
+
+
+
+
         $this->medication();
         $this->organizationPayer1();
         $this->extraDocuments();

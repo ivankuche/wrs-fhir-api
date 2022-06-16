@@ -68,6 +68,39 @@ class FHIRValueSetController extends Controller
         "medicationRequestAdministrationLocationCodes"=>"https://terminology.hl7.org/3.1.0/CodeSystem-medicationrequest-admin-location.json",
         "RequestPriority"=>"https://build.fhir.org/codesystem-request-priority.json",
         "MedicationIntendedPerformerRole"=>"https://build.fhir.org/codesystem-medication-intended-performer-role.json",
+        "DoseAndRateType"=>"https://build.fhir.org/codesystem-dose-rate-type.json",
+        "MedicationDoseAids"=>"https://build.fhir.org/codesystem-medication-dose-aid.json",
+        "MedicationStatusCodes"=>"https://build.fhir.org/codesystem-medication-status.json",
+        "MedicationIngredientStrengthCodes"=>"https://build.fhir.org/codesystem-medication-ingredientstrength.json",
+        "triggeredBytype"=>"https://build.fhir.org/codesystem-observation-triggeredbytype.json",
+        "ObservationStatus"=>"https://build.fhir.org/codesystem-observation-status.json",
+        "ObservationCategoryCodes"=>"https://terminology.hl7.org/3.1.0/CodeSystem-observation-category.json",
+        "DataAbsentReason"=>"https://build.fhir.org/codesystem-data-absent-reason.json",
+        "ObservationInterpretationCodes"=>"https://terminology.hl7.org/3.1.0/CodeSystem-v3-ObservationInterpretation.json",
+        "ObservationReferenceRangeNormalValueCodes"=>"https://build.fhir.org/codesystem-observation-referencerange-normalvalue.json",
+        "ObservationReferenceRangeMeaningCodes"=>"https://terminology.hl7.org/3.1.0/CodeSystem-referencerange-meaning.json",
+        "EventStatus"=>"https://www.hl7.org/fhir/codesystem-event-status.json",
+        "EncounterStatus"=>"https://www.hl7.org/fhir/codesystem-encounter-status.json",
+        "Encountertype"=>"https://www.hl7.org/fhir/codesystem-encounter-type.json",
+        "ServiceType"=>"https://www.hl7.org/fhir/codesystem-service-type.json",
+        "v3CodeSystemActPriority"=>"https://www.hl7.org/fhir/v3/ActPriority/v3-ActPriority.cs.json",
+        "DiagnosisRole"=>"https://www.hl7.org/fhir/codesystem-diagnosis-role.json",
+        "AdmitSource"=>"https://www.hl7.org/fhir/codesystem-encounter-admit-source.json",
+        "hl7VS-re-admissionIndicator"=>"https://terminology.hl7.org/3.1.0/CodeSystem-v2-0092.json",
+        "Diet"=>"https://www.hl7.org/fhir/codesystem-encounter-diet.json",
+        "SpecialArrangements"=>"https://www.hl7.org/fhir/codesystem-encounter-special-arrangements.json",
+        "DischargeDisposition"=>"https://www.hl7.org/fhir/codesystem-encounter-discharge-disposition.json",
+        "EncounterLocationStatus"=>"https://www.hl7.org/fhir/codesystem-encounter-location-status.json",
+        "LocationType"=>"https://www.hl7.org/fhir/codesystem-location-physical-type.json",
+        "OrganizationType"=>"https://www.hl7.org/fhir/codesystem-organization-type.json",
+        "ContactEntityType"=>"https://www.hl7.org/fhir/codesystem-contactentity-type.json",
+        "v2Table0360Version2.7"=>"https://www.hl7.org/fhir/v2/0360/2.7/v2-0360-2.7.cs.json",
+
+        // Seguir
+        "CarePlanActivityStatusReason"=>["https://terminology.hl7.org/3.1.0/CodeSystem-medicationrequest-status-reason.json",]
+
+
+
 
 
 
@@ -123,7 +156,8 @@ class FHIRValueSetController extends Controller
                     $this->addCustomValues($options,
                         "https://terminology.hl7.org/3.1.0/CodeSystem-v3-NullFlavor.json",
                         ["UNK"],
-                        $Term);
+                        $Term,
+                        $urlsMeta);
 
                     break;
 
@@ -132,7 +166,18 @@ class FHIRValueSetController extends Controller
                         "https://www.hl7.org/fhir/codesystem-resource-types.json",
                         ["Appointment","CommunicationRequest","DeviceRequest","MedicationRequest","NutritionOrder",
                             "Task","ServiceRequest","VisionPrescription"],
-                        $Term);
+                        $Term,
+                        $urlsMeta);
+
+                    break;
+
+                case "CarePlanActivityStatusReason":
+                    $this->addCustomValues($options,
+                        "https://terminology.hl7.org/3.1.0/CodeSystem-v3-ActReason.json",
+                        ["IMMUNE","MEDPREC","OSTOCK","PATOBJ","PHILISOP","RELIG","VACEFF","VACSAF"],
+                        $Term,
+                        $urlsMeta);
+
 
                     break;
             }
@@ -189,7 +234,7 @@ class FHIRValueSetController extends Controller
 
     }
 
-    private function findRecursiveElement($Source,$key,$value)
+    private function findRecursiveElement($Source,$key,$value,$SourceID)
     {
         foreach ($Source as $element)
         {
@@ -203,17 +248,18 @@ class FHIRValueSetController extends Controller
                     "definition"=>$definition,
                     "value"=>$element->code,
                     "name"=>$element->display,
+                    "source"=>$SourceID
                 ];
             }
             else{
                 if (isset($element->concept))
-                    return $this->findRecursiveElement($element->concept,$key,$value);
+                    return $this->findRecursiveElement($element->concept,$key,$value,$SourceID);
             }
         }
 
     }
 
-    private function addCustomValues(&$SourceValues,$url,$customValues,$Term)
+    private function addCustomValues(&$SourceValues,$url,$customValues,$Term,&$Meta)
     {
 
         $client = new Client();
@@ -226,9 +272,13 @@ class FHIRValueSetController extends Controller
             $body= json_decode($response->getBody());
 
 
+            $body= json_decode($response->getBody());
+            $concepts= $body->concept;
+            unset($body->concept,$body->text);
+
             foreach ($customValues as $customValue)
             {
-                $concept= $this->findRecursiveElement($body->concept,"code",$customValue);
+                $concept= $this->findRecursiveElement($concepts,"code",$customValue,$body->id);
 
                 if ($concept!=[])
                 {
@@ -241,7 +291,10 @@ class FHIRValueSetController extends Controller
                     }
 
                     if ($insert)
+                    {
                         $SourceValues[] = $concept;
+                        $Meta[$body->id]= $body;
+                    }
                 }
             }
         }
