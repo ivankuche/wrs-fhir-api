@@ -68,7 +68,7 @@ class PatientController extends Controller
                 Temporary test
             */
 
-            if (strval($identifierCast['value'])==5001)
+            if (strval($identifierCast['value'])==501)
                 $communication= [$patient->communication];
             else
             {
