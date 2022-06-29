@@ -63,6 +63,29 @@ class PatientController extends Controller
             if ($patient->deceasedDateTime!=null)
                 $deceased= Carbon::parse($patient->deceasedDateTime)->toIso8601String();
 
+
+            /*
+                Temporary test
+            */
+
+            if (strval($identifierCast['value'])==5001)
+                $communication= [$patient->communication];
+            else
+            {
+                $communication= [[
+                    "extension"=> [[
+                        "url"=> "https:\/\/hl7.org\/fhir\/us\/core\/STU5\/ValueSet-simple-language.html",
+                        "valueCoding"=> [
+                          "system"=> "https:\/\/terminology.hl7.org\/CodeSystem\/data-absent-reason",
+                          "code"=> "unknown",
+                          "display"=> "Unknown"
+                        ]
+                   ]]
+                ]];
+            }
+
+
+
             $response= [
                 "resourceType"=>"Patient",
                 "id"=>strval($patient->identifier['value']),
@@ -81,7 +104,14 @@ class PatientController extends Controller
                 "address"=> [$patient->address],
                 "maritalStatus"=> $patient->maritalStatus,
                 "contact"=> [$patient->contact],
-                "communication"=> [$patient->communication],
+
+                // TEMPORARY TEST
+                // "communication"=> [$patient->communication],
+                //
+
+                "communication"=> $communication,
+
+
                 // Hardcoded information
                 "extension"=> [
                     [
