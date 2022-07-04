@@ -66,7 +66,6 @@ class PatientController extends Controller
 
             /*
                 Temporary test
-            */
 
             if (strval($identifierCast['value'])==501)
                 $communication= [$patient->communication];
@@ -84,7 +83,9 @@ class PatientController extends Controller
                 ]];
             }
 
+            */
 
+            $communication= [$patient->communication];
 
             $response= [
                 "resourceType"=>"Patient",
