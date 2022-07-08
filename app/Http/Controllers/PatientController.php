@@ -63,30 +63,6 @@ class PatientController extends Controller
             if ($patient->deceasedDateTime!=null)
                 $deceased= Carbon::parse($patient->deceasedDateTime)->toIso8601String();
 
-
-            /*
-                Temporary test
-
-            if (strval($identifierCast['value'])==501)
-                $communication= [$patient->communication];
-            else
-            {
-                $communication= [[
-                    "extension"=> [[
-                        "url"=> "https:\/\/hl7.org\/fhir\/us\/core\/STU5\/ValueSet-simple-language.html",
-                        "valueCoding"=> [
-                          "system"=> "https:\/\/terminology.hl7.org\/CodeSystem\/data-absent-reason",
-                          "code"=> "unknown",
-                          "display"=> "Unknown"
-                        ]
-                   ]]
-                ]];
-            }
-
-            */
-
-            $communication= [$patient->communication];
-
             $response= [
                 "resourceType"=>"Patient",
                 "id"=>strval($patient->identifier['value']),
@@ -110,7 +86,7 @@ class PatientController extends Controller
                 // "communication"=> [$patient->communication],
                 //
 
-                "communication"=> $communication,
+                "communication"=> [$patient->communication],
 
 
                 // Hardcoded information
@@ -171,6 +147,68 @@ class PatientController extends Controller
                 ],
 
             ];
+
+
+
+// Marius Tests
+
+$response["extension"]= [
+    [
+        "extension"=> [
+            [
+                "url"=> "ombCategory",
+                "valueCoding"=> [
+                    "system"=> "urn=>oid=>2.16.840.1.113883.6.238",
+                    "code"=> "2106-3",
+                    "display"=> "White - Marius test"
+                ]
+            ],
+            [
+                "url"=> "text",
+                "valueString"=> "White"
+            ]
+        ],
+        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+    ],
+    [
+        "extension"=> [
+            [
+                "url"=> "ombCategory",
+                "valueCoding"=> [
+                    "system"=> "urn=>oid=>2.16.840.1.113883.6.238",
+                    "code"=> "1002-5",
+                    "display"=> "American Indian or Alaska Native"
+                ]
+            ],
+            [
+              "url"=> "text",
+              "valueString"=> "American Indian or Alaska Native"
+            ]
+        ],
+        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+    ],
+    [
+        "extension"=> [
+            [
+                "url"=> "ombCategory",
+                "valueCoding"=> [
+                    "system"=> "urn=>oid=>2.16.840.1.113883.6.238",
+                    "code"=> "2054-5",
+                    "display"=> "Black or African American"
+                ]
+            ],
+            [
+                "url"=> "text",
+                "valueString"=> "Black or African American"
+            ]
+        ],
+        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+    ],
+    [
+        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+        "valueCode"=> "F"
+    ]
+];
 
             $response= $this->filterEmpty($response);
 
