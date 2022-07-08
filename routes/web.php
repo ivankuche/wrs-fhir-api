@@ -27,6 +27,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SnomedCTController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ValueSetController;
+use App\Http\Controllers\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,5 @@ Route::get('FHIRValueSet/methods',[FHIRValueSetController::class, 'getMethods'])
 Route::get('FHIRValueSet/{ValueSet}/{Term?}/{Sort?}',[FHIRValueSetController::class, 'getValueSet']);
 Route::get('SnomedCT/{ConceptGroup}/{Term?}/{Sort?}',[SnomedCTController::class, 'query']);
 Route::get('ValueSet/{ValueSet}/{Term?}/{Sort?}',[ValueSetController::class, 'getValueSet']);
+
+Route::get('getinfo/{Concept}',[InfoController::class, 'getinfo']);
