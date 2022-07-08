@@ -158,7 +158,7 @@ $response["extension"]= [
             [
                 "url"=> "ombCategory",
                 "valueCoding"=> [
-                    "system"=> "urn=>oid=>2.16.840.1.113883.6.238",
+                    "system"=> "urn:oid:2.16.840.1.113883.6.238",
                     "code"=> "2106-3",
                     "display"=> "White - Marius test"
                 ]
@@ -168,14 +168,14 @@ $response["extension"]= [
                 "valueString"=> "White"
             ]
         ],
-        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     ],
     [
         "extension"=> [
             [
                 "url"=> "ombCategory",
                 "valueCoding"=> [
-                    "system"=> "urn=>oid=>2.16.840.1.113883.6.238",
+                    "system"=> "urn:oid:2.16.840.1.113883.6.238",
                     "code"=> "1002-5",
                     "display"=> "American Indian or Alaska Native"
                 ]
@@ -185,14 +185,14 @@ $response["extension"]= [
               "valueString"=> "American Indian or Alaska Native"
             ]
         ],
-        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     ],
     [
         "extension"=> [
             [
                 "url"=> "ombCategory",
                 "valueCoding"=> [
-                    "system"=> "urn=>oid=>2.16.840.1.113883.6.238",
+                    "system"=> "urn:oid:2.16.840.1.113883.6.238",
                     "code"=> "2054-5",
                     "display"=> "Black or African American"
                 ]
@@ -202,10 +202,10 @@ $response["extension"]= [
                 "valueString"=> "Black or African American"
             ]
         ],
-        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     ],
     [
-        "url"=> "http=>//hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+        "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
         "valueCode"=> "F"
     ]
 ];
