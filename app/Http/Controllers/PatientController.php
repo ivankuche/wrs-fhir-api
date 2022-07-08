@@ -170,6 +170,7 @@ $response["extension"]= [
         ],
         "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     ],
+    /*
     [
         "extension"=> [
             [
@@ -204,6 +205,7 @@ $response["extension"]= [
         ],
         "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
     ],
+    */
     [
         "url"=> "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
         "valueCode"=> "F"
