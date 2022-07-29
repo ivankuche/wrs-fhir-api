@@ -26,7 +26,7 @@ use App\Models\Group;
 
 class DatabaseSeeder extends Seeder
 {
-    var $practitionerDefault= 3346591;
+    var $practitionerDefault= 1;//3346591;
 
     private function provenance($reference,$referenceType,$patient)
     {
@@ -357,7 +357,7 @@ class DatabaseSeeder extends Seeder
             $practitionerObjSource->update(['identifier'=> [
                 [
                     "system" => "http://hl7.org/fhir/sid/us-npi",
-                    "value" => "1231".$practitioner->id
+                    "value" => $practitioner->id, //"1231".$practitioner->id
                 ],
                 [
                     "use"=>"usual",

@@ -92,3 +92,4 @@ Route::get('SnomedCT/{ConceptGroup}/{Term?}/{Sort?}',[SnomedCTController::class,
 Route::get('ValueSet/{ValueSet}/{Term?}/{Sort?}',[ValueSetController::class, 'getValueSet']);
 
 Route::get('getinfo/{Concept}',[InfoController::class, 'getinfo']);
+Route::get('parseCCDA',[InfoController::class, 'parseCCDA']);
