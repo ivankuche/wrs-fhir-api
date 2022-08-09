@@ -320,7 +320,7 @@ class DatabaseSeeder extends Seeder
     private function organization()
     {
 
-        $organization= Organization::factory(1)->create(['id'=>983266])->first();
+        $organization= Organization::factory(1)->create()->first();
 
         $organization->update(['identifier'=> [
             [
