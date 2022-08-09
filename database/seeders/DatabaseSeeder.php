@@ -27,6 +27,7 @@ use App\Models\Group;
 class DatabaseSeeder extends Seeder
 {
     var $practitionerDefault= 3346591;
+    var $organizationDefault= 983266; //1
 
     private function provenance($reference,$referenceType,$patient)
     {
@@ -49,7 +50,7 @@ class DatabaseSeeder extends Seeder
                 [
                     // On behalf of which organization
                     'onBehalfOf'=> [
-                        'reference'=>'Organization/1',//$patient->id,
+                        'reference'=>'Organization/'.$this->organizationDefault,
                         'type'=>'Organization'
                     ],
                     'type'=> [
@@ -77,7 +78,7 @@ class DatabaseSeeder extends Seeder
                         ]
                     ],
                     "who" => [
-                        "reference" => "Organization/1"
+                        "reference" => "Organization/".$this->organizationDefault,
                     ]
                 ],
                 // Author of the information
@@ -92,7 +93,7 @@ class DatabaseSeeder extends Seeder
                         ]
                     ],
                     "who" => [
-                        "reference" => "Organization/1"
+                        "reference" => "Organization/".$this->organizationDefault,
                     ]
                 ]
                 // Extensions
@@ -191,7 +192,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Encounter'
             ],
             "performer" => [
-                "reference"=>"Organization/1",//.strval($patient->id),
+                "reference"=>"Organization/".$this->organizationDefault,//.strval($patient->id),
                 'type'=>'Organization'
             ],
             "result" => [
@@ -227,7 +228,7 @@ class DatabaseSeeder extends Seeder
                 'type'=>'Encounter'
             ],
             "performer" => [
-                "reference"=>"Organization/1",//.strval($patient->id),
+                "reference"=>"Organization/".$this->organizationDefault,//.strval($patient->id),
                 'type'=>'Organization'
             ],
             'category'=> [
@@ -319,7 +320,7 @@ class DatabaseSeeder extends Seeder
     private function organization()
     {
 
-        $organization= Organization::factory(1)->create()->first();
+        $organization= Organization::factory(1)->create(['id'=>983266])->first();
 
         $organization->update(['identifier'=> [
             [
@@ -1063,7 +1064,7 @@ class DatabaseSeeder extends Seeder
                         'type'=>'Encounter'
                     ],
                     "performer" => [
-                        "reference"=>"Organization/1",
+                        "reference"=>"Organization/".$this->organizationDefault,
                         'type'=>'Organization'
                     ],
                     "result" => [
