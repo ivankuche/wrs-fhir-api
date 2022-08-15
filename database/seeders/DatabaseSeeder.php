@@ -27,7 +27,7 @@ use App\Models\Group;
 class DatabaseSeeder extends Seeder
 {
     var $practitionerDefault= 3346591;
-    var $organizationDefault= 983266; //1
+    var $organizationDefault= 1; //983266; //1
 
     private function provenance($reference,$referenceType,$patient)
     {
