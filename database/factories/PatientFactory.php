@@ -114,12 +114,9 @@ class PatientFactory extends Factory
                     ]
                 ],
                 "name"=> [
-                    [
-                        "family"=>$this->faker->lastName(),
-                        "given"=> [$this->faker->firstName],
-                        "use"=>"usual"
-                    ],
-                    $previousName
+                    "family"=>$this->faker->lastName(),
+                    "given"=> [$this->faker->firstName],
+                    "use"=>"usual"
                 ],
                 "telecom"=> [
                     [
@@ -173,7 +170,7 @@ class PatientFactory extends Factory
                     'text'=>$name." ".$surname,
                     'family'=>$surname,
                     'given'=>[$name],
-                    "suffix"=>$suffix,
+                    "suffix"=>[$suffix],
                 ],
                 $previousName),
             'telecom'=> [[
