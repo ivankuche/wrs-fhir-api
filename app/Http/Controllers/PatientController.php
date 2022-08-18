@@ -206,8 +206,19 @@ class PatientController extends Controller
 
                     }
                     else
-                        $this->mapperToEloquent($patients,$mapper[$key],$value);
-                        //$patients->where($mapper[$key],'=',$value);
+                    {
+                        if ($key=="name")
+                        {
+                            $patients->whereJsonContains('name', ['name' =>$value]);
+                            //$this->mapperToEloquent($patients,$mapper[$key],$value);
+                            //$patients->where($mapper[$key],'=',$value);
+
+                        }
+                        else{
+                            $this->mapperToEloquent($patients,$mapper[$key],$value);
+                            //$patients->where($mapper[$key],'=',$value);
+                        }
+                    }
                 }
             }
         }
