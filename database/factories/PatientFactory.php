@@ -21,6 +21,9 @@ class PatientFactory extends Factory
         $gender = $this->faker->randomElement(['male', 'female']);
         $genderIdentity = $this->faker->randomElement(['male','female','non-binary','transgender-male','transgender-female', 'other', 'non-disclose']);
 
+        $suffix = $this->faker->randomElement(['Jr','2nd','',"The 3rd"]);
+
+
         $name= $this->faker->firstName($gender);
         $surname= $this->faker->lastName();
         $deceasedBoolean= null;
@@ -29,6 +32,13 @@ class PatientFactory extends Factory
         if ($this->faker->boolean())
             $deceasedDateTime= $this->faker->date('Y-m-d','now - 2 year');
 
+        $previousName= [];
+        if ($this->faker->boolean())
+            $previousName= [
+                "family"=>$this->faker->lastName(),
+                "given"=> [$this->faker->firstName],
+                "use"=>"old"
+            ];
 
         $address= $this->faker->streetName;
         $number= $this->faker->buildingNumber;
@@ -104,8 +114,13 @@ class PatientFactory extends Factory
                     ]
                 ],
                 "name"=> [
-                    "family"=>$this->faker->lastName(),
-                    "given"=> [$this->faker->firstName],
+                    [
+                        "family"=>$this->faker->lastName(),
+                        "given"=> [$this->faker->firstName],
+                        "suffix"=>$suffix,
+                        "use"=>"usual"
+                    ],
+                    $previousName
                 ],
                 "telecom"=> [
                     [
