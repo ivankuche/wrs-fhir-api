@@ -169,15 +169,13 @@ class PatientFactory extends Factory
             ],
             'active'=> $this->faker->boolean(),
             'name'=>[
-                [
                     'use'=>'usual',
                     'text'=>$name." ".$surname,
                     'family'=>$surname,
                     'given'=>[$name],
                     "suffix"=>$suffix,
                 ],
-                $previousName
-            ],
+                $previousName,
             'telecom'=> [[
                     "system"=>"phone",
                     "value"=>$this->faker->phoneNumber,
