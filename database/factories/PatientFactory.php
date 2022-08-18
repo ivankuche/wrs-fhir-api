@@ -168,14 +168,14 @@ class PatientFactory extends Factory
                 'system'=> "http://hospital.smarthealthit.org"
             ],
             'active'=> $this->faker->boolean(),
-            'name'=>[
+            'name'=>array_merge([
                     'use'=>'usual',
                     'text'=>$name." ".$surname,
                     'family'=>$surname,
                     'given'=>[$name],
                     "suffix"=>$suffix,
                 ],
-                $previousName,
+                $previousName),
             'telecom'=> [[
                     "system"=>"phone",
                     "value"=>$this->faker->phoneNumber,
