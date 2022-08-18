@@ -33,7 +33,7 @@ class PatientFactory extends Factory
             $deceasedDateTime= $this->faker->date('Y-m-d','now - 2 year');
 
         $previousName= [];
-        if ($this->faker->boolean())
+        if (($this->faker->boolean()) || (true)) // FORCING IT
             $previousName= [
                 "family"=>$this->faker->lastName(),
                 "given"=> [$this->faker->firstName],
@@ -117,7 +117,6 @@ class PatientFactory extends Factory
                     [
                         "family"=>$this->faker->lastName(),
                         "given"=> [$this->faker->firstName],
-                        "suffix"=>$suffix,
                         "use"=>"usual"
                     ],
                     $previousName
@@ -170,10 +169,14 @@ class PatientFactory extends Factory
             ],
             'active'=> $this->faker->boolean(),
             'name'=>[
-                'use'=>'usual',
-                'text'=>$name." ".$surname,
-                'family'=>$surname,
-                'given'=>[$name]
+                [
+                    'use'=>'usual',
+                    'text'=>$name." ".$surname,
+                    'family'=>$surname,
+                    'given'=>[$name],
+                    "suffix"=>$suffix,
+                ],
+                $previousName
             ],
             'telecom'=> [[
                     "system"=>"phone",
