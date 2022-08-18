@@ -21,7 +21,7 @@ class PatientFactory extends Factory
         $gender = $this->faker->randomElement(['male', 'female']);
         $genderIdentity = $this->faker->randomElement(['male','female','non-binary','transgender-male','transgender-female', 'other', 'non-disclose']);
 
-        $suffix = $this->faker->randomElement(['Jr','2nd','',"The 3rd"]);
+        $suffix = $this->faker->randomElement(['Jr','2nd',"The 3rd"]);
 
 
         $name= $this->faker->firstName($gender);
@@ -168,7 +168,7 @@ class PatientFactory extends Factory
                     'text'=>$name." ".$surname,
                     'family'=>$surname,
                     'given'=>[$name],
-                    "suffix"=>[$suffix],
+                    'suffix'=>[$suffix],
                 ],
                 $previousName],
             'telecom'=> [[
