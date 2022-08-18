@@ -209,7 +209,7 @@ class PatientController extends Controller
                     {
                         if ($key=="name")
                         {
-                            $patients->whereJsonContains('name', ['name' =>$value]);
+                            $patients->whereJsonContains('name', ['text' =>$value])->orWhereJsonContains('name', ['family' =>$value])->orWhereJsonContains('name', ['given' =>$value]);
                             //$this->mapperToEloquent($patients,$mapper[$key],$value);
                             //$patients->where($mapper[$key],'=',$value);
 
