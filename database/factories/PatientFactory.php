@@ -32,13 +32,11 @@ class PatientFactory extends Factory
         if ($this->faker->boolean())
             $deceasedDateTime= $this->faker->date('Y-m-d','now - 2 year');
 
-        $previousName= [];
-        if (($this->faker->boolean()) || (true)) // FORCING IT
-            $previousName= [
-                "family"=>$this->faker->lastName(),
-                "given"=> [$this->faker->firstName],
-                "use"=>"old"
-            ];
+        $previousName= [
+            "family"=>$this->faker->lastName(),
+            "given"=> [$this->faker->firstName],
+            "use"=>"old"
+        ];
 
         $address= $this->faker->streetName;
         $number= $this->faker->buildingNumber;
@@ -165,13 +163,13 @@ class PatientFactory extends Factory
                 'system'=> "http://hospital.smarthealthit.org"
             ],
             'active'=> $this->faker->boolean(),
-            'name'=>array_merge([
+            'name'=>array_merge(array(
                     'use'=>'usual',
                     'text'=>$name." ".$surname,
                     'family'=>$surname,
                     'given'=>[$name],
                     "suffix"=>[$suffix],
-                ],
+                ),
                 $previousName),
             'telecom'=> [[
                     "system"=>"phone",
