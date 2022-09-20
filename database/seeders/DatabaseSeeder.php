@@ -1250,6 +1250,33 @@ class DatabaseSeeder extends Seeder
 
     }
 
+    public function customPatientCreationSurescripts()
+    {
+        $patient= new Patient([
+            'active'=>true,
+            'name'=>[[
+                'use'=>'official',
+                'text'=>'Frankie Everyman',
+                'family'=>'Everyman',
+                'given'=>['Frankie'],
+            ]],
+            "gender"=>"male",
+            "birthDate"=>"1976-11-15",
+            "address"=> [
+                [
+                    "use"=>"home",
+                    "line"=> [
+                        "111 Dorrance St"
+                    ],
+                    "city"=> "Providence",
+                    "state"=> "RI",
+                    "postalCode"=> "02903"
+                ]
+            ]
+                ]);
+            $patient->save();
+    }
+
     public function run()
     {
         //$patients= Patient::factory(20)->create();
@@ -1342,6 +1369,8 @@ class DatabaseSeeder extends Seeder
         $this->extraReports();
         $this->dataAbsent();
         $this->group();
+
+        $this->customPatientCreationSurescripts();
 
     }
 }
