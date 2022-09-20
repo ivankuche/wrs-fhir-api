@@ -47,7 +47,7 @@ class OrganizationFactory extends Factory
                 "value"=>$this->faker->phoneNumber,
             ],
             [
-                "system"=>"phone",
+                "system"=>"fax",
                 "value"=>$this->faker->phoneNumber,
             ]],
             'address'=>[$addressItem],
