@@ -1282,6 +1282,15 @@ class DatabaseSeeder extends Seeder
             ]
                 ]);
             $patient->save();
+
+            $patient->identifier= [
+                'identifier'=> [
+                    'use'=>'usual',
+                    'value'=>$patient->id,
+                    'system'=> "http://hospital.smarthealthit.org"
+                ]];
+
+            $patient->save();
     }
 
     public function run()
