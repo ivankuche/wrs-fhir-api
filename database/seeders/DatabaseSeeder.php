@@ -1252,7 +1252,14 @@ class DatabaseSeeder extends Seeder
 
     public function customPatientCreationSurescripts()
     {
+        $id= Patient::latest()->first()->id;
+
         $patient= new Patient([
+            'identifier'=> [
+                'use'=>'usual',
+                'value'=>($id+1),
+                'system'=> "http://hospital.smarthealthit.org"
+            ],
             'active'=>true,
             'name'=>[[
                 'use'=>'official',
@@ -1279,6 +1286,10 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+//        $this->customPatientCreationSurescripts();
+//        die("capo");
+
+
         //$patients= Patient::factory(20)->create();
         //$patients= Patient::where(['id'=>500]);
         $patients= Patient::factory(1)->create(['id'=>500]);
