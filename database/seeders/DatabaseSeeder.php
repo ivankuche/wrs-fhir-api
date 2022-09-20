@@ -329,7 +329,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 "system" => "http://hl7.org/fhir/sid/us-npi",
-                "value" => "1231".$organization->id
+                "value" => "1487047213",//"1231".$organization->id
             ],
         ]]);
     }
