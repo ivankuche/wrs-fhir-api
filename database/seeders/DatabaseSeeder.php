@@ -1293,6 +1293,46 @@ class DatabaseSeeder extends Seeder
             $patient->save();
     }
 
+    public function customOrganizationCreationSurescripts()
+    {
+        $organization= Organization::factory(1)->create()->first();
+
+        $organization->update(['identifier'=> [
+            [
+                "system" => "urn:uuid:53fefa32-fcbb-4ff8-8a92-55ee120877b7",
+                "value" => strval($organization->id)
+            ],
+            [
+                "system" => "http://hl7.org/fhir/sid/us-npi",
+                "value" => "1487047213",//"1231".$organization->id
+            ],
+            [
+                "system"=> "http://hl7.org/fhir/sid/oid",
+                "value"=> "urn:oid:2.16.840.1.113883.3.191919.1",
+            ]
+        ]]);
+
+        $organization= Organization::factory(1)->create()->first();
+
+        $organization->update(['identifier'=> [
+            [
+                "system" => "urn:uuid:53fefa32-fcbb-4ff8-8a92-55ee120877b7",
+                "value" => strval($organization->id)
+            ],
+            [
+                "system" => "http://hl7.org/fhir/sid/us-npi",
+                "value" => "1234567893",//"1231".$organization->id
+            ],
+            [
+                "system"=> "http://hl7.org/fhir/sid/oid",
+                "value"=> "urn:oid:2.16.840.1.113883.3.191919.2",
+            ]
+        ]]);
+
+
+
+    }
+
     public function run()
     {
 //        $this->customPatientCreationSurescripts();
@@ -1391,6 +1431,7 @@ class DatabaseSeeder extends Seeder
         $this->group();
 
         $this->customPatientCreationSurescripts();
+        $this->customOrganizationCreationSurescripts();
 
     }
 }

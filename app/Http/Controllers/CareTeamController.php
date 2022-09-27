@@ -126,11 +126,11 @@ class CareTeamController extends Controller
         }
 
         if (!$request->wantsJson())
-            return response()->xml($careteams->limit(100)->get());
+            return response()->xml($careteams->limit(30)->get());
         else
         {
             $finalResponse= [];
-            foreach ($careteams->limit(100)->get() as $pat)
+            foreach ($careteams->limit(30)->get() as $pat)
             {
                 $response= $this->fhirStructure($pat);
                 $finalResponse[]= $response;
